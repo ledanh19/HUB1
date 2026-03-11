@@ -422,7 +422,7 @@ export function useHostSettlement(filters: SettlementFilters | null) {
       const prepaidRequestIds = (prepaidRequests || []).map(p => p.id);
       const allRequestIds = [...depositRequestIds, ...prepaidRequestIds];
 
-      let cashOutsByRequest = new Map<string, number>();
+      const cashOutsByRequest = new Map<string, number>();
       if (allRequestIds.length > 0) {
         const { data: cashOuts } = await supabase
           .from("cash_outs")
@@ -754,7 +754,7 @@ export function useExistingSettlements(partnerId?: string) {
       const settlementIds = (data || []).map(s => s.id);
 
       // Compute paid_amount from cashflow_entries (single source of truth)
-      let paidBySettlement = new Map<string, number>();
+      const paidBySettlement = new Map<string, number>();
       if (settlementIds.length > 0) {
         const { data: cashflows, error: cfError } = await supabase
           .from("cashflow_entries")

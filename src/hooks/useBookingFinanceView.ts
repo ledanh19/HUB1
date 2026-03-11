@@ -99,7 +99,7 @@ export function useBookingFinanceView(filters?: {
                 .filter((c: any) => c.ota_debit_note_record_id && c.case_status === "SETTLED")
                 .map((c: any) => c.ota_debit_note_record_id);
 
-            let debitNoteMap = new Map<string, number>();
+            const debitNoteMap = new Map<string, number>();
             if (settledDnIds.length > 0) {
                 const { data: dnRecords } = await (supabase as any)
                     .from("ota_debit_note_records")

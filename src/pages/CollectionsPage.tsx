@@ -207,12 +207,14 @@ export default function CollectionsPage() {
     switch (periodFilter) {
       case "today":
         return { start: today, end: today };
-      case "week":
+      case "week": {
         const weekAgo = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000);
         return { start: weekAgo, end: today };
-      case "month":
+      }
+      case "month": {
         const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
         return { start: monthStart, end: today };
+      }
       case "custom":
         return { start: customDateFrom, end: customDateTo };
       default:

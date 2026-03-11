@@ -2608,7 +2608,7 @@ function formatTimelineDescription(
     case 'TASK_CREATED':
       return `${actorName} tạo task`;
     
-    case 'STATUS_CHANGED':
+    case 'STATUS_CHANGED': {
       const statusLabels: Record<string, string> = {
         TODO: 'Chờ xử lý',
         IN_PROGRESS: 'Đang làm',
@@ -2618,6 +2618,7 @@ function formatTimelineDescription(
         CANCELLED: 'Đã hủy',
       };
       return `${actorName} chuyển trạng thái từ "${statusLabels[log.old_value] || log.old_value}" sang "${statusLabels[log.new_value] || log.new_value}"${log.reason ? ` - Lý do: ${log.reason}` : ''}`;
+    }
     
     case 'ASSIGNEE_CHANGED':
       return `${actorName} gán task cho ${log.new_value || 'người khác'}`;

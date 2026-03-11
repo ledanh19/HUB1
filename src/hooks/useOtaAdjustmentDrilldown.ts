@@ -82,7 +82,7 @@ export const useOtaAdjustmentDrilldown = (
             if (!dateRange) return emptyResult();
 
             // 1. Fetch ledger entries with limit + offset for pagination
-            let query = supabase
+            const query = supabase
                 .from("ledger_entries")
                 .select("id, source_id, entry_date, amount, direction, economic_date", { count: "exact" })
                 .eq("source_type", "OTA_PAYOUT_ADJUSTMENT")
@@ -104,7 +104,7 @@ export const useOtaAdjustmentDrilldown = (
 
             // 2. Join to recon items — try direct UUID match first
             const sourceIds = (ledgerRows as any[]).map((r: any) => r.source_id);
-            let reconMap = new Map<string, any>();
+            const reconMap = new Map<string, any>();
             let joinedCount = 0;
 
             // Attempt 1: direct .in("id", sourceIds) — works if source_id is UUID string matching recon.id

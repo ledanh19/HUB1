@@ -1,4 +1,4 @@
-﻿/**
+/**
  * usePriceSpreadForecast Hook
  * 
  * Provides ESTIMATED future pricing analytics based on:
@@ -15,7 +15,7 @@
  *   Table: bookings_mirror
  *   Formula: total_amount_net / nights
  *   Note: total_amount_net already accounts for commission (OTA_COLLECT & HOTEL_COLLECT)
- *   Matches: Booking Center "Doanh thu / Ã„â€˜ÃƒÂªm"
+ *   Matches: Booking Center "Doanh thu / Dem"
  * 
  * Host ADR SOT:
  *   Table: host_supply_segments
@@ -38,8 +38,8 @@
  *   5. none:       No Host ADR reference available
  * 
  * UPGRADE FILTER:
- *   Segments where Host bedroom count Ã¢â€°Â  OTA bedroom count are EXCLUDED
- *   Example: OTA 1BR Ã¢â€ â€™ Host 2BR = upgrade, excluded from ADR calculation
+ * Segments where Host bedroom count OTA bedroom count are EXCLUDED
+ * Example: OTA 1BR Host 2BR = upgrade, excluded from ADR calculation
  * 
  * ============================================================================
  * BUSINESS RULES
@@ -51,7 +51,7 @@
  *   - < 0%   : NEGATIVE_MARGIN (selling at loss - urgent review)
  *   - < 15%  : BELOW_MIN_MARGIN (must increase price or review host cost)
  *   - 15-20% : MID_MARGIN (safe zone - hold or slight increase)
- *   - Ã¢â€°Â¥ 20%  : HIGH_MARGIN (optimize zone - increase if velocity good)
+ *   - >= 20% : HIGH_MARGIN (optimize zone - increase if velocity good)
  * 
  * ============================================================================
  * NON-NEGOTIABLE
@@ -212,7 +212,7 @@ export interface ForecastRow {
   hostAdrRefAdjusted: number | null;   // Adjusted for seasonality + trend
   hostAdrRefSample: number;
   hostAdrRefVariance: number | null;
-  // Source levels: EXACT (best) Ã¢â€ â€™ PROP_BED Ã¢â€ â€™ PROP_ALL Ã¢â€ â€™ AREA_BED Ã¢â€ â€™ GLOBAL_BED Ã¢â€ â€™ none (no data)
+ // Source levels: EXACT (best) PROP_BED PROP_ALL AREA_BED GLOBAL_BED none (no data)
   hostAdrRefSource: 'EXACT' | 'PROP_BED' | 'PROP_ALL' | 'AREA_BED' | 'GLOBAL_BED' | 'none';
 
   // Host ADR Trend & Seasonality (NEW)
@@ -343,8 +343,8 @@ function isUUID(str: string): boolean {
 /**
  * Get period key and label based on granularity
  * 
- * For 'month': periodKey = "2026-04", periodLabel = "ThÃƒÂ¡ng 4, 2026"
- * For 'week':  periodKey = "2026-W14", periodLabel = "TuÃ¡ÂºÂ§n 14 (31/3-6/4)"
+ * For 'month': periodKey = "2026-04", periodLabel = "Thng 4, 2026"
+ * For 'week': periodKey = "2026-W14", periodLabel = "Tun 14 (31/3-6/4)"
  * For 'day':   periodKey = "2026-04-15", periodLabel = "15/4 (T3)" with day of week
  */
 function getPeriodKeyAndLabel(
@@ -371,7 +371,7 @@ function getPeriodKeyAndLabel(
     weekEnd.setDate(weekEnd.getDate() + 6);
 
     const periodKey = `${year}-W${weekNum.toString().padStart(2, '0')}`;
-    const periodLabel = `TuÃ¡ÂºÂ§n ${weekNum} (${format(weekStart, 'd/M')}-${format(weekEnd, 'd/M')})`;
+ const periodLabel = `Tun ${weekNum} (${format(weekStart, 'd/M')}-${format(weekEnd, 'd/M')})`;
 
     return { periodKey, periodLabel };
   }
@@ -380,7 +380,7 @@ function getPeriodKeyAndLabel(
   const month = checkInDate.substring(0, 7); // YYYY-MM
   return {
     periodKey: month,
-    periodLabel: `ThÃƒÂ¡ng ${parseInt(month.substring(5, 7), 10)}, ${month.substring(0, 4)}`,
+ periodLabel: `Thng ${parseInt(month.substring(5, 7), 10)}, ${month.substring(0, 4)}`,
   };
 }
 
@@ -415,7 +415,7 @@ function getEffectiveRoomType(
     }
   }
 
-  return 'ChÃ†Â°a cÃƒÂ³ loÃ¡ÂºÂ¡i phÃƒÂ²ng';
+ return 'Cha c loi phng';
 }
 
 interface RawBookingMetaRow {
@@ -514,9 +514,9 @@ function getDayType(checkInDate: string): 'weekday' | 'weekend' | 'sunday' {
 /**
  * SEASON CLASSIFICATION for Vietnam hospitality market
  * 
- * HIGH SEASON (cao Ã„â€˜iÃ¡Â»Æ’m): December, January, February (TÃ¡ÂºÂ¿t + du lÃ¡Â»â€¹ch nghÃ¡Â»â€° Ã„â€˜ÃƒÂ´ng)
- * SHOULDER SEASON: March, April, November (chuyÃ¡Â»Æ’n mÃƒÂ¹a)
- * LOW SEASON (thÃ¡ÂºÂ¥p Ã„â€˜iÃ¡Â»Æ’m): May - October (mÃƒÂ¹a mÃ†Â°a + hÃƒÂ¨)
+ * HIGH SEASON (cao im): December, January, February (Tt + du lch ngh ng)
+ * SHOULDER SEASON: March, April, November (chuyn ma)
+ * LOW SEASON (thp im): May - October (ma ma + h)
  * 
  * @param month 1-12
  * @returns 'HIGH' | 'SHOULDER' | 'LOW'
@@ -553,17 +553,17 @@ function getSameSeasonMonths(month: number): number[] {
  * Returns both signal and reason for transparency
  * 
  * BUSINESS RULES (Updated 2026-01-29):
- * - MIN_MARGIN_FLOOR = 12% Ã¢â€ â€™ DÃ†Â°Ã¡Â»â€ºi mÃ¡Â»Â©c nÃƒÂ y PHÃ¡ÂºÂ¢I TÃ„â€šNG
- * - TARGET_RANGE = 12-20% Ã¢â€ â€™ VÃƒÂ¹ng tÃ¡Â»â€˜i Ã†Â°u
- * - KÃ¡ÂºÂ¿t hÃ¡Â»Â£p Velocity (tÃ¡Â»â€˜c Ã„â€˜Ã¡Â»â„¢ Ã„â€˜Ã¡ÂºÂ·t) + Volume (sÃ¡Â»â€˜ lÃ†Â°Ã¡Â»Â£ng Ã„â€˜Ã¡ÂºÂ·t) Ã„â€˜Ã¡Â»Æ’ Ã„â€˜ÃƒÂ¡nh giÃƒÂ¡ demand
+ * - MIN_MARGIN_FLOOR = 12% Di mc ny PHI TNG
+ * - TARGET_RANGE = 12-20% Vng ti u
+ * - Kt hp Velocity (tc t) + Volume (s lng t) nh gi demand
  * 
- * MA TRÃ¡ÂºÂ¬N DEMAND:
+ * MA TRN DEMAND:
  * | Velocity | Volume  | Demand      | Action                    |
  * |----------|---------|-------------|---------------------------|
- * | High     | High    | RÃ¡ÂºÂ¥t cao     | TÃ„Æ’ng (nÃ¡ÂºÂ¿u margin OK)      |
- * | High     | Low     | Ã„Âang tÃ„Æ’ng   | GiÃ¡Â»Â¯/TÃ„Æ’ng nhÃ¡ÂºÂ¹              |
- * | Low      | High    | Ã„Âang giÃ¡ÂºÂ£m   | GiÃ¡Â»Â¯ (Ã„â€˜ÃƒÂ£ cÃƒÂ³ nhiÃ¡Â»Âu Ã„â€˜Ã¡ÂºÂ·t)     |
- * | Low      | Low     | ThÃ¡ÂºÂ¥p        | GiÃ¡ÂºÂ£m (nÃ¡ÂºÂ¿u margin > target)|
+ * | High | High | Rt cao | Tng (nu margin OK) |
+ * | High | Low | ang tng | Gi/Tng nh |
+ * | Low | High | ang gim | Gi ( c nhiu t) |
+ * | Low | Low | Thp | Gim (nu margin > target)|
  */
 function getForecastSignalWithReason(
   expectedMarginPercent: number | null,
@@ -583,14 +583,14 @@ function getForecastSignalWithReason(
   }
 
   // ========================================
-  // NEGATIVE MARGIN Ã¢â€ â€™ Ã„Âang bÃƒÂ¡n lÃ¡Â»â€” Ã¢â€ â€™ MUST INCREASE
+ // NEGATIVE MARGIN ang bn l MUST INCREASE
   // ========================================
   if (expectedMarginPercent < PRICING_THRESHOLDS.LOSS_THRESHOLD) {
     return { signal: 'increase', reason: 'NEGATIVE_MARGIN' };
   }
 
   // ========================================
-  // BELOW MIN FLOOR (< 12%) Ã¢â€ â€™ INCREASE
+ // BELOW MIN FLOOR (< 12%) INCREASE
   // ========================================
   if (expectedMarginPercent < PRICING_THRESHOLDS.MIN_MARGIN_FLOOR) {
     return { signal: 'increase', reason: 'BELOW_MIN_MARGIN' };
@@ -747,7 +747,7 @@ async function fetchBookingMetadata(
 }
 
 /**
- * Fetch room type UUID Ã¢â€ â€™ name mapping from room_types_mirror
+ * Fetch room type UUID name mapping from room_types_mirror
  */
 async function fetchRoomTypeMapping(): Promise<Map<string, string>> {
   const { data } = await supabase
@@ -781,10 +781,10 @@ function extractBedroomCount(roomType: string | null | undefined): number {
   if (!roomType) return 0;
   const lower = roomType.toLowerCase();
 
-  // Match patterns like "1 PhÃ²ng", "2 PhÃ²ng ngá»§", "3 PhÃ²ng Ngá»§ Deluxe", "Studio"
+ // Match patterns like "1 Phng", "2 Phng ng", "3 Phng Ng Deluxe", "Studio"
   if (lower.includes('studio')) return 1;
 
-  // Vietnamese: "2 PhÃ²ng ngá»§", "1 PhÃ²ng", etc.
+ // Vietnamese: "2 Phng ng", "1 Phng", etc.
   const vnMatch = lower.match(/(\d)\s*ph/i);
   if (vnMatch) return parseInt(vnMatch[1], 10);
 
@@ -801,19 +801,19 @@ function extractBedroomCount(roomType: string | null | undefined): number {
 
 /**
  * Normalize room type by extracting only bedroom count info
- * This allows "Tòa L81 - 1 Phòng ngủ" and "Tòa thường - 1 Phòng ngủ" to share same Host ADR pool
+ * This allows "Ta L81 - 1 Phng ng" and "Ta thng - 1 Phng ng" to share same Host ADR pool
  * because both are actually 1-bedroom units
  */
 function normalizeRoomType(roomType: string | null | undefined): string {
   if (!roomType) return 'unknown';
   const bedroomCount = extractBedroomCount(roomType);
   if (bedroomCount === 0) return roomType; // Can't parse, use original
-  return `${bedroomCount} Phòng ngủ`;
+ return `${bedroomCount} Phng ng`;
 }
 
 /**
  * Normalize string for key matching - removes extra spaces, trims, lowercases for comparison
- * This fixes issues like "Tòa L81 - 1 Phòng" vs "Tòa L81 -  1 Phòng" (double space)
+ * This fixes issues like "Ta L81 - 1 Phng" vs "Ta L81 - 1 Phng" (double space)
  */
 function normalizeKeyString(str: string): string {
   return str
@@ -825,7 +825,7 @@ function normalizeKeyString(str: string): string {
  * Fetch Host ADR reference by OTA property + room type + day type + SEASON
  * 
  * SEASON-AWARE HOST ADR (2026-01-29):
- * - HIGH SEASON: Dec, Jan, Feb (TÃ¡ÂºÂ¿t + nghÃ¡Â»â€° Ã„â€˜ÃƒÂ´ng)
+ * - HIGH SEASON: Dec, Jan, Feb (Tt + ngh ng)
  * - SHOULDER: Mar, Apr, Nov
  * - LOW SEASON: May - Oct
  * 
@@ -844,8 +844,8 @@ function normalizeKeyString(str: string): string {
  * 4. OTA property only (last resort)
  * 
  * DATA SOURCE PRIORITY:
- * 1. Segments linked via unified_booking_id Ã¢â€ â€™ OTA property from bookings_mirror
- * 2. Segments with host_property_name only Ã¢â€ â€™ direct use (fallback for old data)
+ * 1. Segments linked via unified_booking_id OTA property from bookings_mirror
+ * 2. Segments with host_property_name only direct use (fallback for old data)
  */
 async function fetchHostAdrByOtaGroup(): Promise<Map<string, number[]>> {
   const dateStart = format(subMonths(new Date(), 12), 'yyyy-MM-dd');
@@ -903,7 +903,7 @@ async function fetchHostAdrByOtaGroup(): Promise<Map<string, number[]>> {
   const usingExecutedOnly = segmentsToUse === executedSegments;
   debugLog(`[fetchHostAdrByOtaGroup] Using ${usingExecutedOnly ? 'EXECUTED ONLY' : 'ALL LINKED'} segments (n=${segmentsToUse.length})`);
 
-  // Build unified_booking_id Ã¢â€ â€™ list of {adr, dayType, hostBedroomCount, month}
+ // Build unified_booking_id list of {adr, dayType, hostBedroomCount, month}
   // IMPORTANT: Include month for SEASON-AWARE HOST ADR filtering
   const segmentDataMap = new Map<string, Array<{ adr: number; dayType: 'weekday' | 'weekend'; hostBedroomCount: number; hostRoomType: string; month: number }>>();
   segmentsToUse.forEach(seg => {
@@ -982,7 +982,7 @@ async function fetchHostAdrByOtaGroup(): Promise<Map<string, number[]>> {
   const debugSegments = segmentsToUse.filter(s => {
     const booking = bookings.find(b => b.unified_booking_id === s.unified_booking_id);
     return booking?.pms_property_name?.includes('Vinhomes') &&
-      booking?.room_type?.includes('4 PhÃƒÂ²ng');
+ booking?.room_type?.includes('4 Phng');
   });
   debugLog(`[DEBUG SEGMENT RAW] Vinhomes 4BR segments count: ${debugSegments.length}`);
   debugLog(`[DEBUG SEGMENT HEADERS] id | unified_id | HOST property | HOST room | nightly_rate | total_amount | nights | calc ADR | OTA room_type`);
@@ -991,7 +991,7 @@ async function fetchHostAdrByOtaGroup(): Promise<Map<string, number[]>> {
     const calcAdr = seg.nights > 0 ? (seg.total_amount || 0) / seg.nights : 0;
     const hostBR = extractBedroomCount(seg.host_room_type);
     const otaBR = extractBedroomCount(booking?.room_type);
-    debugLog(`[DEBUG SEGMENT ${i}] ${seg.id?.slice(0, 8)}... | HOST="${seg.host_room_type}" (${hostBR}BR) | OTA="${booking?.room_type}" (${otaBR}BR) | nightly=${seg.nightly_rate?.toLocaleString()}Ã„â€˜ | calcADR=${calcAdr.toLocaleString()}Ã„â€˜ | ${hostBR === otaBR ? 'Ã¢Å“â€¦ MATCH' : 'Ã¢ÂÅ’ SKIP (upgrade)'}`);
+ debugLog(`[DEBUG SEGMENT ${i}] ${seg.id?.slice(0, 8)}... | HOST="${seg.host_room_type}" (${hostBR}BR) | OTA="${booking?.room_type}" (${otaBR}BR) | nightly=${seg.nightly_rate?.toLocaleString()} | calcADR=${calcAdr.toLocaleString()} | ${hostBR === otaBR ? ' MATCH' : ' SKIP (upgrade)'}`);
   });
 
   // DEBUG: Log segments for "Toa L81 - 1 Phong ngu"
@@ -1043,7 +1043,7 @@ async function fetchHostAdrByOtaGroup(): Promise<Map<string, number[]>> {
 
     // Group ADRs by day type AND SEASON
     // FILTER: Only include segments where Host bedroom count matches OTA bedroom count
-    // This excludes UPGRADE cases (e.g. OTA 1BR â†’ Host 2BR)
+ // This excludes UPGRADE cases (e.g. OTA 1BR Host 2BR)
 
     // EXACT/PROP_BED: Only CONFIRMED bedroom match (bedroomMatch === true)
     const adrsHigh: number[] = [];     // HIGH season - exact match only
@@ -1079,7 +1079,7 @@ async function fetchHostAdrByOtaGroup(): Promise<Map<string, number[]>> {
         : null;
 
       if (bedroomMatch === false) {
-        // Confirmed UPGRADE (e.g. OTA 1BR â†’ Host 2BR) - skip entirely
+ // Confirmed UPGRADE (e.g. OTA 1BR Host 2BR) - skip entirely
         upgradeSkipCount++;
         return;
       }
@@ -1284,7 +1284,7 @@ async function fetchHostAdrByOtaGroup(): Promise<Map<string, number[]>> {
     console.log('[DEBUG L81-1BR HOST ADR MAP] Found', l81Keys.length, 'keys for L81 1BR:');
     l81Keys.forEach(([key, adrs]) => {
       const avg = adrs.reduce((sum, v) => sum + v, 0) / adrs.length;
-      console.log(`  "${key}" → n=${adrs.length}, avg=${avg.toFixed(0)}đ`);
+ console.log(` "${key}" n=${adrs.length}, avg=${avg.toFixed(0)}`);
     });
   }
 
@@ -1308,9 +1308,9 @@ async function fetchHostAdrByOtaGroup(): Promise<Map<string, number[]>> {
  * ============================================================================
  * 
  * Returns detailed min/max/volume metrics from host_supply_segments
- * Grouped by: OTA property → room type → dayType → season
+ * Grouped by: OTA property room type dayType season
  * 
- * Key format: "prop|||room" → HostSegmentMetrics
+ * Key format: "prop|||room" HostSegmentMetrics
  */
 async function fetchHostSegmentMetrics(): Promise<Map<string, HostSegmentMetrics>> {
   try {
@@ -1508,9 +1508,9 @@ async function fetchHostSegmentMetrics(): Promise<Map<string, HostSegmentMetrics
  * ============================================================================
  * 
  * Returns lead time distribution (lastminute vs early bird)
- * Grouped by: OTA property → room type → dayType
+ * Grouped by: OTA property room type dayType
  * 
- * Key format: "prop|||room" → OtaBookingTimingMetrics
+ * Key format: "prop|||room" OtaBookingTimingMetrics
  */
 async function fetchOtaBookingTimingMetrics(): Promise<Map<string, OtaBookingTimingMetrics>> {
   try {
@@ -1710,11 +1710,11 @@ async function fetchVelocityBaseline(): Promise<Map<string, { count: number; sam
 }
 
 /**
- * Fetch volume baseline - sÃ¡Â»â€˜ Ã„â€˜ÃƒÂªm Ã„â€˜Ã¡ÂºÂ·t trung bÃƒÂ¬nh lÃ¡Â»â€¹ch sÃ¡Â»Â­ theo property + room + month
+ * Fetch volume baseline - s m t trung bnh lch s theo property + room + month
  * 
  * Volume Score = actual booked nights / baseline nights
- * - Score > 1.0 = Ã„â€˜ÃƒÂ£ Ã„â€˜Ã¡ÂºÂ·t nhiÃ¡Â»Âu hÃ†Â¡n trung bÃƒÂ¬nh
- * - Score < 1.0 = Ã„â€˜ÃƒÂ£ Ã„â€˜Ã¡ÂºÂ·t ÃƒÂ­t hÃ†Â¡n trung bÃƒÂ¬nh
+ * - Score > 1.0 = t nhiu hn trung bnh
+ * - Score < 1.0 = t t hn trung bnh
  */
 async function fetchVolumeBaseline(): Promise<Map<string, number>> {
   const monthsBack = 12; // Look back 12 months for seasonal data
@@ -1736,7 +1736,7 @@ async function fetchVolumeBaseline(): Promise<Map<string, number>> {
   const bookingMeta = await fetchBookingMetadata(pmsIds);
 
   // Aggregate by property + room + month
-  const monthlyData = new Map<string, number[]>(); // key Ã¢â€ â€™ array of monthly totals
+ const monthlyData = new Map<string, number[]>(); // key array of monthly totals
 
   lines.forEach(line => {
     const meta = bookingMeta.get(line.pms_booking_id);
@@ -1771,9 +1771,9 @@ async function fetchVolumeBaseline(): Promise<Map<string, number>> {
  * Fetch historical PEAK bookings by property + room + period
  * 
  * Capacity Score = current booked nights / historical peak nights
- * - Score < 0.5: ThÃ¡ÂºÂ¥p hÃ†Â¡n peak nhiÃ¡Â»Âu Ã¢â€ â€™ cÃƒÂ²n room, cÃƒÂ³ thÃ¡Â»Æ’ giÃ¡ÂºÂ£m giÃƒÂ¡
- * - Score 0.5-0.8: Trung bÃƒÂ¬nh Ã¢â€ â€™ giÃ¡Â»Â¯ giÃƒÂ¡
- * - Score > 0.8: GÃ¡ÂºÂ§n peak Ã¢â€ â€™ demand cao, cÃƒÂ³ thÃ¡Â»Æ’ tÃ„Æ’ng giÃƒÂ¡
+ * - Score < 0.5: Thp hn peak nhiu cn room, c th gim gi
+ * - Score 0.5-0.8: Trung bnh gi gi
+ * - Score > 0.8: Gn peak demand cao, c th tng gi
  * 
  * Returns: Map<key, peakNights>
  */
@@ -1795,7 +1795,7 @@ async function fetchHistoricalPeak(): Promise<Map<string, number>> {
   const bookingMeta = await fetchBookingMetadata(pmsIds);
 
   // Aggregate by property + room + month, find max
-  const monthlyTotals = new Map<string, Map<string, number>>(); // prop|||room Ã¢â€ â€™ month Ã¢â€ â€™ total
+ const monthlyTotals = new Map<string, Map<string, number>>(); // prop|||room month total
 
   lines.forEach(line => {
     const meta = bookingMeta.get(line.pms_booking_id);
@@ -1831,7 +1831,7 @@ async function fetchHistoricalPeak(): Promise<Map<string, number>> {
  * Fetches historical OTA booking data to understand:
  * 1. Which months have higher demand (more bookings)
  * 2. OTA ADR trend (pricing going up/down)
- * 3. Demand-Supply correlation (high demand Ã¢â€ â€™ host likely to increase)
+ * 3. Demand-Supply correlation (high demand host likely to increase)
  * 
  * KEY INSIGHT: When OTA demand is high for a future month, 
  * hosts WILL increase prices. Use this to predict host cost.
@@ -1893,7 +1893,7 @@ async function fetchOtaDemandSeasonality(): Promise<{
 
   // Calculate annual averages
   let totalBookings = 0;
-  let totalAdrs: number[] = [];
+  const totalAdrs: number[] = [];
   monthlyData.forEach(data => {
     totalBookings += data.count;
     totalAdrs.push(...data.adrs);
@@ -1974,7 +1974,7 @@ async function fetchOtaDemandSeasonality(): Promise<{
  * Returns Map<key, TrendData> where key = "prop|||room" or "prop"
  */
 interface HostAdrTrendData {
-  monthlyAvg: Map<number, number>;     // month (1-12) Ã¢â€ â€™ avg ADR for that month
+ monthlyAvg: Map<number, number>; // month (1-12) avg ADR for that month
   annualAvg: number;                   // Overall annual average
   recentTrend: number;                 // -1 to +1 (declining to increasing)
   volatility: number;                  // Coefficient of variation
@@ -2023,7 +2023,7 @@ async function fetchHostAdrTrend(): Promise<Map<string, HostAdrTrendData>> {
   });
 
   // Build monthly ADR data by property + room
-  // Structure: key Ã¢â€ â€™ month Ã¢â€ â€™ array of ADRs
+ // Structure: key month array of ADRs
   const monthlyData = new Map<string, Map<number, number[]>>();
 
   segments.forEach(seg => {
@@ -2115,7 +2115,7 @@ async function fetchHostAdrTrend(): Promise<Map<string, HostAdrTrendData>> {
       if (previousAvg > 0) {
         // Trend as percentage change, normalized to -1 to +1
         const pctChange = (recentAvg - previousAvg) / previousAvg;
-        // Clamp to -1 to +1 (Ã‚Â±100% change)
+ // Clamp to -1 to +1 (100% change)
         recentTrend = Math.max(-1, Math.min(1, pctChange));
       }
     }
@@ -2129,7 +2129,7 @@ async function fetchHostAdrTrend(): Promise<Map<string, HostAdrTrendData>> {
   });
 
   // ============================================================
-  // CALCULATE MARKET-WIDE TREND (fallback khi property data ÃƒÂ­t)
+ // CALCULATE MARKET-WIDE TREND (fallback khi property data t)
   // ============================================================
   // Aggregate ALL ADRs across all properties by month
   const marketMonthlyAvg = new Map<number, number>();
@@ -2215,7 +2215,7 @@ async function fetchHostAdrTrend(): Promise<Map<string, HostAdrTrendData>> {
   const sampleKeys = [...result.keys()].filter(k => k !== '__MARKET__').slice(0, 5);
   sampleKeys.forEach(key => {
     const data = result.get(key)!;
-    debugLog(`[fetchHostAdrTrend] ${key}: trend=${(data.recentTrend * 100).toFixed(1)}%, volatility=${(data.volatility * 100).toFixed(1)}%, annual=${data.annualAvg.toLocaleString()}Ã„â€˜`);
+ debugLog(`[fetchHostAdrTrend] ${key}: trend=${(data.recentTrend * 100).toFixed(1)}%, volatility=${(data.volatility * 100).toFixed(1)}%, annual=${data.annualAvg.toLocaleString()}`);
   });
 
   return result;
@@ -2238,7 +2238,7 @@ function getSeasonalityFactorForMonth(
   const targetMonthAvg = trendData.monthlyAvg.get(targetMonth)!;
   const factor = targetMonthAvg / trendData.annualAvg;
 
-  // Clamp to reasonable range (0.7 to 1.3 = Ã‚Â±30%)
+ // Clamp to reasonable range (0.7 to 1.3 = 30%)
   return Math.max(0.7, Math.min(1.3, factor));
 }
 
@@ -2251,20 +2251,20 @@ function getSeasonalityFactorForMonth(
  * 1. Host historical data (ADR, trend, seasonality)
  * 2. OTA demand data (booking volume, ADR trend by month)
  * 
- * KEY INSIGHT: High OTA demand Ã¢â€ â€™ Hosts will raise prices
+ * KEY INSIGHT: High OTA demand Hosts will raise prices
  * 
  * Formula:
  *   adjustedADR = rawADR 
- *               Ãƒâ€” hostSeasonalFactor (from host history)
- *               Ãƒâ€” (1 + combinedTrend Ãƒâ€” 0.5)
- *               Ãƒâ€” otaDemandFactor (high demand Ã¢â€ â€™ +5-10%)
+ * hostSeasonalFactor (from host history)
+ * (1 + combinedTrend 0.5)
+ * otaDemandFactor (high demand +5-10%)
  * 
  * Where:
- *   combinedTrend = (hostTrend Ãƒâ€” 0.4) + (otaTrend Ãƒâ€” 0.6)
+ * combinedTrend = (hostTrend 0.4) + (otaTrend 0.6)
  *   (OTA trend weighted higher - more data, reflects market)
  *   
- *   otaDemandFactor = 1.0 + (demandIndex - 1) Ãƒâ€” 0.1
- *   (If demand 1.5x avg Ã¢â€ â€™ factor = 1.05, i.e., +5%)
+ * otaDemandFactor = 1.0 + (demandIndex - 1) 0.1
+ * (If demand 1.5x avg factor = 1.05, i.e., +5%)
  */
 function calculateAdjustedHostAdr(
   rawHostAdr: number,
@@ -2327,13 +2327,13 @@ function calculateAdjustedHostAdr(
   // ============================================================
   // STEP 1: CLEAN HISTORICAL DATA & CALCULATE FLOOR/CEILING
   // ============================================================
-  // Business Rule: Historical min = FLOOR (Host không bao giờ giảm dưới)
-  //                Historical max = CEILING (có thể nhưng hiếm khi đạt)
+ // Business Rule: Historical min = FLOOR (Host khng bao gi gim di)
+ // Historical max = CEILING (c th nhng him khi t)
   // 
-  // FREQUENCY-AWARE: Giá xuất hiện nhiều lần = more weight
-  // Ví dụ: [1.3M×3, 1.35M×5, 2.3M×2] → base nên gần 1.35M, không phải (1.3+2.3)/2
+ // FREQUENCY-AWARE: Gi xut hin nhiu ln = more weight
+ // V d: [1.3M3, 1.35M5, 2.3M2] base nn gn 1.35M, khng phi (1.3+2.3)/2
 
-  // Với ít data, dùng range hẹp hơn (conservative)
+ // Vi t data, dng range hp hn (conservative)
   const sampleSize = actualAdrs?.length || 0;
   const defaultSpread = sampleSize < 3 ? 0.05 : 0.10; // 5% spread if < 3 samples, else 10%
 
@@ -2348,7 +2348,7 @@ function calculateAdjustedHostAdr(
     const n = sorted.length;
     const medianAdr = sorted[Math.floor(n / 2)];
 
-    // Filter outliers: < 70% median (downgrade, sai) or > 150% median (lỗi)
+ // Filter outliers: < 70% median (downgrade, sai) or > 150% median (li)
     const cleanedAdrs = sorted.filter(adr =>
       adr >= medianAdr * 0.70 && adr <= medianAdr * 1.50
     );
@@ -2361,7 +2361,7 @@ function calculateAdjustedHostAdr(
     if (cleanedAdrs.length >= 2) {
       const cn = cleanedAdrs.length;
 
-      // FLOOR = min of cleaned data (giá sàn thật - Host không bao giờ dưới)
+ // FLOOR = min of cleaned data (gi sn tht - Host khng bao gi di)
       floor = cleanedAdrs[0];
 
       // CEILING = P90 of cleaned data (95% probability)
@@ -2372,10 +2372,10 @@ function calculateAdjustedHostAdr(
       // If actual max is much higher than P90, note it but don't use for ceiling
       const actualMax = cleanedAdrs[cn - 1];
       if (actualMax > ceiling * 1.15) {
-        // Max is 15%+ higher than P90 → rare case, keep ceiling at P90
+ // Max is 15%+ higher than P90 rare case, keep ceiling at P90
         // ceiling stays at P90
       } else {
-        // Max is close to P90 → use max as ceiling
+ // Max is close to P90 use max as ceiling
         ceiling = actualMax;
       }
 
@@ -2385,7 +2385,7 @@ function calculateAdjustedHostAdr(
       p25 = cleanedAdrs[p25Index] || cleanedAdrs[0];
       p75 = cleanedAdrs[Math.min(p75Index, cn - 1)];
 
-      // BASE = median of cleaned data (giá base - most likely)
+ // BASE = median of cleaned data (gi base - most likely)
       baseAdr = cleanedAdrs[Math.floor(cn / 2)];
 
       console.log(`[DEBUG RANGE] floor=${floor.toLocaleString()}, ceiling=${ceiling.toLocaleString()}, base=${baseAdr.toLocaleString()}`);
@@ -2513,7 +2513,7 @@ function calculateAdjustedHostAdr(
   // Total pressure = sum of all positive pressures + trend
   const totalPressure = seasonalPressure + velocityPressure + volumePressure + demandPressure + trendPressure;
 
-  // Confidence-based cap - với ít data thì cap thấp hơn
+ // Confidence-based cap - vi t data th cap thp hn
   const maxAdjustment = confidence === 'high' ? 0.15 : confidence === 'medium' ? 0.10 : 0.05;
   const cappedPressure = Math.min(maxAdjustment, Math.max(-0.05, totalPressure));
 
@@ -2525,27 +2525,27 @@ function calculateAdjustedHostAdr(
   // ============================================================
   // STEP 6: CALCULATE PREDICTED ADR
   // ============================================================
-  // Predicted = BASE × (1 + pressure), nhưng KHÔNG BAO GIỜ < FLOOR
+ // Predicted = BASE (1 + pressure), nhng KHNG BAO GI < FLOOR
   const rawPredicted = baseAdr * (1 + cappedPressure);
   const adjusted = Math.max(floor, rawPredicted);
 
   // ============================================================
   // STEP 7: CALCULATE RANGE (HISTORICAL-BASED)
   // ============================================================
-  // Range dựa trên DỮ LIỆU LỊCH SỬ thật, không phải predicted
-  // LOW = floor (historical min) - "Giá thấp nhất từng có"
-  // HIGH = ceiling (P90/max) - "Giá cao nhất hợp lý"
+ // Range da trn D LIU LCH S tht, khng phi predicted
+ // LOW = floor (historical min) - "Gi thp nht tng c"
+ // HIGH = ceiling (P90/max) - "Gi cao nht hp l"
   // 
-  // Đây là range mà Host ADR có thể rơi vào dựa trên lịch sử
+ // y l range m Host ADR c th ri vo da trn lch s
 
   // Range = historical floor to ceiling (raw data)
-  // Chỉ adjust nhẹ theo demand pressure
+ // Ch adjust nh theo demand pressure
   const demandAdjustment = Math.max(0, cappedPressure) * 0.5; // 50% of pressure
 
-  // LOW = floor (không adjust xuống, chỉ có thể lên)
-  let adjustedLow = floor * (1 + demandAdjustment * 0.3);
+ // LOW = floor (khng adjust xung, ch c th ln)
+  const adjustedLow = floor * (1 + demandAdjustment * 0.3);
 
-  // HIGH = ceiling (adjust lên theo demand)  
+ // HIGH = ceiling (adjust ln theo demand) 
   let adjustedHigh = ceiling * (1 + demandAdjustment);
 
   // Ensure minimum spread of 8%
@@ -2579,18 +2579,18 @@ function calculateAdjustedHostAdr(
 }
 
 /**
- * Fetch OTA property Ã¢â€ â€™ district mapping for area comparison
+ * Fetch OTA property district mapping for area comparison
  * 
  * MAPPING CHAIN:
  * 1. OTA booking (bookings_mirror.pms_property_name) 
- * 2. Ã¢â€ â€™ unified_booking_id 
- * 3. Ã¢â€ â€™ host_supply_segments.host_property_name
- * 4. Ã¢â€ â€™ property_catalog.district
+ * 2. unified_booking_id 
+ * 3. host_supply_segments.host_property_name
+ * 4. property_catalog.district
  * 
  * Returns Map<OTA property name, district>
  */
 async function fetchOtaPropertyToDistrict(): Promise<Map<string, string>> {
-  // Step 1: Get Host property Ã¢â€ â€™ district mapping from property_catalog
+ // Step 1: Get Host property district mapping from property_catalog
   const { data: catalogData, error: catalogError } = await supabase
     .from('property_catalog')
     .select('property_name, district')
@@ -2602,7 +2602,7 @@ async function fetchOtaPropertyToDistrict(): Promise<Map<string, string>> {
     return new Map();
   }
 
-  // Build Host property name Ã¢â€ â€™ district
+ // Build Host property name district
   const hostPropertyToDistrict = new Map<string, string>();
   catalogData?.forEach(p => {
     if (p.property_name && p.district) {
@@ -2611,9 +2611,9 @@ async function fetchOtaPropertyToDistrict(): Promise<Map<string, string>> {
     }
   });
 
-  debugLog(`[fetchOtaPropertyToDistrict] Host property Ã¢â€ â€™ district: ${hostPropertyToDistrict.size} entries`);
+ debugLog(`[fetchOtaPropertyToDistrict] Host property district: ${hostPropertyToDistrict.size} entries`);
 
-  // Step 2: Get unified_booking_id Ã¢â€ â€™ host_property_name from segments
+ // Step 2: Get unified_booking_id host_property_name from segments
   const { data: segmentData, error: segmentError } = await supabase
     .from('host_supply_segments')
     .select('unified_booking_id, host_property_name')
@@ -2626,7 +2626,7 @@ async function fetchOtaPropertyToDistrict(): Promise<Map<string, string>> {
     return new Map();
   }
 
-  // Build unified_booking_id Ã¢â€ â€™ host_property_name (use first match)
+ // Build unified_booking_id host_property_name (use first match)
   const bookingToHostProperty = new Map<string, string>();
   segmentData?.forEach(s => {
     if (s.unified_booking_id && s.host_property_name && !bookingToHostProperty.has(s.unified_booking_id)) {
@@ -2634,9 +2634,9 @@ async function fetchOtaPropertyToDistrict(): Promise<Map<string, string>> {
     }
   });
 
-  debugLog(`[fetchOtaPropertyToDistrict] Booking Ã¢â€ â€™ Host property: ${bookingToHostProperty.size} entries`);
+ debugLog(`[fetchOtaPropertyToDistrict] Booking Host property: ${bookingToHostProperty.size} entries`);
 
-  // Step 3: Get OTA property Ã¢â€ â€™ unified_booking_id from bookings_mirror
+ // Step 3: Get OTA property unified_booking_id from bookings_mirror
   const { data: bookingData, error: bookingError } = await supabase
     .from('bookings_mirror')
     .select('pms_property_name, unified_booking_id')
@@ -2649,7 +2649,7 @@ async function fetchOtaPropertyToDistrict(): Promise<Map<string, string>> {
     return new Map();
   }
 
-  // Step 4: Chain: OTA property Ã¢â€ â€™ unified_booking_id Ã¢â€ â€™ host_property Ã¢â€ â€™ district
+ // Step 4: Chain: OTA property unified_booking_id host_property district
   const otaPropertyToDistrict = new Map<string, string>();
 
   bookingData?.forEach(b => {
@@ -2675,10 +2675,10 @@ async function fetchOtaPropertyToDistrict(): Promise<Map<string, string>> {
     }
   });
 
-  debugLog(`[fetchOtaPropertyToDistrict] OTA property Ã¢â€ â€™ district: ${otaPropertyToDistrict.size} entries`);
+ debugLog(`[fetchOtaPropertyToDistrict] OTA property district: ${otaPropertyToDistrict.size} entries`);
   // Debug: Log mappings
   const samples = [...otaPropertyToDistrict.entries()].slice(0, 10);
-  debugLog('[fetchOtaPropertyToDistrict] Sample OTAÃ¢â€ â€™District mappings:', samples);
+ debugLog('[fetchOtaPropertyToDistrict] Sample OTADistrict mappings:', samples);
 
   return otaPropertyToDistrict;
 }
@@ -2750,9 +2750,9 @@ async function fetchAreaVelocityAverage(
  * Fetch fulfillment rate by OTA property + room type
  * 
  * SIMPLE LOGIC (same pattern as Host ADR):
- * 1. Booked nights: tÃ¡Â»Â« booking_room_lines_mirror, group by OTA property/room
- * 2. Executed nights: tÃ¡Â»Â« host_supply_segments JOIN bookings_mirror via unified_booking_id
- *    Ã¢â€ â€™ Group by OTA property/room (not host property!)
+ * 1. Booked nights: t booking_room_lines_mirror, group by OTA property/room
+ * 2. Executed nights: t host_supply_segments JOIN bookings_mirror via unified_booking_id
+ * Group by OTA property/room (not host property!)
  * 3. Fulfillment rate = executed / booked
  */
 async function fetchFulfillmentRateData(): Promise<Map<string, { executed: number; booked: number }>> {
@@ -2784,7 +2784,7 @@ async function fetchFulfillmentRateData(): Promise<Map<string, { executed: numbe
     .not('actual_check_in_at', 'is', null)
     .not('unified_booking_id', 'is', null);
 
-  // Build unified_booking_id Ã¢â€ â€™ executed nights
+ // Build unified_booking_id executed nights
   const executedNightsByBooking = new Map<string, number>();
   executedSegments?.forEach(seg => {
     if (!seg.unified_booking_id) return;
@@ -2922,7 +2922,7 @@ export function usePriceSpreadForecast(options: UsePriceSpreadForecastOptions) {
       }>();
 
       // Collect all filter options (before filtering is applied)
-      const allPropertyIds = new Map<string, string>(); // id Ã¢â€ â€™ name
+ const allPropertyIds = new Map<string, string>(); // id name
       const allPropertyNames = new Set<string>();
       const allRoomTypes = new Set<string>();
       const allChannels = new Set<string>();
@@ -3041,17 +3041,17 @@ export function usePriceSpreadForecast(options: UsePriceSpreadForecastOptions) {
           : null;
 
         // Debug: Log EVERY booking line for specific room types
-        const isDebugTarget = roomType.includes('2 PhÃƒÂ²ng ngÃ¡Â»Â§') && propName.includes('Vinhomes Central Park') && month === '2026-04';
+ const isDebugTarget = roomType.includes('2 Phng ng') && propName.includes('Vinhomes Central Park') && month === '2026-04';
         if (isDebugTarget) {
           debugLog(
             `[DEBUG OTA ADR] bookingId=${line.pms_booking_id} | lineIdx=${line.line_index} | ` +
             `channel=${meta.ota_source} | ` +
             `checkIn=${line.check_in_date} | ` +
-            `LINE amount=${(line.amount || 0).toLocaleString()}Ã„â€˜${usedFallback ? ' (FALLBACK)' : ''} | ` +
-            `effectiveAmount=${(effectiveLineAmount || 0).toLocaleString()}Ã„â€˜ | ` +
+ `LINE amount=${(line.amount || 0).toLocaleString()}${usedFallback ? ' (FALLBACK)' : ''} | ` +
+ `effectiveAmount=${(effectiveLineAmount || 0).toLocaleString()} | ` +
             `LINE nights=${nights} | ` +
-            `LINE ADR/night=${lineAdrPerNight?.toLocaleString() || 'N/A'}Ã„â€˜ | ` +
-            `(OLD: total_amount_net=${(meta.total_amount_net || 0).toLocaleString()}Ã„â€˜)`
+ `LINE ADR/night=${lineAdrPerNight?.toLocaleString() || 'N/A'} | ` +
+ `(OLD: total_amount_net=${(meta.total_amount_net || 0).toLocaleString()})`
           );
         }
 
@@ -3124,7 +3124,7 @@ export function usePriceSpreadForecast(options: UsePriceSpreadForecastOptions) {
 
           // ============================================================
           // Get Host ADR reference with FALLBACK LADDER
-          // Priority: EXACT+SEASON Ã¢â€ â€™ EXACT Ã¢â€ â€™ PROP_BED+SEASON Ã¢â€ â€™ PROP_BED Ã¢â€ â€™ PROP_ALL+SEASON Ã¢â€ â€™ PROP_ALL
+ // Priority: EXACT+SEASON EXACT PROP_BED+SEASON PROP_BED PROP_ALL+SEASON PROP_ALL
           // ============================================================
           let hostAdrRef: number | null = null;
           let hostAdrRefSample = 0;
@@ -3158,11 +3158,11 @@ export function usePriceSpreadForecast(options: UsePriceSpreadForecastOptions) {
           // ============================================================
           // SEASON-AWARE FALLBACK LADDER
           // ============================================================
-          // Ã†Â¯u tiÃƒÂªn lookup theo SEASON cÃ¡Â»Â§a target month trÃ†Â°Ã¡Â»â€ºc
-          // VÃƒÂ­ dÃ¡Â»Â¥: DÃ¡Â»Â± bÃƒÂ¡o thÃƒÂ¡ng 3 (LOW) Ã¢â€ â€™ chÃ¡Â»â€° dÃƒÂ¹ng Host ADR tÃ¡Â»Â« May-Oct (LOW)
-          // KhÃƒÂ´ng dÃƒÂ¹ng giÃƒÂ¡ cao Ã„â€˜iÃ¡Â»Æ’m (Dec-Feb) cho dÃ¡Â»Â± bÃƒÂ¡o thÃ¡ÂºÂ¥p Ã„â€˜iÃ¡Â»Æ’m
+ // u tin lookup theo SEASON ca target month trc
+ // V d: D bo thng 3 (LOW) ch dng Host ADR t May-Oct (LOW)
+ // Khng dng gi cao im (Dec-Feb) cho d bo thp im
 
-          // Priority: SEASON+dayType â†’ SEASON only â†’ dayType only â†’ all
+ // Priority: SEASON+dayType SEASON only dayType only all
 
           // LEVEL 1A: EXACT + SEASON + dayType (MOST SPECIFIC - differentiates weekday/weekend)
           hostRefKeys.push({
@@ -3248,7 +3248,7 @@ export function usePriceSpreadForecast(options: UsePriceSpreadForecastOptions) {
           // For now, PROP_ALL is the last resort before 'none'
 
           // Debug log for L81 specifically
-          const isDebugRow = normalizedPropName.includes('Vinhomes Central Park') && normalizedRoomType.includes('1 Phòng ngủ');
+ const isDebugRow = normalizedPropName.includes('Vinhomes Central Park') && normalizedRoomType.includes('1 Phng ng');
 
           // Build lookup key for logging
           const primaryLookupKey = `EXACT|||${normalizedPropName}|||${normalizedRoomType}|||${targetSeason}|||${dominantDayType}`;
@@ -3258,7 +3258,7 @@ export function usePriceSpreadForecast(options: UsePriceSpreadForecastOptions) {
             debugLog(`[DEBUG ROW ${rows.length}] dayType="${dominantDayType}" / targetMonth=${targetMonth} / SEASON=${targetSeason}`);
             debugLog(`[DEBUG ROW ${rows.length}] Primary lookup key: "${primaryLookupKey}"`);
             // Log available keys in map that match this property (using normalized names)
-            const matchingKeys = [...hostAdrRefMap.keys()].filter(k => k.includes(normalizedPropName) && k.includes('1 Phòng ngủ'));
+ const matchingKeys = [...hostAdrRefMap.keys()].filter(k => k.includes(normalizedPropName) && k.includes('1 Phng ng'));
             debugLog(`[DEBUG ROW ${rows.length}] Available keys in map (${matchingKeys.length} keys):`, matchingKeys.map(k => `"${k}" (n=${hostAdrRefMap.get(k)?.length})`));
             debugLog(`[DEBUG ROW ${rows.length}] Fallback ladder:`, hostRefKeys.map(k => `${k.source}:"${k.key}" (min=${k.minSample})`));
           }
@@ -3267,7 +3267,7 @@ export function usePriceSpreadForecast(options: UsePriceSpreadForecastOptions) {
           for (const { key, source, minSample } of hostRefKeys) {
             const adrs = hostAdrRefMap.get(key);
             if (isDebugRow) {
-              debugLog(`[DEBUG ROW ${rows.length}] Ã¢â€ â€™ ${source} key "${key}" Ã¢â€ â€™ ${adrs?.length ?? 0} ADRs (need ${minSample})`,
+ debugLog(`[DEBUG ROW ${rows.length}] ${source} key "${key}" ${adrs?.length ?? 0} ADRs (need ${minSample})`,
                 adrs?.length ? `values: [${adrs.slice(0, 5).map(a => a.toLocaleString()).join(', ')}${adrs.length > 5 ? '...' : ''}]` : '');
             }
             if (adrs && adrs.length >= minSample) {
@@ -3277,7 +3277,7 @@ export function usePriceSpreadForecast(options: UsePriceSpreadForecastOptions) {
               hostAdrRefSource = source;
               foundHostAdrs = adrs;
               if (isDebugRow) {
-                debugLog(`[DEBUG ROW ${rows.length}] Ã¢Å“â€¦ MATCHED @ ${source}! Host ADR = ${hostAdrRef?.toLocaleString()}Ã„â€˜ (n=${hostAdrRefSample})`);
+ debugLog(`[DEBUG ROW ${rows.length}] MATCHED @ ${source}! Host ADR = ${hostAdrRef?.toLocaleString()} (n=${hostAdrRefSample})`);
               }
               break;
             }
@@ -3353,7 +3353,7 @@ export function usePriceSpreadForecast(options: UsePriceSpreadForecastOptions) {
               otaAdrRefVariance = calculateVariance(agg.otaAmounts);
             }
           }
-          // If no bookings in this month Ã¢â€ â€™ OTA ADR = null (will show "Ã¢â‚¬â€")
+ // If no bookings in this month OTA ADR = null (will show "")
 
           // Calculate expected spread & margin using ADJUSTED Host ADR
           // This accounts for seasonality + market trend
@@ -3381,7 +3381,7 @@ export function usePriceSpreadForecast(options: UsePriceSpreadForecastOptions) {
           // Fallback: if no specific baseline, use overall baseline
           const baselineSampleSize = baselineEntry?.sampleSize ?? 0;
 
-          // ChÃ¡Â»â€° tÃƒÂ­nh velocity khi cÃƒÂ³ Ã„â€˜Ã¡Â»Â§ sample baseline hoÃ¡ÂºÂ·c cÃƒÂ³ dÃ¡Â»Â¯ liÃ¡Â»â€¡u chung
+ // Ch tnh velocity khi c sample baseline hoc c d liu chung
           let futureVelocity: number | null = null;
           let baselineVel: number | null = null;
           let futureVelocityRatio: number | null = null;
@@ -3468,9 +3468,9 @@ export function usePriceSpreadForecast(options: UsePriceSpreadForecastOptions) {
           let confidence = getForecastConfidence(minSample, maxVariance, hasFulfillmentData);
 
           // RULE: If using lower-accuracy fallback levels, cap confidence at LOW
-          // EXACT is accurate Ã¢â€ â€™ no change
-          // PROP_BED is reasonably accurate Ã¢â€ â€™ no change
-          // PROP_ALL, AREA_BED, GLOBAL_BED are less accurate Ã¢â€ â€™ force LOW
+ // EXACT is accurate no change
+ // PROP_BED is reasonably accurate no change
+ // PROP_ALL, AREA_BED, GLOBAL_BED are less accurate force LOW
           if (['PROP_ALL', 'AREA_BED', 'GLOBAL_BED'].includes(hostAdrRefSource)) {
             confidence = 'LOW';
           }
@@ -3499,7 +3499,7 @@ export function usePriceSpreadForecast(options: UsePriceSpreadForecastOptions) {
           // We need to extract month (MM) for baseline lookup
           let month: string;
           if (agg.periodKey.includes('W')) {
-            // Week format: "2026-W05" Ã¢â€ â€™ extract month from check_in_dates in this group
+ // Week format: "2026-W05" extract month from check_in_dates in this group
             // For simplicity, use first 2 digits after W as approximate month indicator
             // Better: calculate from actual dates in aggregate (but we don't track them)
             // Workaround: use current month from period - approximation is acceptable
@@ -3508,10 +3508,10 @@ export function usePriceSpreadForecast(options: UsePriceSpreadForecastOptions) {
             const approxMonth = Math.ceil(weekNum / 4.3);
             month = approxMonth.toString().padStart(2, '0');
           } else if (agg.periodKey.length === 10) {
-            // Day format: "2026-01-15" Ã¢â€ â€™ extract MM from position 5-7
+ // Day format: "2026-01-15" extract MM from position 5-7
             month = agg.periodKey.substring(5, 7);
           } else {
-            // Month format: "2026-01" Ã¢â€ â€™ extract MM from position 5-7
+ // Month format: "2026-01" extract MM from position 5-7
             month = agg.periodKey.substring(5, 7);
           }
           const volumeBaselineKey = `${normalizedPropName}|||${normalizedRoomType}|||${month}`;

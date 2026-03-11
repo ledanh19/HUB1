@@ -155,7 +155,7 @@ export function mapSegmentToRoomLineStatus(
 
   // Determine if actions are allowed
   let canCheckIn = hasRoom && !isCheckedIn;
-  let canCheckOut = isCheckedIn && !isCheckedOut;
+  const canCheckOut = isCheckedIn && !isCheckedOut;
   let blockReason: string | undefined;
 
   if (!hasRoom) {

@@ -971,7 +971,7 @@ export function usePriceSpreadMatched(options: UsePriceSpreadMatchedOptions) {
         // For display/grouping: prefer OTA property name (pms_property_name), fallback to host
         const propertyName = booking?.pms_property_name || seg.host_property_name || UNMAPPED_LABEL;
         // Try multiple matching strategies for area
-        let propertyArea = propertyCatalog.get(propertyName)
+        const propertyArea = propertyCatalog.get(propertyName)
           || propertyCatalog.get(pmsPropertyName)
           || propertyCatalog.get(propertyName.toLowerCase().trim())
           || propertyCatalog.get(pmsPropertyName.toLowerCase().trim())

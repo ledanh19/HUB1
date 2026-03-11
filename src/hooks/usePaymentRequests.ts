@@ -125,8 +125,8 @@ export function usePaymentRequests(filters?: {
         .filter(r => r.settlement_type === "SERVICE" && r.settlement_id)
         .map(r => r.settlement_id);
 
-      let hostSettlementsMap = new Map<string, string>();
-      let serviceSettlementsMap = new Map<string, string>();
+      const hostSettlementsMap = new Map<string, string>();
+      const serviceSettlementsMap = new Map<string, string>();
 
       if (hostSettlementIds.length > 0) {
         const { data: hostSettlements } = await supabase
@@ -146,7 +146,7 @@ export function usePaymentRequests(filters?: {
 
       // Get paid amounts for each request
       const requestIds = requests.map(r => r.id);
-      let paidByRequest = new Map<string, number>();
+      const paidByRequest = new Map<string, number>();
       if (requestIds.length > 0) {
         const { data: cashOuts } = await supabase
           .from("cash_outs")
@@ -178,7 +178,7 @@ export function usePaymentRequests(filters?: {
         .map(r => r.unified_booking_id)
         .filter((id): id is string => !!id);
 
-      let bookingCodeMap = new Map<string, string>();
+      const bookingCodeMap = new Map<string, string>();
       if (depositBookingIds.length > 0) {
         const uniqueIds = [...new Set(depositBookingIds)];
         const { data: bookings } = await supabase
@@ -271,7 +271,7 @@ export function useApprovedRequestsForCashOut() {
 
       // Get paid amounts
       const requestIds = requests.map(r => r.id);
-      let paidByRequest = new Map<string, number>();
+      const paidByRequest = new Map<string, number>();
       if (requestIds.length > 0) {
         const { data: cashOuts } = await supabase
           .from("cash_outs")

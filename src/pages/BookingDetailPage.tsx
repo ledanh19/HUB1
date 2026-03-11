@@ -539,10 +539,11 @@ export default function BookingDetailPage() {
     switch (overallPaymentStatus) {
       case "UNPAID":
         return { variant: "danger" as const, label: "Chưa thu" };
-      case "PARTIALLY_PAID":
+      case "PARTIALLY_PAID": {
         const roomPaid = roomCollectedAmount >= roomExpected || isRoomWithinTolerance;
         if (!roomPaid) return { variant: "danger" as const, label: "Chưa thu đủ tiền phòng" };
         return { variant: "warning" as const, label: "Còn phụ phí/dịch vụ" };
+      }
       case "FULLY_PAID":
         return { variant: "success" as const, label: "Đã thu đủ" };
       default:

@@ -607,7 +607,7 @@ export const useAllCollections = () => {
 
       // Fetch booking info from bookings_mirror to get channex_property_id
       // This is the same approach as useBookings for filtering
-      let bookingPropertyMap = new Map<string, string | null>();
+      const bookingPropertyMap = new Map<string, string | null>();
 
       if (allBookingIds.length > 0) {
         // Batch query in chunks to avoid API limits

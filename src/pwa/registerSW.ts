@@ -1,4 +1,4 @@
-// @ts-ignore - pushManager is available in browsers that support Push API
+// @ts-expect-error - pushManager is available in browsers that support Push API
 declare global {
   interface ServiceWorkerRegistration {
     pushManager: any;

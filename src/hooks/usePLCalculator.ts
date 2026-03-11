@@ -245,7 +245,7 @@ export function usePLCalculator(input: PLCalculatorInput) {
     refetchOnMount: false,
     refetchOnWindowFocus: false,
     queryFn: async () => {
-      let query = supabase
+      const query = supabase
         .from("service_orders")
         .select("sale_price")
         .gte("service_date_time", `${dateRange.start}T00:00:00`)
@@ -333,7 +333,7 @@ export function usePLCalculator(input: PLCalculatorInput) {
     refetchOnMount: false,
     refetchOnWindowFocus: false,
     queryFn: async () => {
-      let query = supabase
+      const query = supabase
         .from("service_orders")
         .select("cost_price")
         .gte("service_date_time", `${dateRange.start}T00:00:00`)
@@ -653,7 +653,7 @@ export function usePLCalculator(input: PLCalculatorInput) {
     refetchOnMount: false,
     refetchOnWindowFocus: false,
     queryFn: async () => {
-      let query = supabase
+      const query = supabase
         .from("hotel_collects")
         .select("amount_collected")
         .eq("payee_type", "ROOMRISE")
@@ -675,7 +675,7 @@ export function usePLCalculator(input: PLCalculatorInput) {
     refetchOnMount: false,
     refetchOnWindowFocus: false,
     queryFn: async () => {
-      let query = supabase
+      const query = supabase
         .from("cash_outs")
         .select("amount")
         .eq("is_sample_data", false)

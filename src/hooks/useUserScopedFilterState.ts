@@ -231,7 +231,7 @@ export function useUserScopedFilterState<T extends Record<string, unknown>>(
                     if (!existingOwner) {
                         // First user to encounter this legacy key — claim ownership
                         // Skip migration this session to avoid race; next load will migrate.
-                        try { localStorage.setItem(ownerMarkerKey, userId); } catch { }
+                        try { localStorage.setItem(ownerMarkerKey, userId); } catch { /* ignore storage errors */ }
                     } else if (existingOwner === userId) {
                         // Owner match — safe to migrate
                         resolvedState = { ...defaults, ...legacyState };
@@ -239,7 +239,7 @@ export function useUserScopedFilterState<T extends Record<string, unknown>>(
                         try {
                             localStorage.removeItem(legacyFullKey);
                             localStorage.removeItem(ownerMarkerKey);
-                        } catch { }
+                        } catch { /* ignore storage errors */ }
                     }
                     // else: different user owns legacy → skip (do NOT migrate or delete)
                 }
@@ -322,7 +322,7 @@ export function useUserScopedFilterState<T extends Record<string, unknown>>(
                 clearTimeout(dbDebounceRef.current);
             }
         };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+         
     }, [internal.state, internal.source, userId, lsKey, orgId, scopeKey, version, persistToDb]);
 
     // ────────────────────────────────────────────────────────────────────────────

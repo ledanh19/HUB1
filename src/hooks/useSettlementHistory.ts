@@ -92,8 +92,8 @@ export function useSettlementHistory(filters?: SettlementFilters) {
         const hostSettlementIds = (hostSettlements || []).map(s => s.id);
 
         // Fetch paid amounts from BOTH sources (cash_outs + cashflow_entries) to handle legacy
-        let hostPaidBySettlement = new Map<string, number>();
-        let hostApplyBySettlement = new Map<string, number>();
+        const hostPaidBySettlement = new Map<string, number>();
+        const hostApplyBySettlement = new Map<string, number>();
 
         if (hostSettlementIds.length > 0) {
           const [cashOutsRes, cashflowRes, applyRes] = await Promise.all([
@@ -222,7 +222,7 @@ export function useSettlementHistory(filters?: SettlementFilters) {
         const serviceSettlementIds = (serviceSettlements || []).map(s => s.id);
 
         // Fetch paid from BOTH cash_outs AND cashflow_entries (handle legacy)
-        let servicePaidBySettlement = new Map<string, number>();
+        const servicePaidBySettlement = new Map<string, number>();
         if (serviceSettlementIds.length > 0) {
           const [cashOutsRes, cashflowRes] = await Promise.all([
             supabase

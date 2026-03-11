@@ -220,7 +220,7 @@ export function CommentsTab({ taskId, compact = false }: CommentsTabProps) {
 
   // Parse comment content for images
   const parseCommentContent = (content: string) => {
-    const imageRegex = /!\[image\]\((https?:\/\/[^\)]+)\)/g;
+    const imageRegex = /!\[image\]\((https?:\/\/[^)]+)\)/g;
     const images: string[] = [];
     let match;
     

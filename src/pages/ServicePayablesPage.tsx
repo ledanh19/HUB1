@@ -158,7 +158,7 @@ const useServiceSettlementData = (filters: {
 
       // Fetch SERVICE collections for these orders
       const orderIds = (orders || []).map(o => o.id);
-      let collectionsMap: Record<string, { amount: number; collector_type: string }[]> = {};
+      const collectionsMap: Record<string, { amount: number; collector_type: string }[]> = {};
 
       if (orderIds.length > 0) {
         const { data: collections } = await supabase
@@ -251,7 +251,7 @@ const useServiceSettlements = (partnerId?: string) => {
       const settlementIds = (data || []).map(s => s.id);
 
       // Compute paid_amount from cashflow_entries (single source of truth)
-      let paidBySettlement = new Map<string, number>();
+      const paidBySettlement = new Map<string, number>();
       if (settlementIds.length > 0) {
         const { data: cashflows, error: cfError } = await supabase
           .from("cashflow_entries")

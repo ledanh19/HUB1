@@ -431,7 +431,7 @@ export function useDerivedOwnersBatch(bookingIds: string[]) {
         const userIds = [...new Set(allData.map(e => e.user_id).filter(Boolean))];
         
         // Fetch profiles directly (avoid cache timing issues)
-        let profileMap = new Map<string, { full_name: string | null; email: string | null; department?: string }>();
+        const profileMap = new Map<string, { full_name: string | null; email: string | null; department?: string }>();
         if (userIds.length > 0) {
           const { data: profiles } = await supabase
             .from("profiles")

@@ -149,6 +149,16 @@ export default function HostPayableDetailPage() {
   const { data: payments = [] } = useHostPayments(id);
   const { data: canManage } = useCanManageDeposits();
 
+  // PHASE A FIX: Derive payment truth from source tables, not dead stored fields
+  const { data: paymentTruth } = useQuery({
+    queryKey: ["host-payable-payment-truth", id],
+    staleTime: 30_000,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+    queryFn: () => fetchPayablePaymentTruth(id ? [id] : []),
+    enabled: !!id,
+  });
+
   if (isLoading) {
     return (
       <>
@@ -169,16 +179,6 @@ export default function HostPayableDetailPage() {
       </>
     );
   }
-
-  // PHASE A FIX: Derive payment truth from source tables, not dead stored fields
-  const { data: paymentTruth } = useQuery({
-    queryKey: ["host-payable-payment-truth", id],
-    staleTime: 30_000,
-    refetchOnMount: false,
-    refetchOnWindowFocus: false,
-    queryFn: () => fetchPayablePaymentTruth(id ? [id] : []),
-    enabled: !!id,
-  });
 
   const hasCheckedOut = !!stay?.actual_check_out_at;
   const totalAmount = Number(payable.amount) || 0;

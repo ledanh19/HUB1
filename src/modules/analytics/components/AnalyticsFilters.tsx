@@ -214,14 +214,7 @@ function PivotMultiSelect({ pivot, selectedIds, onSelectedIdsChange }: {
   onSelectedIdsChange: (ids: string[]) => void;
 }) {
   const { data: options, isLoading } = useAnalyticsFilterOptions(pivot as 'channel' | 'property' | 'area');
-  if (pivot === 'all') return null;
 
-  const toggleItem = (id: string) => {
-    if (selectedIds.includes(id)) onSelectedIdsChange(selectedIds.filter((i) => i !== id));
-    else onSelectedIdsChange([...selectedIds, id]);
-  };
-  const clearAll = () => onSelectedIdsChange([]);
-  const selectAll = () => onSelectedIdsChange(options?.map((o) => o.id) || []);
   const label = PIVOT_LABELS[pivot]?.toLowerCase() || 'items';
 
   const resolvedLabel = useMemo(() => {
@@ -231,6 +224,15 @@ function PivotMultiSelect({ pivot, selectedIds, onSelectedIdsChange }: {
     if (names.length <= 2) return names.join(', ');
     return `${names.slice(0, 2).join(', ')} +${names.length - 2}`;
   }, [selectedIds, options, label]);
+
+  if (pivot === 'all') return null;
+
+  const toggleItem = (id: string) => {
+    if (selectedIds.includes(id)) onSelectedIdsChange(selectedIds.filter((i) => i !== id));
+    else onSelectedIdsChange([...selectedIds, id]);
+  };
+  const clearAll = () => onSelectedIdsChange([]);
+  const selectAll = () => onSelectedIdsChange(options?.map((o) => o.id) || []);
 
   return (
     <Popover>

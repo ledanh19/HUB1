@@ -67,7 +67,7 @@ export function useCashOuts(filters?: {
       const requestIds = [...new Set(
         cashOuts.map(co => co.payment_request_id).filter((id): id is string => id != null)
       )];
-      let requestsMap = new Map<string, any>();
+      const requestsMap = new Map<string, any>();
 
       if (requestIds.length > 0) {
         const { data: requests, error: reqError } = await supabase

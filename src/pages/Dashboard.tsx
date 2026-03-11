@@ -484,7 +484,7 @@ export default function Dashboard() {
     refetchOnWindowFocus: false,
     queryFn: async () => {
       // 1. Get finalized service settlements only
-      let query = supabase
+      const query = supabase
         .from("service_settlements")
         .select("id, net_amount, net_direction")
         .not("finalized_at", "is", null);
@@ -552,7 +552,7 @@ export default function Dashboard() {
     refetchOnMount: false,
     refetchOnWindowFocus: false,
     queryFn: async () => {
-      let query = supabase
+      const query = supabase
         .from("ota_disputes")
         .select("amount_in_dispute")
         .in("status", ["OPEN", "IN_REVIEW"]);
@@ -605,7 +605,7 @@ export default function Dashboard() {
 
       // 3. Expected Cash Out — Service settlements (finalized, remaining)
       // Host AP is reused from hostDebtData split (actual/expected) — see below
-      let serviceQuery = supabase
+      const serviceQuery = supabase
         .from("service_settlements")
         .select("id, net_amount")
         .not("finalized_at", "is", null);
@@ -1100,7 +1100,7 @@ export default function Dashboard() {
                       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-1">
                         <div className="min-w-0">
                           <p className="text-micro md:text-xs text-muted-foreground font-medium mb-0.5 md:mb-1 truncate">Dòng tiền ròng</p>
-                          <p className={`\-semibold tracking-tight tabular-nums truncate ${netCashflow >= 0 ? "text-success" : "text-destructive"}`}>
+                          <p className={`font-semibold tracking-tight tabular-nums truncate ${netCashflow >= 0 ? "text-success" : "text-destructive"}`}>
                             {formatCurrency(netCashflow)}
                           </p>
                         </div>
@@ -1157,7 +1157,7 @@ export default function Dashboard() {
                   {/* Net Profit */}
                   <div className="rounded-md bg-muted/50 p-2.5 md:p-3">
                     <p className="text-micro md:text-xs text-muted-foreground">Lợi nhuận</p>
-                    <p className={`\-semibold tracking-tight tabular-nums truncate ${netProfit >= 0 ? "text-success" : "text-destructive"}`}>
+                    <p className={`font-semibold tracking-tight tabular-nums truncate ${netProfit >= 0 ? "text-success" : "text-destructive"}`}>
                       {formatCurrency(netProfit)}
                     </p>
                     <p className="text-micro text-muted-foreground">P&L (accrual)</p>
@@ -1166,7 +1166,7 @@ export default function Dashboard() {
                   {/* Net Cashflow */}
                   <div className="rounded-md bg-muted/50 p-2.5 md:p-3">
                     <p className="text-micro md:text-xs text-muted-foreground">Dòng tiền</p>
-                    <p className={`\-semibold tracking-tight tabular-nums truncate ${netCashflow >= 0 ? "text-success" : "text-destructive"}`}>
+                    <p className={`font-semibold tracking-tight tabular-nums truncate ${netCashflow >= 0 ? "text-success" : "text-destructive"}`}>
                       {formatCurrency(netCashflow)}
                     </p>
                     <p className="text-micro text-muted-foreground">Cash (thực)</p>
@@ -1180,7 +1180,7 @@ export default function Dashboard() {
                       : "bg-muted/50"
                     }`}>
                     <p className="text-micro md:text-xs text-muted-foreground">Chênh lệch</p>
-                    <p className={`\-semibold tracking-tight tabular-nums truncate ${profitCashGap > 0
+                    <p className={`font-semibold tracking-tight tabular-nums truncate ${profitCashGap > 0
                       ? "text-warning"
                       : profitCashGap < 0
                         ? "text-info"

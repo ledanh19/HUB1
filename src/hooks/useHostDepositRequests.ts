@@ -97,7 +97,7 @@ export function useHostDepositRequests(filters?: {
 
       // Get paid amounts
       const requestIds = requests.map(r => r.id);
-      let paidByRequest = new Map<string, number>();
+      const paidByRequest = new Map<string, number>();
       if (requestIds.length > 0) {
         const { data: cashOuts } = await supabase
           .from("cash_outs")
@@ -111,7 +111,7 @@ export function useHostDepositRequests(filters?: {
       }
 
       // Get refund requests (có source_id link đến request gốc)
-      let refundByRequest = new Map<string, { code: string; status: RequestStatus }>();
+      const refundByRequest = new Map<string, { code: string; status: RequestStatus }>();
       if (requestIds.length > 0) {
         const { data: refundRequests } = await supabase
           .from("payment_requests")
@@ -134,7 +134,7 @@ export function useHostDepositRequests(filters?: {
         .map(r => r.unified_booking_id)
         .filter((id): id is string => !!id);
 
-      let bookingCodeMap = new Map<string, string>();
+      const bookingCodeMap = new Map<string, string>();
       if (unifiedBookingIds.length > 0) {
         const { data: bookings } = await supabase
           .from("bookings_mirror")
@@ -153,7 +153,7 @@ export function useHostDepositRequests(filters?: {
         .map(r => r.settlement_id)
         .filter((id): id is string => !!id);
 
-      let settlementMap = new Map<string, { code: string; status: string }>();
+      const settlementMap = new Map<string, { code: string; status: string }>();
       if (settlementIds.length > 0) {
         const { data: settlements } = await supabase
           .from("host_settlements")
@@ -228,7 +228,7 @@ export function useHostDepositStats() {
 
       // Get paid amounts
       const requestIds = requests.map(r => r.id);
-      let paidByRequest = new Map<string, number>();
+      const paidByRequest = new Map<string, number>();
       const { data: cashOuts } = await supabase
         .from("cash_outs")
         .select("payment_request_id, amount")

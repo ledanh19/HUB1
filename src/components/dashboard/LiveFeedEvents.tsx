@@ -261,7 +261,7 @@ export function LiveFeedEvents() {
           });
         }
       });
-  }, []);
+  }, [queryClient]);
 
   // Subscribe to booking_changes via centralized manager
   useRealtimeSubscription('booking_changes', handleBookingChangeEvent, {

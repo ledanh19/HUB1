@@ -335,7 +335,7 @@ export function normalizedToFeedEvents(
     const nights = booking?.nights || event.fallback_nights || 1;
     
     let type: FeedEvent['type'];
-    let subtitleParts: string[] = [];
+    const subtitleParts: string[] = [];
     
     switch (event.canonical_type) {
       case 'NEW_BOOKING':

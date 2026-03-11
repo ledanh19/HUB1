@@ -112,7 +112,7 @@ export function findOverlaps(segments: { date_from: string; date_to: string; id?
         const overlapStart = aFrom > bFrom ? aFrom : bFrom;
         const overlapEnd = aTo < bTo ? aTo : bTo;
 
-        let current = new Date(overlapStart);
+        const current = new Date(overlapStart);
         while (current < overlapEnd) {
           overlappingDates.add(current.toISOString().split('T')[0]);
           current.setDate(current.getDate() + 1);

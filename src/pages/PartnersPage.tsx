@@ -220,7 +220,7 @@ export default function PartnersPage() {
     gcTime: 5 * 60 * 1000, // 5 minutes cache
     queryFn: async () => {
       try {
-        let query = supabase
+        const query = supabase
           .from("partners")
           .select("id, partner_name, partner_type, phone, email, status, partner_status, region, priority_level, archived_at, blacklisted_at, created_at")
           .order("created_at", { ascending: false })

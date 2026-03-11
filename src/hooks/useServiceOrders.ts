@@ -172,8 +172,8 @@ export const useServiceOrders = (filters?: ServiceOrderFilters) => {
 
       // Fetch all SERVICE collections from hotel_collects by booking_id
       // Note: hotel_collects.related_id may be null, so we aggregate by booking level
-      let collectionsMapByBooking: Record<string, number> = {};
-      let collectionsMapByOrder: Record<string, number> = {};
+      const collectionsMapByBooking: Record<string, number> = {};
+      const collectionsMapByOrder: Record<string, number> = {};
 
       if (bookingIds.length > 0) {
         const { data: collections } = await supabase
@@ -749,8 +749,8 @@ export const useServiceOrderStats = (filters?: { dateFrom?: string; dateTo?: str
       const bookingIds = [...new Set(orders.filter(o => o.unified_booking_id).map(o => o.unified_booking_id))];
 
       // Fetch all SERVICE collections by booking
-      let collectionsMapByBooking: Record<string, number> = {};
-      let collectionsMapByOrder: Record<string, number> = {};
+      const collectionsMapByBooking: Record<string, number> = {};
+      const collectionsMapByOrder: Record<string, number> = {};
 
       if (bookingIds.length > 0) {
         const { data: collections } = await supabase

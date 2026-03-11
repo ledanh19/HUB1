@@ -118,7 +118,8 @@ export default function HostSettlementPage() {
         });
       }
     }
-  }, [urlPartnerId, urlBookings]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- urlBookingIds derived from urlBookings
+  }, [urlPartnerId, urlBookings, filters]);
 
   const queryClient = useQueryClient();
   const { data: partners, isLoading: partnersLoading } = useHostPartners();

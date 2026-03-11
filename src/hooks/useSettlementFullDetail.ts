@@ -345,7 +345,7 @@ export function useHostSettlementFullDetail(settlementId: string | null) {
 
       // Also fetch cash_outs for these requests
       const requestIds = (depositRequests || []).map(d => d.id);
-      let cashOutsByRequest = new Map<string, number>();
+      const cashOutsByRequest = new Map<string, number>();
       if (requestIds.length > 0) {
         const { data: cashOuts } = await supabase
           .from("cash_outs")

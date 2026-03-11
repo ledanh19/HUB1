@@ -491,7 +491,7 @@ export function useAIPricingInsights(
       // If maxRows is too low, later dates will be missing and UI shows "N/A".
       const pageSize = 10000;
       const maxRows = 250000;
-      let inventoryCells: any[] = [];
+      const inventoryCells: any[] = [];
 
       for (let from = 0; from < maxRows; from += pageSize) {
         const { data, error } = await buildInventoryQuery().range(from, from + pageSize - 1);

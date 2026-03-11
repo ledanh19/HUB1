@@ -255,7 +255,7 @@ export function useHostSettlementsForPayment(partnerId?: string) {
       const settlementIds = settlements.map(s => s.id);
 
       // COMPUTED: Get paid amounts from cashflow_entries
-      let paidBySettlement = new Map<string, number>();
+      const paidBySettlement = new Map<string, number>();
       if (settlementIds.length > 0) {
         const { data: cashflows } = await supabase
           .from("cashflow_entries")
@@ -319,7 +319,7 @@ export function useServiceSettlementsForPayment(partnerId?: string) {
       const settlementIds = settlements.map(s => s.id);
 
       // COMPUTED: Get paid amounts from cashflow_entries
-      let paidBySettlement = new Map<string, number>();
+      const paidBySettlement = new Map<string, number>();
       if (settlementIds.length > 0) {
         const { data: cashflows } = await supabase
           .from("cashflow_entries")

@@ -71,7 +71,8 @@ export default function SyncJobsPage() {
     if (properties && properties.length > 0 && !selectedPropertyId) {
       setSelectedPropertyId(properties[0].channex_property_id);
     }
-  }, [properties, selectedPropertyId]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- only set default once when properties load
+  }, [properties]);
 
   // Data fetching
   const { data: jobs = [], isLoading: jobsLoading, refetch: refetchJobs } = useSyncJobs(selectedPropertyId);

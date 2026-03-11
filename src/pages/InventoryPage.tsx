@@ -201,7 +201,8 @@ export default function InventoryPage() {
     if (properties && properties.length > 0 && !selectedChannexPropertyId) {
       setSelectedChannexPropertyId(properties[0].channex_property_id);
     }
-  }, [properties, selectedChannexPropertyId]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- only set default once when properties load
+  }, [properties]);
   
   // Get dates - 14 days default
   const weekDates = useMemo(() => getWeekDates(startDate, 14), [startDate]);

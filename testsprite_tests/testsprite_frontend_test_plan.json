@@ -1,0 +1,737 @@
+[
+  {
+    "id": "TC001",
+    "title": "Login with valid credentials and land on the dashboard",
+    "description": "Verifies a user can log in with valid credentials and access the authenticated dashboard.",
+    "category": "Authentication and User Management",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /auth"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/auth\""
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Login\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify page title contains \"Dashboard\""
+      }
+    ]
+  },
+  {
+    "id": "TC002",
+    "title": "Login fails with incorrect password and shows invalid credentials error",
+    "description": "Verifies an incorrect password prevents login, shows an error, and keeps the user on the login page.",
+    "category": "Authentication and User Management",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /auth"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/auth\""
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"wrong-password-123\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Login\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"invalid credentials\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/auth\""
+      }
+    ]
+  },
+  {
+    "id": "TC003",
+    "title": "Login fails with non-existent user and shows invalid credentials error",
+    "description": "Verifies a non-existent account cannot log in and an invalid credentials error is shown.",
+    "category": "Authentication and User Management",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /auth"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/auth\""
+      },
+      {
+        "type": "action",
+        "description": "Type \"nonexistent.user.999999@example.com\" into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"SomePassword!234\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Login\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"invalid credentials\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/auth\""
+      }
+    ]
+  },
+  {
+    "id": "TC004",
+    "title": "Validation prevents login when email is missing",
+    "description": "Verifies the login form blocks submission and shows a visible validation message when email is empty.",
+    "category": "Authentication and User Management",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /auth"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/auth\""
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Login\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"email\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/auth\""
+      }
+    ]
+  },
+  {
+    "id": "TC005",
+    "title": "Validation prevents login when password is missing",
+    "description": "Verifies the login form blocks submission and shows a visible validation message when password is empty.",
+    "category": "Authentication and User Management",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /auth"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/auth\""
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Login\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"password\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/auth\""
+      }
+    ]
+  },
+  {
+    "id": "TC006",
+    "title": "Logout removes access to authenticated pages",
+    "description": "Verifies logging out returns the user to the login page and prevents access to authenticated routes afterward.",
+    "category": "Authentication and User Management",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /auth"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Login\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/\""
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Logout\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/auth\""
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /bookings"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/auth\""
+      }
+    ]
+  },
+  {
+    "id": "TC007",
+    "title": "Search bookings list and open a booking to view details",
+    "description": "Verifies a user can search/filter the bookings list and open a booking detail page to view room lines and charges.",
+    "category": "Property and Booking Management",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /auth"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Sign in\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/\""
+      },
+      {
+        "type": "action",
+        "description": "Click \"Bookings\" in the main navigation"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/bookings\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Bookings\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC008",
+    "title": "Edit an existing booking and save valid changes",
+    "description": "Verifies editing a booking with valid data saves successfully and the updated details are visible on the booking detail page.",
+    "category": "Property and Booking Management",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /auth"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Sign in\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/\""
+      },
+      {
+        "type": "action",
+        "description": "Click \"Bookings\" in the main navigation"
+      },
+      {
+        "type": "action",
+        "description": "Click on the first booking item in the bookings list"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Edit booking\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC009",
+    "title": "Show validation errors when editing a booking with missing/invalid required fields",
+    "description": "Verifies the booking edit form prevents submission and shows visible validation errors for invalid dates or required fields.",
+    "category": "Property and Booking Management",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /auth"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Sign in\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/\""
+      },
+      {
+        "type": "action",
+        "description": "Click \"Bookings\" in the main navigation"
+      },
+      {
+        "type": "action",
+        "description": "Click on the first booking item in the bookings list"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Edit booking\""
+      }
+    ]
+  },
+  {
+    "id": "TC010",
+    "title": "Filter stays list and perform check-in",
+    "description": "Verifies a user can filter stays and perform check-in, and the updated checked-in status is visible.",
+    "category": "Property and Booking Management",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /auth"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Sign in\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/\""
+      },
+      {
+        "type": "action",
+        "description": "Click \"Stays\" in the main navigation"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/stays\""
+      },
+      {
+        "type": "action",
+        "description": "Click on the first stay item in the active stays list"
+      }
+    ]
+  },
+  {
+    "id": "TC011",
+    "title": "Perform check-out on an active stay",
+    "description": "Verifies a user can perform check-out and the stay is no longer shown as active (or status is shown as checked-out).",
+    "category": "Property and Booking Management",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /auth"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Sign in\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/\""
+      },
+      {
+        "type": "action",
+        "description": "Click \"Stays\" in the main navigation"
+      },
+      {
+        "type": "action",
+        "description": "Click on the first stay item in the active stays list"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Perform check-out\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC012",
+    "title": "View housekeeping assignments in the UI (authenticated)",
+    "description": "Verifies housekeeping assignments are visible to an authenticated user and show property and assignee information.",
+    "category": "Property and Booking Management",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /auth"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Sign in\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/\""
+      },
+      {
+        "type": "action",
+        "description": "Click \"Services\" in the main navigation"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/services\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Service orders\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC013",
+    "title": "Create a deposit for a booking with a valid amount",
+    "description": "Verifies a user can create a booking deposit and sees a visible confirmation or the new deposit entry on the booking detail page.",
+    "category": "Property and Booking Management",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /auth"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Sign in\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/\""
+      },
+      {
+        "type": "action",
+        "description": "Click \"Bookings\" in the main navigation"
+      },
+      {
+        "type": "action",
+        "description": "Click on the first booking item in the bookings list"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Create deposit\""
+      }
+    ]
+  },
+  {
+    "id": "TC014",
+    "title": "Show an error when creating a deposit with invalid amount or invalid booking reference",
+    "description": "Verifies the deposit creation flow shows a visible error when the amount is invalid or the booking reference is not accepted.",
+    "category": "Property and Booking Management",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /auth"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Sign in\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/\""
+      },
+      {
+        "type": "action",
+        "description": "Click \"Bookings\" in the main navigation"
+      },
+      {
+        "type": "action",
+        "description": "Click on the first booking item in the bookings list"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Create deposit\""
+      }
+    ]
+  },
+  {
+    "id": "TC015",
+    "title": "Login with valid credentials to access authenticated app shell (precondition for integrations monitoring)",
+    "description": "Verifies a user can log in successfully and land on an authenticated page where integration-related logs/alerts could be visible.",
+    "category": "External Integrations (Channex Webhook)",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /auth"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click on the \"Sign in\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Main dashboard\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC016",
+    "title": "Audit Logs page is reachable and renders (proxy UI coverage for webhook processing logs)",
+    "description": "Verifies the Audit Logs UI loads after login, as the primary visible place to observe webhook processing/security events.",
+    "category": "External Integrations (Channex Webhook)",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /auth"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click on the \"Sign in\" button"
+      },
+      {
+        "type": "action",
+        "description": "Click on \"Audit Logs\" in the main navigation"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/audit-logs\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Audit Logs\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC017",
+    "title": "Audit Logs supports filtering/searching for Channex/webhook related entries",
+    "description": "Verifies a user can search within Audit Logs for integration-related terms to find webhook processing/security records.",
+    "category": "External Integrations (Channex Webhook)",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /auth"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click on the \"Sign in\" button"
+      },
+      {
+        "type": "action",
+        "description": "Click on \"Audit Logs\" in the main navigation"
+      },
+      {
+        "type": "action",
+        "description": "Type \"channex\" into the audit log search field"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Audit log results list\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC018",
+    "title": "Settings page exposes any integration-related configuration area (if present)",
+    "description": "Verifies the Settings UI loads and any integration/webhook configuration section is visible to the user.",
+    "category": "External Integrations (Channex Webhook)",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /auth"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click on the \"Sign in\" button"
+      },
+      {
+        "type": "action",
+        "description": "Click on \"Settings\" in the main navigation"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/settings\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Settings\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Integrations\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC019",
+    "title": "Bookings page remains usable after integration-related events (basic navigation/health check)",
+    "description": "Verifies core booking UI loads normally after login, ensuring no client-side regressions from integration features.",
+    "category": "External Integrations (Channex Webhook)",
+    "priority": "Low",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /auth"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click on the \"Sign in\" button"
+      },
+      {
+        "type": "action",
+        "description": "Click on \"Bookings\" in the main navigation"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/bookings\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Bookings\" is visible"
+      }
+    ]
+  }
+]

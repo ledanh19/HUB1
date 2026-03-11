@@ -1,0 +1,744 @@
+/* ═══════════════════════════════════════════════════════════════
+   DASHBOARD V2 — MOTION DESIGN SYSTEM
+   Professional, smooth, visible animations for every component.
+   Uses existing motion tokens from tailwind.config.ts:
+     --motion-easing: cubic-bezier(0.2, 0.8, 0.2, 1)
+     Spring easing:   cubic-bezier(0.16, 1, 0.3, 1)
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Motion Tokens (local) ── */
+:root {
+    --dv2-spring: cubic-bezier(0.16, 1, 0.3, 1);
+    --dv2-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    --dv2-ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --dv2-duration-fast: 200ms;
+    --dv2-duration-normal: 350ms;
+    --dv2-duration-slow: 500ms;
+    --dv2-duration-chart: 800ms;
+    --dv2-stagger-gap: 60ms;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   1. PAGE CHOREOGRAPHY — Staggered section entrance
+   Sections fade-in-up sequentially on page load
+   ═══════════════════════════════════════════════════════════════ */
+
+.dv2-page>* {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.dv2-animated>* {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity var(--dv2-duration-slow) var(--dv2-spring),
+        transform var(--dv2-duration-slow) var(--dv2-spring);
+}
+
+/* Stagger delays for each section (max 12 sections) */
+.dv2-animated>*:nth-child(1) {
+    transition-delay: 0ms;
+}
+
+.dv2-animated>*:nth-child(2) {
+    transition-delay: 60ms;
+}
+
+.dv2-animated>*:nth-child(3) {
+    transition-delay: 120ms;
+}
+
+.dv2-animated>*:nth-child(4) {
+    transition-delay: 180ms;
+}
+
+.dv2-animated>*:nth-child(5) {
+    transition-delay: 240ms;
+}
+
+.dv2-animated>*:nth-child(6) {
+    transition-delay: 300ms;
+}
+
+.dv2-animated>*:nth-child(7) {
+    transition-delay: 360ms;
+}
+
+.dv2-animated>*:nth-child(8) {
+    transition-delay: 420ms;
+}
+
+.dv2-animated>*:nth-child(9) {
+    transition-delay: 480ms;
+}
+
+.dv2-animated>*:nth-child(10) {
+    transition-delay: 540ms;
+}
+
+.dv2-animated>*:nth-child(11) {
+    transition-delay: 600ms;
+}
+
+.dv2-animated>*:nth-child(12) {
+    transition-delay: 660ms;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   2. CARD — Entrance + Hover Lift + Active Press
+   ═══════════════════════════════════════════════════════════════ */
+
+.dv2-card {
+    transition: transform var(--dv2-duration-fast) var(--dv2-ease-out),
+        box-shadow var(--dv2-duration-fast) var(--dv2-ease-out),
+        border-color var(--dv2-duration-fast) var(--dv2-ease-out);
+}
+
+.dv2-card:hover {
+    transform: translateY(-6px) scale(1.01);
+    border-color: hsl(var(--primary) / 0.25);
+    box-shadow:
+        0 14px 40px -6px hsl(var(--foreground) / 0.18),
+        0 8px 16px -4px hsl(var(--foreground) / 0.08),
+        0 0 0 1px hsl(var(--primary) / 0.08);
+}
+
+.dv2-card:active {
+    transform: translateY(-1px) scale(0.985);
+    transition-duration: 80ms;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   2B. RECHARTS HOVER — Bar/Pie/Area elements pop on hover
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Make Recharts bars react to hover — scale up + brighten */
+.dv2-chart-interactive .recharts-bar-rectangle {
+    transition: filter 150ms ease-out, transform 150ms ease-out;
+    cursor: pointer;
+}
+
+.dv2-chart-interactive .recharts-bar-rectangle:hover {
+    filter: brightness(1.25) drop-shadow(0 6px 12px rgba(0, 0, 0, 0.22));
+    transform: scaleY(1.04);
+    transform-origin: bottom;
+}
+
+/* Recharts Pie/Donut sector hover */
+.dv2-chart-interactive .recharts-pie-sector {
+    transition: filter 150ms ease-out, transform 150ms ease-out;
+    cursor: pointer;
+}
+
+.dv2-chart-interactive .recharts-pie-sector:hover {
+    filter: brightness(1.2) drop-shadow(0 5px 12px rgba(0, 0, 0, 0.22));
+    transform: scale(1.06);
+    transform-origin: center;
+}
+
+/* Recharts Area dot — bigger on hover */
+.dv2-chart-interactive .recharts-dot:hover {
+    r: 8;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.2));
+}
+
+/* Cursor highlight on bar chart — subtle gray bg */
+.dv2-chart-interactive .recharts-tooltip-cursor {
+    fill: hsl(var(--foreground) / 0.04);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   3. KPI — Counter slide-up, icon breathe, trend delayed
+   ═══════════════════════════════════════════════════════════════ */
+
+@keyframes dv2KpiValueIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dv2-kpi-value {
+    animation: dv2KpiValueIn var(--dv2-duration-normal) var(--dv2-spring) both;
+}
+
+/* Icon breathe on card hover */
+.dv2-kpi-icon {
+    transition: transform var(--dv2-duration-fast) var(--dv2-ease-out);
+}
+
+.dv2-card:hover .dv2-kpi-icon {
+    transform: scale(1.08);
+}
+
+/* Trend badge delayed entrance */
+@keyframes dv2TrendIn {
+    from {
+        opacity: 0;
+        transform: translateX(-6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.dv2-trend {
+    animation: dv2TrendIn 300ms var(--dv2-spring) 250ms both;
+}
+
+/* Badge pop-in */
+@keyframes dv2BadgeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+
+    60% {
+        transform: scale(1.1);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.dv2-badge {
+    animation: dv2BadgeIn 400ms var(--dv2-spring) 200ms both;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   4. HEALTH ALERT — Pill bounce entrance
+   ═══════════════════════════════════════════════════════════════ */
+
+@keyframes dv2AlertPillIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8) translateY(4px);
+    }
+
+    60% {
+        transform: scale(1.05) translateY(-1px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.dv2-alert-pill {
+    animation: dv2AlertPillIn 400ms var(--dv2-spring) both;
+}
+
+.dv2-alert-pill:nth-child(1) {
+    animation-delay: 100ms;
+}
+
+.dv2-alert-pill:nth-child(2) {
+    animation-delay: 180ms;
+}
+
+.dv2-alert-pill:nth-child(3) {
+    animation-delay: 260ms;
+}
+
+.dv2-alert-pill:nth-child(4) {
+    animation-delay: 340ms;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   5. PROGRESS BAR — Grow from 0% to target width
+   ═══════════════════════════════════════════════════════════════ */
+
+@keyframes dv2ProgressGrow {
+    from {
+        max-width: 0;
+        opacity: 0.4;
+    }
+
+    to {
+        max-width: 100%;
+        opacity: 1;
+    }
+}
+
+.dv2-progress-seg {
+    animation: dv2ProgressGrow var(--dv2-duration-chart) var(--dv2-spring) both;
+    overflow: hidden;
+    transition: filter 150ms ease-out, transform 150ms ease-out, box-shadow 150ms ease-out;
+    cursor: pointer;
+    position: relative;
+}
+
+/* Hover: pop up + glow + brighten */
+.dv2-progress-seg:hover {
+    filter: brightness(1.2);
+    transform: scaleY(1.25) translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+    z-index: 10;
+    border-radius: 4px;
+}
+
+.dv2-progress-seg:nth-child(1) {
+    animation-delay: 200ms;
+}
+
+.dv2-progress-seg:nth-child(2) {
+    animation-delay: 400ms;
+}
+
+.dv2-progress-seg:nth-child(3) {
+    animation-delay: 600ms;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   6. DONUT — Spin-in entrance for pie/donut charts
+   ═══════════════════════════════════════════════════════════════ */
+
+@keyframes dv2DonutIn {
+    from {
+        opacity: 0;
+        transform: rotate(-90deg) scale(0.85);
+    }
+
+    to {
+        opacity: 1;
+        transform: rotate(0deg) scale(1);
+    }
+}
+
+.dv2-donut {
+    animation: dv2DonutIn 700ms var(--dv2-spring) 150ms both;
+}
+
+/* Center label delayed */
+@keyframes dv2DonutCenterIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.dv2-donut-center {
+    animation: dv2DonutCenterIn 350ms var(--dv2-spring) 600ms both;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   7. SKELETON / LOADING — Premium shimmer
+   ═══════════════════════════════════════════════════════════════ */
+
+@keyframes dv2Shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+.dv2-skeleton {
+    background: linear-gradient(90deg,
+            hsl(var(--muted)) 25%,
+            hsl(var(--muted-foreground) / 0.08) 50%,
+            hsl(var(--muted)) 75%);
+    background-size: 400% 100%;
+    animation: dv2Shimmer 1.8s ease-in-out infinite;
+    border-radius: 12px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   8. TOOLTIP — Scale + fade entrance
+   ═══════════════════════════════════════════════════════════════ */
+
+.dv2-tooltip-enter {
+    animation: dv2TooltipIn 150ms var(--dv2-ease-out) both;
+}
+
+@keyframes dv2TooltipIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(2px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   9. PERIOD TABS — Sliding active background
+   ═══════════════════════════════════════════════════════════════ */
+
+.dv2-tab-group {
+    position: relative;
+}
+
+.dv2-tab {
+    transition: color 150ms var(--dv2-ease-out),
+        background-color 200ms var(--dv2-ease-out),
+        box-shadow 200ms var(--dv2-ease-out);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   10. TABLE ROWS — Stagger fade-in
+   ═══════════════════════════════════════════════════════════════ */
+
+@keyframes dv2RowIn {
+    from {
+        opacity: 0;
+        transform: translateX(-8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.dv2-table-row {
+    animation: dv2RowIn 300ms var(--dv2-spring) both;
+}
+
+.dv2-table-row:nth-child(1) {
+    animation-delay: 0ms;
+}
+
+.dv2-table-row:nth-child(2) {
+    animation-delay: 30ms;
+}
+
+.dv2-table-row:nth-child(3) {
+    animation-delay: 60ms;
+}
+
+.dv2-table-row:nth-child(4) {
+    animation-delay: 90ms;
+}
+
+.dv2-table-row:nth-child(5) {
+    animation-delay: 120ms;
+}
+
+.dv2-table-row:nth-child(6) {
+    animation-delay: 150ms;
+}
+
+.dv2-table-row:nth-child(7) {
+    animation-delay: 180ms;
+}
+
+.dv2-table-row:nth-child(8) {
+    animation-delay: 210ms;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   11. SCROLL REVEAL — IntersectionObserver-triggered
+   ═══════════════════════════════════════════════════════════════ */
+
+.dv2-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 600ms var(--dv2-spring),
+        transform 600ms var(--dv2-spring);
+}
+
+.dv2-reveal.dv2-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   12. LEGEND — Stagger entrance for chart legends
+   ═══════════════════════════════════════════════════════════════ */
+
+@keyframes dv2LegendIn {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dv2-legend-item {
+    animation: dv2LegendIn 300ms var(--dv2-spring) both;
+}
+
+.dv2-legend-item:nth-child(1) {
+    animation-delay: 400ms;
+}
+
+.dv2-legend-item:nth-child(2) {
+    animation-delay: 460ms;
+}
+
+.dv2-legend-item:nth-child(3) {
+    animation-delay: 520ms;
+}
+
+.dv2-legend-item:nth-child(4) {
+    animation-delay: 580ms;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   13. SECTION HEADER — Title slide-in
+   ═══════════════════════════════════════════════════════════════ */
+
+@keyframes dv2HeaderIn {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.dv2-section-title {
+    animation: dv2HeaderIn 350ms var(--dv2-spring) both;
+}
+
+/* Header badge delayed scale-in */
+@keyframes dv2HeaderBadgeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.dv2-section-badge {
+    animation: dv2HeaderBadgeIn 250ms var(--dv2-spring) 200ms both;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   14. INSIGHT BAR — Gap/comparison slide-in
+   ═══════════════════════════════════════════════════════════════ */
+
+@keyframes dv2InsightIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dv2-insight {
+    animation: dv2InsightIn 400ms var(--dv2-spring) 500ms both;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   15. SUMMARY KPI MINI CARDS — Scale entrance
+   ═══════════════════════════════════════════════════════════════ */
+
+@keyframes dv2MiniCardIn {
+    from {
+        opacity: 0;
+        transform: scale(0.92);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.dv2-mini-card {
+    animation: dv2MiniCardIn 350ms var(--dv2-spring) both;
+}
+
+.dv2-mini-card:nth-child(1) {
+    animation-delay: 100ms;
+}
+
+.dv2-mini-card:nth-child(2) {
+    animation-delay: 200ms;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   16. MOBILE PERFORMANCE — Disable heavy animations on small screens
+   Keep: shimmer/skeleton, tooltip fade (lightweight, needed for UX)
+   Kill: choreography, hover-lift, scroll-reveal, stagger, chart entrances
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 639px) {
+
+    /* Page choreography — stagger entrance disabled */
+    .dv2-page>* {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    .dv2-animated>* {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+
+    /* Card hover-lift — irrelevant on touch */
+    .dv2-card {
+        transition: none !important;
+    }
+
+    .dv2-card:hover,
+    .dv2-card:active {
+        transform: none !important;
+        box-shadow: none !important;
+    }
+
+    /* KPI entrance — show immediately */
+    .dv2-kpi-value,
+    .dv2-trend,
+    .dv2-badge {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    /* Alert pill bounce — show immediately */
+    .dv2-alert-pill {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    /* Progress bar grow — show immediately */
+    .dv2-progress-seg {
+        animation: none !important;
+        opacity: 1 !important;
+    }
+
+    .dv2-progress-seg:hover {
+        filter: none !important;
+        transform: none !important;
+        box-shadow: none !important;
+    }
+
+    /* Donut spin-in — show immediately */
+    .dv2-donut,
+    .dv2-donut-center {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    /* Recharts hover — disable on touch */
+    .dv2-chart-interactive .recharts-bar-rectangle,
+    .dv2-chart-interactive .recharts-pie-sector {
+        transition: none !important;
+    }
+
+    .dv2-chart-interactive .recharts-bar-rectangle:hover,
+    .dv2-chart-interactive .recharts-pie-sector:hover {
+        filter: none !important;
+        transform: none !important;
+    }
+
+    /* Table row stagger — show immediately */
+    .dv2-table-row {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    /* Scroll reveal — show immediately */
+    .dv2-reveal {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+
+    /* Legend stagger — show immediately */
+    .dv2-legend-item {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    /* Section header slide-in — show immediately */
+    .dv2-section-title,
+    .dv2-section-badge {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    /* Insight bar — show immediately */
+    .dv2-insight {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    /* Mini cards — show immediately */
+    .dv2-mini-card {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    /* KPI icon breathe on hover — disable on touch */
+    .dv2-card:hover .dv2-kpi-icon {
+        transform: none !important;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   17. RESPECT USER PREFERENCES
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .dv2-page>*,
+    .dv2-animated>*,
+    .dv2-card,
+    .dv2-kpi-value,
+    .dv2-trend,
+    .dv2-badge,
+    .dv2-alert-pill,
+    .dv2-progress-seg,
+    .dv2-donut,
+    .dv2-donut-center,
+    .dv2-skeleton,
+    .dv2-tooltip-enter,
+    .dv2-table-row,
+    .dv2-reveal,
+    .dv2-legend-item,
+    .dv2-section-title,
+    .dv2-section-badge,
+    .dv2-insight,
+    .dv2-mini-card {
+        animation: none !important;
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}

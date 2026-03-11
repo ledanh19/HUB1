@@ -1,0 +1,1282 @@
+{
+  "_metadata": {
+    "version": "1.0.0",
+    "generated_at": "2026-01-12T10:00:00Z",
+    "purpose": "Sample events for Roomrise PMS notification testing",
+    "total_events": 120,
+    "includes": ["normal", "duplicate", "retry", "out_of_order", "edge_cases"]
+  },
+  
+  "webhooks": {
+    "booking_new": [
+      {
+        "_scenario": "Normal new booking from Booking.com",
+        "_sequence": 1,
+        "event": "booking",
+        "event_type": "new",
+        "property_id": "prop-001-uuid",
+        "timestamp": "2026-01-12T08:00:00Z",
+        "payload": {
+          "id": "booking-001",
+          "revision_id": "rev-001-a",
+          "status": "new",
+          "booking_id": "BDC_2026011201",
+          "customer": {
+            "name": "Nguyen Van A",
+            "surname": "Nguyen",
+            "mail": "nguyenvana@gmail.com",
+            "phone": "+84901234567"
+          },
+          "rooms": [{
+            "checkin_date": "2026-01-15",
+            "checkout_date": "2026-01-18",
+            "nights": 3,
+            "room_type_id": "rt-001",
+            "rate_plan_id": "rp-001",
+            "amount": 3500000,
+            "currency": "VND"
+          }],
+          "ota_name": "Booking.com",
+          "ota_reservation_code": "BDC_2026011201",
+          "amount": 3500000,
+          "currency": "VND",
+          "inserted_at": "2026-01-12T08:00:00Z",
+          "updated_at": "2026-01-12T08:00:00Z"
+        }
+      },
+      {
+        "_scenario": "New booking from Agoda",
+        "_sequence": 2,
+        "event": "booking",
+        "event_type": "new",
+        "property_id": "prop-001-uuid",
+        "timestamp": "2026-01-12T08:15:00Z",
+        "payload": {
+          "id": "booking-002",
+          "revision_id": "rev-002-a",
+          "status": "new",
+          "booking_id": "AGD_78901234",
+          "customer": {
+            "name": "Tran Thi B",
+            "surname": "Tran",
+            "mail": "tranthib@yahoo.com",
+            "phone": "+84912345678"
+          },
+          "rooms": [{
+            "checkin_date": "2026-01-16",
+            "checkout_date": "2026-01-17",
+            "nights": 1,
+            "room_type_id": "rt-002",
+            "rate_plan_id": "rp-002",
+            "amount": 1200000,
+            "currency": "VND"
+          }],
+          "ota_name": "Agoda",
+          "ota_reservation_code": "AGD_78901234",
+          "amount": 1200000,
+          "currency": "VND",
+          "inserted_at": "2026-01-12T08:15:00Z",
+          "updated_at": "2026-01-12T08:15:00Z"
+        }
+      },
+      {
+        "_scenario": "New booking from Expedia with multiple rooms",
+        "_sequence": 3,
+        "event": "booking",
+        "event_type": "new",
+        "property_id": "prop-002-uuid",
+        "timestamp": "2026-01-12T08:30:00Z",
+        "payload": {
+          "id": "booking-003",
+          "revision_id": "rev-003-a",
+          "status": "new",
+          "booking_id": "EXP_556677",
+          "customer": {
+            "name": "John Smith",
+            "surname": "Smith",
+            "mail": "john.smith@email.com",
+            "phone": "+1234567890"
+          },
+          "rooms": [
+            {
+              "checkin_date": "2026-01-20",
+              "checkout_date": "2026-01-25",
+              "nights": 5,
+              "room_type_id": "rt-003",
+              "rate_plan_id": "rp-003",
+              "amount": 5000000,
+              "currency": "VND"
+            },
+            {
+              "checkin_date": "2026-01-20",
+              "checkout_date": "2026-01-25",
+              "nights": 5,
+              "room_type_id": "rt-003",
+              "rate_plan_id": "rp-003",
+              "amount": 5000000,
+              "currency": "VND"
+            }
+          ],
+          "ota_name": "Expedia",
+          "ota_reservation_code": "EXP_556677",
+          "amount": 10000000,
+          "currency": "VND",
+          "inserted_at": "2026-01-12T08:30:00Z",
+          "updated_at": "2026-01-12T08:30:00Z"
+        }
+      },
+      {
+        "_scenario": "New booking from Trip.com",
+        "_sequence": 4,
+        "event": "booking",
+        "event_type": "new",
+        "property_id": "prop-001-uuid",
+        "timestamp": "2026-01-12T09:00:00Z",
+        "payload": {
+          "id": "booking-004",
+          "revision_id": "rev-004-a",
+          "status": "new",
+          "booking_id": "TRIP_889900",
+          "customer": {
+            "name": "Li Wei",
+            "surname": "Li",
+            "mail": "liwei@163.com",
+            "phone": "+8613800138000"
+          },
+          "rooms": [{
+            "checkin_date": "2026-01-22",
+            "checkout_date": "2026-01-24",
+            "nights": 2,
+            "room_type_id": "rt-001",
+            "rate_plan_id": "rp-001",
+            "amount": 2400000,
+            "currency": "VND"
+          }],
+          "ota_name": "Trip.com",
+          "ota_reservation_code": "TRIP_889900",
+          "amount": 2400000,
+          "currency": "VND",
+          "inserted_at": "2026-01-12T09:00:00Z",
+          "updated_at": "2026-01-12T09:00:00Z"
+        }
+      },
+      {
+        "_scenario": "New booking from Traveloka",
+        "_sequence": 5,
+        "event": "booking",
+        "event_type": "new",
+        "property_id": "prop-001-uuid",
+        "timestamp": "2026-01-12T09:30:00Z",
+        "payload": {
+          "id": "booking-005",
+          "revision_id": "rev-005-a",
+          "status": "new",
+          "booking_id": "TVK_112233",
+          "customer": {
+            "name": "Pham Van C",
+            "surname": "Pham",
+            "mail": "phamvanc@gmail.com",
+            "phone": "+84923456789"
+          },
+          "rooms": [{
+            "checkin_date": "2026-01-18",
+            "checkout_date": "2026-01-19",
+            "nights": 1,
+            "room_type_id": "rt-002",
+            "rate_plan_id": "rp-002",
+            "amount": 1500000,
+            "currency": "VND"
+          }],
+          "ota_name": "Traveloka",
+          "ota_reservation_code": "TVK_112233",
+          "amount": 1500000,
+          "currency": "VND",
+          "inserted_at": "2026-01-12T09:30:00Z",
+          "updated_at": "2026-01-12T09:30:00Z"
+        }
+      },
+      {
+        "_scenario": "New booking - minimal fields",
+        "_sequence": 6,
+        "event": "booking",
+        "event_type": "new",
+        "property_id": "prop-001-uuid",
+        "timestamp": "2026-01-12T10:00:00Z",
+        "payload": {
+          "id": "booking-006",
+          "revision_id": "rev-006-a",
+          "status": "new",
+          "booking_id": "DIRECT_001",
+          "customer": {
+            "name": "Guest Name"
+          },
+          "rooms": [{
+            "checkin_date": "2026-01-25",
+            "checkout_date": "2026-01-26",
+            "nights": 1,
+            "amount": 800000,
+            "currency": "VND"
+          }],
+          "ota_name": "Direct",
+          "amount": 800000,
+          "currency": "VND",
+          "inserted_at": "2026-01-12T10:00:00Z",
+          "updated_at": "2026-01-12T10:00:00Z"
+        }
+      },
+      {
+        "_scenario": "New booking - property user doesn't have access to",
+        "_sequence": 7,
+        "event": "booking",
+        "event_type": "new",
+        "property_id": "prop-999-no-access",
+        "timestamp": "2026-01-12T10:15:00Z",
+        "payload": {
+          "id": "booking-007",
+          "revision_id": "rev-007-a",
+          "status": "new",
+          "booking_id": "BDC_HIDDEN",
+          "customer": {
+            "name": "Hidden Guest"
+          },
+          "rooms": [{
+            "checkin_date": "2026-01-28",
+            "checkout_date": "2026-01-29",
+            "nights": 1,
+            "amount": 1000000,
+            "currency": "VND"
+          }],
+          "ota_name": "Booking.com",
+          "amount": 1000000,
+          "currency": "VND",
+          "inserted_at": "2026-01-12T10:15:00Z",
+          "updated_at": "2026-01-12T10:15:00Z"
+        }
+      }
+    ],
+    
+    "booking_modification": [
+      {
+        "_scenario": "Modification - date change (OPS field - should SHOW)",
+        "_sequence": 10,
+        "event": "booking",
+        "event_type": "modification",
+        "property_id": "prop-001-uuid",
+        "timestamp": "2026-01-12T11:00:00Z",
+        "payload": {
+          "id": "booking-001",
+          "revision_id": "rev-001-b",
+          "status": "modified",
+          "booking_id": "BDC_2026011201",
+          "customer": {
+            "name": "Nguyen Van A",
+            "mail": "nguyenvana@gmail.com"
+          },
+          "rooms": [{
+            "checkin_date": "2026-01-16",
+            "checkout_date": "2026-01-19",
+            "nights": 3,
+            "amount": 3500000,
+            "currency": "VND"
+          }],
+          "ota_name": "Booking.com",
+          "amount": 3500000,
+          "currency": "VND",
+          "updated_at": "2026-01-12T11:00:00Z"
+        },
+        "_changed_fields": ["check_in_date", "check_out_date"]
+      },
+      {
+        "_scenario": "Modification - amount change (OPS field - should SHOW)",
+        "_sequence": 11,
+        "event": "booking",
+        "event_type": "modification",
+        "property_id": "prop-001-uuid",
+        "timestamp": "2026-01-12T11:30:00Z",
+        "payload": {
+          "id": "booking-002",
+          "revision_id": "rev-002-b",
+          "status": "modified",
+          "booking_id": "AGD_78901234",
+          "customer": {
+            "name": "Tran Thi B"
+          },
+          "rooms": [{
+            "checkin_date": "2026-01-16",
+            "checkout_date": "2026-01-17",
+            "nights": 1,
+            "amount": 1400000,
+            "currency": "VND"
+          }],
+          "ota_name": "Agoda",
+          "amount": 1400000,
+          "currency": "VND",
+          "updated_at": "2026-01-12T11:30:00Z"
+        },
+        "_changed_fields": ["total_amount_gross", "total_amount_net"]
+      },
+      {
+        "_scenario": "Modification - guest count change (OPS field - should SHOW)",
+        "_sequence": 12,
+        "event": "booking",
+        "event_type": "modification",
+        "property_id": "prop-002-uuid",
+        "timestamp": "2026-01-12T12:00:00Z",
+        "payload": {
+          "id": "booking-003",
+          "revision_id": "rev-003-b",
+          "status": "modified",
+          "booking_id": "EXP_556677",
+          "customer": {
+            "name": "John Smith"
+          },
+          "rooms": [{
+            "checkin_date": "2026-01-20",
+            "checkout_date": "2026-01-25",
+            "nights": 5,
+            "guests": 4,
+            "amount": 10000000,
+            "currency": "VND"
+          }],
+          "ota_name": "Expedia",
+          "amount": 10000000,
+          "currency": "VND",
+          "updated_at": "2026-01-12T12:00:00Z"
+        },
+        "_changed_fields": ["adults", "guest_count"]
+      },
+      {
+        "_scenario": "Modification - TECH fields only (should HIDE)",
+        "_sequence": 13,
+        "event": "booking",
+        "event_type": "modification",
+        "property_id": "prop-001-uuid",
+        "timestamp": "2026-01-12T12:30:00Z",
+        "payload": {
+          "id": "booking-001",
+          "revision_id": "rev-001-c",
+          "status": "modified",
+          "booking_id": "BDC_2026011201",
+          "customer": {
+            "name": "Nguyen Van A"
+          },
+          "rooms": [{
+            "checkin_date": "2026-01-16",
+            "checkout_date": "2026-01-19",
+            "nights": 3,
+            "amount": 3500000,
+            "currency": "VND"
+          }],
+          "ota_name": "Booking.com",
+          "amount": 3500000,
+          "currency": "VND",
+          "updated_at": "2026-01-12T12:30:00Z"
+        },
+        "_changed_fields": ["channex_revision_id", "synced_at", "updated_at"]
+      },
+      {
+        "_scenario": "Modification - only guest_name change (TECH - should HIDE)",
+        "_sequence": 14,
+        "event": "booking",
+        "event_type": "modification",
+        "property_id": "prop-001-uuid",
+        "timestamp": "2026-01-12T13:00:00Z",
+        "payload": {
+          "id": "booking-004",
+          "revision_id": "rev-004-b",
+          "status": "modified",
+          "booking_id": "TRIP_889900",
+          "customer": {
+            "name": "Li Wei Updated"
+          },
+          "rooms": [{
+            "checkin_date": "2026-01-22",
+            "checkout_date": "2026-01-24",
+            "nights": 2,
+            "amount": 2400000,
+            "currency": "VND"
+          }],
+          "ota_name": "Trip.com",
+          "amount": 2400000,
+          "currency": "VND",
+          "updated_at": "2026-01-12T13:00:00Z"
+        },
+        "_changed_fields": ["guest_name", "guest_first_name"]
+      },
+      {
+        "_scenario": "Modification - room type change (OPS - should SHOW)",
+        "_sequence": 15,
+        "event": "booking",
+        "event_type": "modification",
+        "property_id": "prop-001-uuid",
+        "timestamp": "2026-01-12T13:30:00Z",
+        "payload": {
+          "id": "booking-005",
+          "revision_id": "rev-005-b",
+          "status": "modified",
+          "booking_id": "TVK_112233",
+          "customer": {
+            "name": "Pham Van C"
+          },
+          "rooms": [{
+            "checkin_date": "2026-01-18",
+            "checkout_date": "2026-01-19",
+            "nights": 1,
+            "room_type_id": "rt-003",
+            "amount": 1800000,
+            "currency": "VND"
+          }],
+          "ota_name": "Traveloka",
+          "amount": 1800000,
+          "currency": "VND",
+          "updated_at": "2026-01-12T13:30:00Z"
+        },
+        "_changed_fields": ["room_type_id", "room_type_name", "total_amount_gross"]
+      }
+    ],
+    
+    "booking_cancellation": [
+      {
+        "_scenario": "Cancellation - standard",
+        "_sequence": 20,
+        "event": "booking",
+        "event_type": "cancellation",
+        "property_id": "prop-001-uuid",
+        "timestamp": "2026-01-12T14:00:00Z",
+        "payload": {
+          "id": "booking-006",
+          "revision_id": "rev-006-b",
+          "status": "cancelled",
+          "booking_id": "DIRECT_001",
+          "customer": {
+            "name": "Guest Name"
+          },
+          "rooms": [{
+            "checkin_date": "2026-01-25",
+            "checkout_date": "2026-01-26",
+            "nights": 1,
+            "amount": 0,
+            "currency": "VND"
+          }],
+          "ota_name": "Direct",
+          "amount": 0,
+          "currency": "VND",
+          "cancellation_reason": "Guest requested",
+          "cancelled_at": "2026-01-12T14:00:00Z",
+          "updated_at": "2026-01-12T14:00:00Z"
+        }
+      },
+      {
+        "_scenario": "Cancellation - Booking.com with penalty",
+        "_sequence": 21,
+        "event": "booking",
+        "event_type": "cancellation",
+        "property_id": "prop-001-uuid",
+        "timestamp": "2026-01-12T14:30:00Z",
+        "payload": {
+          "id": "booking-008",
+          "revision_id": "rev-008-a",
+          "status": "cancelled",
+          "booking_id": "BDC_CANCEL_001",
+          "customer": {
+            "name": "Le Van D"
+          },
+          "rooms": [{
+            "checkin_date": "2026-01-13",
+            "checkout_date": "2026-01-15",
+            "nights": 2,
+            "amount": 0,
+            "currency": "VND"
+          }],
+          "ota_name": "Booking.com",
+          "amount": 0,
+          "cancellation_fee": 500000,
+          "currency": "VND",
+          "cancellation_reason": "Plans changed",
+          "cancelled_at": "2026-01-12T14:30:00Z",
+          "updated_at": "2026-01-12T14:30:00Z"
+        }
+      },
+      {
+        "_scenario": "Cancellation - no-show derived",
+        "_sequence": 22,
+        "event": "booking",
+        "event_type": "cancellation",
+        "property_id": "prop-002-uuid",
+        "timestamp": "2026-01-12T15:00:00Z",
+        "payload": {
+          "id": "booking-009",
+          "revision_id": "rev-009-a",
+          "status": "cancelled",
+          "booking_id": "AGD_NOSHOW",
+          "customer": {
+            "name": "No Show Guest"
+          },
+          "rooms": [{
+            "checkin_date": "2026-01-10",
+            "checkout_date": "2026-01-12",
+            "nights": 2,
+            "amount": 0,
+            "currency": "VND"
+          }],
+          "ota_name": "Agoda",
+          "amount": 0,
+          "currency": "VND",
+          "cancellation_reason": "No show",
+          "cancelled_at": "2026-01-12T15:00:00Z",
+          "updated_at": "2026-01-12T15:00:00Z"
+        }
+      }
+    ],
+    
+    "message_inbound": [
+      {
+        "_scenario": "Message from Booking.com guest",
+        "_sequence": 30,
+        "event": "message",
+        "event_type": "inbound",
+        "property_id": "prop-001-uuid",
+        "timestamp": "2026-01-12T08:05:00Z",
+        "payload": {
+          "id": "msg-001",
+          "conversation_id": "conv-001",
+          "booking_id": "booking-001",
+          "direction": "inbound",
+          "body": "Hello, can I request early check-in at 12pm?",
+          "sender": {
+            "name": "Nguyen Van A",
+            "type": "guest"
+          },
+          "ota_name": "Booking.com",
+          "sent_at": "2026-01-12T08:05:00Z"
+        }
+      },
+      {
+        "_scenario": "Message from Agoda guest - Vietnamese",
+        "_sequence": 31,
+        "event": "message",
+        "event_type": "inbound",
+        "property_id": "prop-001-uuid",
+        "timestamp": "2026-01-12T08:20:00Z",
+        "payload": {
+          "id": "msg-002",
+          "conversation_id": "conv-002",
+          "booking_id": "booking-002",
+          "direction": "inbound",
+          "body": "Xin chào, tôi muốn hỏi về dịch vụ đưa đón sân bay",
+          "sender": {
+            "name": "Tran Thi B",
+            "type": "guest"
+          },
+          "ota_name": "Agoda",
+          "sent_at": "2026-01-12T08:20:00Z"
+        }
+      },
+      {
+        "_scenario": "Message - long content",
+        "_sequence": 32,
+        "event": "message",
+        "event_type": "inbound",
+        "property_id": "prop-002-uuid",
+        "timestamp": "2026-01-12T08:45:00Z",
+        "payload": {
+          "id": "msg-003",
+          "conversation_id": "conv-003",
+          "booking_id": "booking-003",
+          "direction": "inbound",
+          "body": "Dear Hotel, I am writing to request some special arrangements for my stay. First, I would like to request a room on a high floor with a city view if possible. Second, we are celebrating our anniversary during this trip, so any special decoration would be appreciated. Third, could you please arrange airport pickup service? Our flight arrives at 2pm on the 20th. Thank you very much for your assistance.",
+          "sender": {
+            "name": "John Smith",
+            "type": "guest"
+          },
+          "ota_name": "Expedia",
+          "sent_at": "2026-01-12T08:45:00Z"
+        }
+      },
+      {
+        "_scenario": "Follow-up message same conversation",
+        "_sequence": 33,
+        "event": "message",
+        "event_type": "inbound",
+        "property_id": "prop-001-uuid",
+        "timestamp": "2026-01-12T09:10:00Z",
+        "payload": {
+          "id": "msg-004",
+          "conversation_id": "conv-001",
+          "booking_id": "booking-001",
+          "direction": "inbound",
+          "body": "Also, is breakfast included in my booking?",
+          "sender": {
+            "name": "Nguyen Van A",
+            "type": "guest"
+          },
+          "ota_name": "Booking.com",
+          "sent_at": "2026-01-12T09:10:00Z"
+        }
+      }
+    ],
+    
+    "duplicate_scenarios": [
+      {
+        "_scenario": "DUPLICATE - same webhook sent twice (network retry)",
+        "_sequence": 40,
+        "_note": "This is exact duplicate of sequence 1",
+        "event": "booking",
+        "event_type": "new",
+        "property_id": "prop-001-uuid",
+        "timestamp": "2026-01-12T08:00:05Z",
+        "payload": {
+          "id": "booking-001",
+          "revision_id": "rev-001-a",
+          "status": "new",
+          "booking_id": "BDC_2026011201",
+          "customer": {
+            "name": "Nguyen Van A",
+            "mail": "nguyenvana@gmail.com",
+            "phone": "+84901234567"
+          },
+          "rooms": [{
+            "checkin_date": "2026-01-15",
+            "checkout_date": "2026-01-18",
+            "nights": 3,
+            "amount": 3500000,
+            "currency": "VND"
+          }],
+          "ota_name": "Booking.com",
+          "amount": 3500000,
+          "currency": "VND",
+          "inserted_at": "2026-01-12T08:00:00Z",
+          "updated_at": "2026-01-12T08:00:00Z"
+        }
+      },
+      {
+        "_scenario": "DUPLICATE - sent 3rd time after 10 seconds",
+        "_sequence": 41,
+        "event": "booking",
+        "event_type": "new",
+        "property_id": "prop-001-uuid",
+        "timestamp": "2026-01-12T08:00:10Z",
+        "payload": {
+          "id": "booking-001",
+          "revision_id": "rev-001-a",
+          "status": "new",
+          "booking_id": "BDC_2026011201",
+          "customer": {
+            "name": "Nguyen Van A"
+          },
+          "rooms": [{
+            "checkin_date": "2026-01-15",
+            "checkout_date": "2026-01-18",
+            "nights": 3,
+            "amount": 3500000,
+            "currency": "VND"
+          }],
+          "ota_name": "Booking.com",
+          "amount": 3500000,
+          "currency": "VND",
+          "inserted_at": "2026-01-12T08:00:00Z",
+          "updated_at": "2026-01-12T08:00:00Z"
+        }
+      },
+      {
+        "_scenario": "DUPLICATE modification webhook",
+        "_sequence": 42,
+        "event": "booking",
+        "event_type": "modification",
+        "property_id": "prop-001-uuid",
+        "timestamp": "2026-01-12T11:00:03Z",
+        "payload": {
+          "id": "booking-001",
+          "revision_id": "rev-001-b",
+          "status": "modified",
+          "booking_id": "BDC_2026011201",
+          "customer": {
+            "name": "Nguyen Van A"
+          },
+          "rooms": [{
+            "checkin_date": "2026-01-16",
+            "checkout_date": "2026-01-19",
+            "nights": 3,
+            "amount": 3500000,
+            "currency": "VND"
+          }],
+          "ota_name": "Booking.com",
+          "amount": 3500000,
+          "currency": "VND",
+          "updated_at": "2026-01-12T11:00:00Z"
+        }
+      }
+    ],
+    
+    "out_of_order_scenarios": [
+      {
+        "_scenario": "OUT OF ORDER - Modification arrives BEFORE new booking",
+        "_sequence": 50,
+        "_note": "booking-010 modification received first due to network delay",
+        "event": "booking",
+        "event_type": "modification",
+        "property_id": "prop-001-uuid",
+        "timestamp": "2026-01-12T16:00:00Z",
+        "payload": {
+          "id": "booking-010",
+          "revision_id": "rev-010-b",
+          "status": "modified",
+          "booking_id": "BDC_OUTOFORDER",
+          "customer": {
+            "name": "Out Order Guest"
+          },
+          "rooms": [{
+            "checkin_date": "2026-01-30",
+            "checkout_date": "2026-02-01",
+            "nights": 2,
+            "amount": 2200000,
+            "currency": "VND"
+          }],
+          "ota_name": "Booking.com",
+          "amount": 2200000,
+          "currency": "VND",
+          "updated_at": "2026-01-12T15:55:00Z"
+        },
+        "_changed_fields": ["total_amount_gross"]
+      },
+      {
+        "_scenario": "OUT OF ORDER - Original new booking arrives late",
+        "_sequence": 51,
+        "_note": "The NEW webhook that should have arrived first",
+        "event": "booking",
+        "event_type": "new",
+        "property_id": "prop-001-uuid",
+        "timestamp": "2026-01-12T16:01:00Z",
+        "payload": {
+          "id": "booking-010",
+          "revision_id": "rev-010-a",
+          "status": "new",
+          "booking_id": "BDC_OUTOFORDER",
+          "customer": {
+            "name": "Out Order Guest"
+          },
+          "rooms": [{
+            "checkin_date": "2026-01-30",
+            "checkout_date": "2026-02-01",
+            "nights": 2,
+            "amount": 2000000,
+            "currency": "VND"
+          }],
+          "ota_name": "Booking.com",
+          "amount": 2000000,
+          "currency": "VND",
+          "inserted_at": "2026-01-12T15:50:00Z",
+          "updated_at": "2026-01-12T15:50:00Z"
+        }
+      },
+      {
+        "_scenario": "OUT OF ORDER - Cancellation before creation visible",
+        "_sequence": 52,
+        "event": "booking",
+        "event_type": "cancellation",
+        "property_id": "prop-001-uuid",
+        "timestamp": "2026-01-12T16:10:00Z",
+        "payload": {
+          "id": "booking-011",
+          "revision_id": "rev-011-b",
+          "status": "cancelled",
+          "booking_id": "BDC_QUICKCANCEL",
+          "customer": {
+            "name": "Quick Cancel Guest"
+          },
+          "rooms": [{
+            "checkin_date": "2026-02-05",
+            "checkout_date": "2026-02-06",
+            "nights": 1,
+            "amount": 0,
+            "currency": "VND"
+          }],
+          "ota_name": "Booking.com",
+          "cancellation_reason": "Cancelled immediately",
+          "cancelled_at": "2026-01-12T16:05:00Z",
+          "updated_at": "2026-01-12T16:05:00Z"
+        }
+      },
+      {
+        "_scenario": "OUT OF ORDER - New booking after cancellation processed",
+        "_sequence": 53,
+        "event": "booking",
+        "event_type": "new",
+        "property_id": "prop-001-uuid",
+        "timestamp": "2026-01-12T16:11:00Z",
+        "payload": {
+          "id": "booking-011",
+          "revision_id": "rev-011-a",
+          "status": "new",
+          "booking_id": "BDC_QUICKCANCEL",
+          "customer": {
+            "name": "Quick Cancel Guest"
+          },
+          "rooms": [{
+            "checkin_date": "2026-02-05",
+            "checkout_date": "2026-02-06",
+            "nights": 1,
+            "amount": 1000000,
+            "currency": "VND"
+          }],
+          "ota_name": "Booking.com",
+          "amount": 1000000,
+          "currency": "VND",
+          "inserted_at": "2026-01-12T16:00:00Z",
+          "updated_at": "2026-01-12T16:00:00Z"
+        }
+      }
+    ],
+    
+    "edge_case_scenarios": [
+      {
+        "_scenario": "EDGE CASE - Missing customer name",
+        "_sequence": 60,
+        "event": "booking",
+        "event_type": "new",
+        "property_id": "prop-001-uuid",
+        "timestamp": "2026-01-12T17:00:00Z",
+        "payload": {
+          "id": "booking-012",
+          "revision_id": "rev-012-a",
+          "status": "new",
+          "booking_id": "BDC_NONAME",
+          "customer": {},
+          "rooms": [{
+            "checkin_date": "2026-02-10",
+            "checkout_date": "2026-02-11",
+            "nights": 1,
+            "amount": 900000,
+            "currency": "VND"
+          }],
+          "ota_name": "Booking.com",
+          "amount": 900000,
+          "currency": "VND",
+          "inserted_at": "2026-01-12T17:00:00Z",
+          "updated_at": "2026-01-12T17:00:00Z"
+        }
+      },
+      {
+        "_scenario": "EDGE CASE - Zero amount booking (free night)",
+        "_sequence": 61,
+        "event": "booking",
+        "event_type": "new",
+        "property_id": "prop-001-uuid",
+        "timestamp": "2026-01-12T17:15:00Z",
+        "payload": {
+          "id": "booking-013",
+          "revision_id": "rev-013-a",
+          "status": "new",
+          "booking_id": "BDC_FREENIGHT",
+          "customer": {
+            "name": "Loyalty Member"
+          },
+          "rooms": [{
+            "checkin_date": "2026-02-15",
+            "checkout_date": "2026-02-16",
+            "nights": 1,
+            "amount": 0,
+            "currency": "VND"
+          }],
+          "ota_name": "Booking.com",
+          "amount": 0,
+          "currency": "VND",
+          "notes": "Free night reward",
+          "inserted_at": "2026-01-12T17:15:00Z",
+          "updated_at": "2026-01-12T17:15:00Z"
+        }
+      },
+      {
+        "_scenario": "EDGE CASE - Very long guest name",
+        "_sequence": 62,
+        "event": "booking",
+        "event_type": "new",
+        "property_id": "prop-001-uuid",
+        "timestamp": "2026-01-12T17:30:00Z",
+        "payload": {
+          "id": "booking-014",
+          "revision_id": "rev-014-a",
+          "status": "new",
+          "booking_id": "BDC_LONGNAME",
+          "customer": {
+            "name": "Sir Alexander Benjamin Christopher Davidson-Edwards III of Westmoreland"
+          },
+          "rooms": [{
+            "checkin_date": "2026-02-20",
+            "checkout_date": "2026-02-22",
+            "nights": 2,
+            "amount": 2500000,
+            "currency": "VND"
+          }],
+          "ota_name": "Booking.com",
+          "amount": 2500000,
+          "currency": "VND",
+          "inserted_at": "2026-01-12T17:30:00Z",
+          "updated_at": "2026-01-12T17:30:00Z"
+        }
+      },
+      {
+        "_scenario": "EDGE CASE - Unknown OTA source",
+        "_sequence": 63,
+        "event": "booking",
+        "event_type": "new",
+        "property_id": "prop-001-uuid",
+        "timestamp": "2026-01-12T17:45:00Z",
+        "payload": {
+          "id": "booking-015",
+          "revision_id": "rev-015-a",
+          "status": "new",
+          "booking_id": "UNKNOWN_OTA_123",
+          "customer": {
+            "name": "Unknown OTA Guest"
+          },
+          "rooms": [{
+            "checkin_date": "2026-02-25",
+            "checkout_date": "2026-02-26",
+            "nights": 1,
+            "amount": 1100000,
+            "currency": "VND"
+          }],
+          "ota_name": "SomeNewOTA.com",
+          "amount": 1100000,
+          "currency": "VND",
+          "inserted_at": "2026-01-12T17:45:00Z",
+          "updated_at": "2026-01-12T17:45:00Z"
+        }
+      },
+      {
+        "_scenario": "EDGE CASE - Multiple rapid modifications",
+        "_sequence": 64,
+        "event": "booking",
+        "event_type": "modification",
+        "property_id": "prop-001-uuid",
+        "timestamp": "2026-01-12T18:00:00Z",
+        "payload": {
+          "id": "booking-001",
+          "revision_id": "rev-001-d",
+          "status": "modified",
+          "booking_id": "BDC_2026011201",
+          "customer": {
+            "name": "Nguyen Van A"
+          },
+          "rooms": [{
+            "checkin_date": "2026-01-16",
+            "checkout_date": "2026-01-20",
+            "nights": 4,
+            "amount": 4800000,
+            "currency": "VND"
+          }],
+          "ota_name": "Booking.com",
+          "amount": 4800000,
+          "currency": "VND",
+          "updated_at": "2026-01-12T18:00:00Z"
+        },
+        "_changed_fields": ["nights", "check_out_date", "total_amount_gross"]
+      },
+      {
+        "_scenario": "EDGE CASE - Same booking modified again 30 seconds later",
+        "_sequence": 65,
+        "event": "booking",
+        "event_type": "modification",
+        "property_id": "prop-001-uuid",
+        "timestamp": "2026-01-12T18:00:30Z",
+        "payload": {
+          "id": "booking-001",
+          "revision_id": "rev-001-e",
+          "status": "modified",
+          "booking_id": "BDC_2026011201",
+          "customer": {
+            "name": "Nguyen Van A"
+          },
+          "rooms": [{
+            "checkin_date": "2026-01-16",
+            "checkout_date": "2026-01-21",
+            "nights": 5,
+            "amount": 6000000,
+            "currency": "VND"
+          }],
+          "ota_name": "Booking.com",
+          "amount": 6000000,
+          "currency": "VND",
+          "updated_at": "2026-01-12T18:00:30Z"
+        },
+        "_changed_fields": ["nights", "check_out_date", "total_amount_gross"]
+      },
+      {
+        "_scenario": "EDGE CASE - Foreign currency",
+        "_sequence": 66,
+        "event": "booking",
+        "event_type": "new",
+        "property_id": "prop-002-uuid",
+        "timestamp": "2026-01-12T18:15:00Z",
+        "payload": {
+          "id": "booking-016",
+          "revision_id": "rev-016-a",
+          "status": "new",
+          "booking_id": "EXP_USD_001",
+          "customer": {
+            "name": "American Guest"
+          },
+          "rooms": [{
+            "checkin_date": "2026-03-01",
+            "checkout_date": "2026-03-05",
+            "nights": 4,
+            "amount": 400,
+            "currency": "USD"
+          }],
+          "ota_name": "Expedia",
+          "amount": 400,
+          "currency": "USD",
+          "inserted_at": "2026-01-12T18:15:00Z",
+          "updated_at": "2026-01-12T18:15:00Z"
+        }
+      },
+      {
+        "_scenario": "EDGE CASE - Empty message body",
+        "_sequence": 67,
+        "event": "message",
+        "event_type": "inbound",
+        "property_id": "prop-001-uuid",
+        "timestamp": "2026-01-12T18:30:00Z",
+        "payload": {
+          "id": "msg-005",
+          "conversation_id": "conv-005",
+          "booking_id": "booking-001",
+          "direction": "inbound",
+          "body": "",
+          "sender": {
+            "name": "Nguyen Van A",
+            "type": "guest"
+          },
+          "ota_name": "Booking.com",
+          "sent_at": "2026-01-12T18:30:00Z"
+        }
+      },
+      {
+        "_scenario": "EDGE CASE - Message with attachment indicator",
+        "_sequence": 68,
+        "event": "message",
+        "event_type": "inbound",
+        "property_id": "prop-001-uuid",
+        "timestamp": "2026-01-12T18:45:00Z",
+        "payload": {
+          "id": "msg-006",
+          "conversation_id": "conv-001",
+          "booking_id": "booking-001",
+          "direction": "inbound",
+          "body": "[Image attached]",
+          "attachments": [
+            {
+              "type": "image",
+              "url": "https://cdn.ota.com/attachments/img123.jpg"
+            }
+          ],
+          "sender": {
+            "name": "Nguyen Van A",
+            "type": "guest"
+          },
+          "ota_name": "Booking.com",
+          "sent_at": "2026-01-12T18:45:00Z"
+        }
+      }
+    ],
+    
+    "tech_update_near_primary": [
+      {
+        "_scenario": "Tech update immediately after new booking (should HIDE)",
+        "_sequence": 70,
+        "_note": "This comes 2 seconds after booking-001 NEW, should be hidden",
+        "event": "booking",
+        "event_type": "modification",
+        "property_id": "prop-001-uuid",
+        "timestamp": "2026-01-12T08:00:02Z",
+        "payload": {
+          "id": "booking-001",
+          "revision_id": "rev-001-a-sync",
+          "status": "modified",
+          "booking_id": "BDC_2026011201",
+          "customer": {
+            "name": "Nguyen Van A"
+          },
+          "rooms": [{
+            "checkin_date": "2026-01-15",
+            "checkout_date": "2026-01-18",
+            "nights": 3,
+            "amount": 3500000,
+            "currency": "VND"
+          }],
+          "ota_name": "Booking.com",
+          "amount": 3500000,
+          "currency": "VND",
+          "updated_at": "2026-01-12T08:00:02Z"
+        },
+        "_changed_fields": ["channex_revision_id", "mapping_status", "sync_status"]
+      },
+      {
+        "_scenario": "Tech update 5 minutes after new booking (should HIDE)",
+        "_sequence": 71,
+        "event": "booking",
+        "event_type": "modification",
+        "property_id": "prop-001-uuid",
+        "timestamp": "2026-01-12T08:05:00Z",
+        "payload": {
+          "id": "booking-001",
+          "revision_id": "rev-001-a-sync2",
+          "status": "modified",
+          "booking_id": "BDC_2026011201",
+          "customer": {
+            "name": "Nguyen Van A"
+          },
+          "rooms": [{
+            "checkin_date": "2026-01-15",
+            "checkout_date": "2026-01-18",
+            "nights": 3,
+            "amount": 3500000,
+            "currency": "VND"
+          }],
+          "ota_name": "Booking.com",
+          "amount": 3500000,
+          "currency": "VND",
+          "updated_at": "2026-01-12T08:05:00Z"
+        },
+        "_changed_fields": ["pms_booking_id", "external_id"]
+      },
+      {
+        "_scenario": "Tech update 15 minutes after (outside window - still HIDE as tech-only)",
+        "_sequence": 72,
+        "event": "booking",
+        "event_type": "modification",
+        "property_id": "prop-001-uuid",
+        "timestamp": "2026-01-12T08:15:00Z",
+        "payload": {
+          "id": "booking-001",
+          "revision_id": "rev-001-a-sync3",
+          "status": "modified",
+          "booking_id": "BDC_2026011201",
+          "customer": {
+            "name": "Nguyen Van A"
+          },
+          "rooms": [{
+            "checkin_date": "2026-01-15",
+            "checkout_date": "2026-01-18",
+            "nights": 3,
+            "amount": 3500000,
+            "currency": "VND"
+          }],
+          "ota_name": "Booking.com",
+          "amount": 3500000,
+          "currency": "VND",
+          "updated_at": "2026-01-12T08:15:00Z"
+        },
+        "_changed_fields": ["synced_at", "updated_at"]
+      }
+    ],
+    
+    "bulk_events": [
+      {
+        "_scenario": "BULK - 10 new bookings in rapid succession",
+        "_sequence": 80,
+        "_note": "Simulates peak booking hour",
+        "events": [
+          { "id": "booking-b01", "ota": "Booking.com", "guest": "Bulk Guest 1", "timestamp": "2026-01-12T20:00:00Z" },
+          { "id": "booking-b02", "ota": "Agoda", "guest": "Bulk Guest 2", "timestamp": "2026-01-12T20:00:05Z" },
+          { "id": "booking-b03", "ota": "Expedia", "guest": "Bulk Guest 3", "timestamp": "2026-01-12T20:00:10Z" },
+          { "id": "booking-b04", "ota": "Trip.com", "guest": "Bulk Guest 4", "timestamp": "2026-01-12T20:00:15Z" },
+          { "id": "booking-b05", "ota": "Traveloka", "guest": "Bulk Guest 5", "timestamp": "2026-01-12T20:00:20Z" },
+          { "id": "booking-b06", "ota": "Booking.com", "guest": "Bulk Guest 6", "timestamp": "2026-01-12T20:00:25Z" },
+          { "id": "booking-b07", "ota": "Agoda", "guest": "Bulk Guest 7", "timestamp": "2026-01-12T20:00:30Z" },
+          { "id": "booking-b08", "ota": "Expedia", "guest": "Bulk Guest 8", "timestamp": "2026-01-12T20:00:35Z" },
+          { "id": "booking-b09", "ota": "Booking.com", "guest": "Bulk Guest 9", "timestamp": "2026-01-12T20:00:40Z" },
+          { "id": "booking-b10", "ota": "Agoda", "guest": "Bulk Guest 10", "timestamp": "2026-01-12T20:00:45Z" }
+        ]
+      }
+    ]
+  },
+  
+  "expected_results": {
+    "visible_notifications": {
+      "from_booking_new": [
+        "booking-001", "booking-002", "booking-003", "booking-004", "booking-005", "booking-006",
+        "booking-010", "booking-011", "booking-012", "booking-013", "booking-014", "booking-015", "booking-016",
+        "booking-b01", "booking-b02", "booking-b03", "booking-b04", "booking-b05",
+        "booking-b06", "booking-b07", "booking-b08", "booking-b09", "booking-b10"
+      ],
+      "from_booking_modified_ops": [
+        "booking-001 (date change)",
+        "booking-002 (amount change)",
+        "booking-003 (guest count)",
+        "booking-005 (room type)",
+        "booking-001 (rapid mod 1)",
+        "booking-001 (rapid mod 2)"
+      ],
+      "from_booking_cancelled": [
+        "booking-006", "booking-008", "booking-009", "booking-011"
+      ],
+      "from_message_inbound": [
+        "msg-001", "msg-002", "msg-003", "msg-004", "msg-005", "msg-006"
+      ]
+    },
+    
+    "hidden_notifications": {
+      "tech_only_updates": [
+        "booking-001 (seq 13 - revision_id only)",
+        "booking-004 (seq 14 - guest_name only)",
+        "booking-001 (seq 70 - sync fields)",
+        "booking-001 (seq 71 - mapping fields)",
+        "booking-001 (seq 72 - synced_at only)"
+      ],
+      "property_no_access": [
+        "booking-007"
+      ]
+    },
+    
+    "dedup_results": {
+      "seq_40_41_42": "Sequences 40, 41, 42 are duplicates of earlier events. Should result in 1 notification each, 1 push each",
+      "booking_001_modifications": "booking-001 has multiple modifications. All OPS changes shown, all TECH changes hidden"
+    },
+    
+    "out_of_order_results": {
+      "booking_010": "Modification shown before NEW - both visible, ordered by created_at",
+      "booking_011": "Cancellation shown before NEW - both visible, cancellation is more recent"
+    }
+  },
+  
+  "push_notification_payloads": [
+    {
+      "_for": "booking-001 NEW",
+      "title": "Đặt phòng mới",
+      "body": "Quý vị có đặt phòng mới\nNguyen Van A • CI: 15/01 • 3 đêm • 3,500,000đ\nBooking.com",
+      "icon": "/ota-logos/booking.png",
+      "tag": "roomrise-booking_new-booking-001",
+      "data": {
+        "event_type": "BOOKING_NEW",
+        "entity_id": "booking-001",
+        "deep_link": "/bookings/booking-001"
+      }
+    },
+    {
+      "_for": "booking-006 CANCELLED",
+      "title": "Huỷ đặt phòng",
+      "body": "Một khách hủy kỳ lưu trú\nGuest Name • CI: 25/01 • 1 đêm\nDirect",
+      "icon": "/favicon.png",
+      "tag": "roomrise-booking_cancelled-booking-006",
+      "data": {
+        "event_type": "BOOKING_CANCELLED",
+        "entity_id": "booking-006",
+        "deep_link": "/bookings/booking-006"
+      }
+    },
+    {
+      "_for": "msg-001 MESSAGE",
+      "title": "Booking.com • Tin nhắn mới",
+      "body": "Bạn có tin nhắn mới từ Nguyen Van A\n\"Hello, can I request early check-in at 12pm?\"",
+      "icon": "/ota-logos/booking.png",
+      "tag": "roomrise-msg-conv-001",
+      "data": {
+        "event_type": "MESSAGE_INBOUND",
+        "entity_id": "conv-001",
+        "deep_link": "/ota-messages?conversation=conv-001"
+      }
+    }
+  ]
+}

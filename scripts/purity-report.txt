@@ -1,0 +1,124 @@
+﻿ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+COMPONENT PURITY AUDIT ΓÇö Phase 1
+ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+
+Total Page Files: 69
+
+ΓöÇΓöÇ 1. SectionCard Usage ΓöÇΓöÇ
+  Using: 63
+  Missing: 6
+    Γ¥î src/pages/AccessDeniedPage.tsx
+    Γ¥î src/pages/AuthPage.tsx
+    Γ¥î src/pages/ChannexEmbedPage.tsx
+    Γ¥î src/pages/Dashboard.tsx
+    Γ¥î src/pages/DocumentationPage.tsx
+    Γ¥î src/pages/ota-operations/PendingReviewsPage.tsx
+
+ΓöÇΓöÇ 2. PageContainer Usage ΓöÇΓöÇ
+  Using: 65
+  Missing: 4
+    Γ¥î src/pages/AccessDeniedPage.tsx
+    Γ¥î src/pages/AuthPage.tsx
+    Γ¥î src/pages/DocumentationPage.tsx
+    Γ¥î src/pages/ota-operations/PendingReviewsPage.tsx
+
+ΓöÇΓöÇ 3. Raw Card from ui/card ΓöÇΓöÇ
+  Pages importing Card: 38
+  Pages NOT importing Card: 31
+  Pages using Card as page-section (outside dialog): 37
+    ΓÜá∩╕Å  src/pages/AccessDeniedPage.tsx ΓÇö 1 <Card> total, 0 inside Dialog
+    ΓÜá∩╕Å  src/pages/AIPricingInsightsPage.tsx ΓÇö 7 <Card> total, 0 inside Dialog
+    ΓÜá∩╕Å  src/pages/AIPricingRecommendationsPage.tsx ΓÇö 3 <Card> total, 0 inside Dialog
+    ΓÜá∩╕Å  src/pages/AIPricingValidationPage.tsx ΓÇö 13 <Card> total, 0 inside Dialog
+    ΓÜá∩╕Å  src/pages/analytics/ControlHubPage.tsx ΓÇö 16 <Card> total, 0 inside Dialog
+    ΓÜá∩╕Å  src/pages/analytics/HostCostAnalyticsPage.tsx ΓÇö 6 <Card> total, 0 inside Dialog
+    ΓÜá∩╕Å  src/pages/analytics/OverviewPage.tsx ΓÇö 1 <Card> total, 0 inside Dialog
+    ΓÜá∩╕Å  src/pages/analytics/PriceSpreadAnalyticsPage.tsx ΓÇö 5 <Card> total, 0 inside Dialog
+    ΓÜá∩╕Å  src/pages/CashOutPage.tsx ΓÇö 5 <Card> total, 0 inside Dialog
+    ΓÜá∩╕Å  src/pages/ChannelManagerPage.tsx ΓÇö 1 <Card> total, 0 inside Dialog
+    ΓÜá∩╕Å  src/pages/ChannexEmbedPage.tsx ΓÇö 2 <Card> total, 0 inside Dialog
+    ΓÜá∩╕Å  src/pages/ChannexIntegrationPage.tsx ΓÇö 8 <Card> total, 0 inside Dialog
+    ΓÜá∩╕Å  src/pages/DocumentationPage.tsx ΓÇö 1 <Card> total, 0 inside Dialog
+    ΓÜá∩╕Å  src/pages/HostDepositsPage.tsx ΓÇö 2 <Card> total, 0 inside Dialog
+    ΓÜá∩╕Å  src/pages/HostPayableDetailPage.tsx ΓÇö 3 <Card> total, 0 inside Dialog
+    ΓÜá∩╕Å  src/pages/HostPayablesAgingPage.tsx ΓÇö 6 <Card> total, 0 inside Dialog
+    ΓÜá∩╕Å  src/pages/HostSettlementPage.tsx ΓÇö 11 <Card> total, 0 inside Dialog
+    ΓÜá∩╕Å  src/pages/InventoryPage.tsx ΓÇö 2 <Card> total, 0 inside Dialog
+    ΓÜá∩╕Å  src/pages/MappingsPage.tsx ΓÇö 4 <Card> total, 0 inside Dialog
+    ΓÜá∩╕Å  src/pages/ota-operations/KpiPage.tsx ΓÇö 7 <Card> total, 0 inside Dialog
+    ΓÜá∩╕Å  src/pages/ota-operations/MyTasksPage.tsx ΓÇö 8 <Card> total, 0 inside Dialog
+    ΓÜá∩╕Å  src/pages/ota-operations/ProjectDetailPage.tsx ΓÇö 5 <Card> total, 0 inside Dialog
+    ΓÜá∩╕Å  src/pages/ota-operations/ProjectsPage.tsx ΓÇö 7 <Card> total, 0 inside Dialog
+    ΓÜá∩╕Å  src/pages/ota-operations/TaskDetailPage.tsx ΓÇö 4 <Card> total, 0 inside Dialog
+    ΓÜá∩╕Å  src/pages/ota-operations/TasksPage.tsx ΓÇö 9 <Card> total, 0 inside Dialog
+    ΓÜá∩╕Å  src/pages/OtaPayoutDetailPage.tsx ΓÇö 9 <Card> total, 0 inside Dialog
+    ΓÜá∩╕Å  src/pages/OutgoingPaymentsPage.tsx ΓÇö 1 <Card> total, 0 inside Dialog
+    ΓÜá∩╕Å  src/pages/PaymentRequestsPage.tsx ΓÇö 1 <Card> total, 0 inside Dialog
+    ΓÜá∩╕Å  src/pages/ReportsCashflowPage.tsx ΓÇö 5 <Card> total, 0 inside Dialog
+    ΓÜá∩╕Å  src/pages/ReportsPnlPage.tsx ΓÇö 1 <Card> total, 0 inside Dialog
+    ΓÜá∩╕Å  src/pages/ServiceOrderDetailPage.tsx ΓÇö 6 <Card> total, 0 inside Dialog
+    ΓÜá∩╕Å  src/pages/ServicePayablesPage.tsx ΓÇö 5 <Card> total, 0 inside Dialog
+    ΓÜá∩╕Å  src/pages/ServiceReportsPage.tsx ΓÇö 5 <Card> total, 0 inside Dialog
+    ΓÜá∩╕Å  src/pages/settings/WhatsAppSettingsPage.tsx ΓÇö 4 <Card> total, 0 inside Dialog
+    ΓÜá∩╕Å  src/pages/SettingsPage.tsx ΓÇö 9 <Card> total, 0 inside Dialog
+    ΓÜá∩╕Å  src/pages/SettlementHistoryPage.tsx ΓÇö 5 <Card> total, 0 inside Dialog
+    ΓÜá∩╕Å  src/pages/SyncJobsPage.tsx ΓÇö 4 <Card> total, 0 inside Dialog
+
+ΓöÇΓöÇ 4. text-kpi Raw Markup in Pages ΓöÇΓöÇ
+  Pages with text-kpi: 12
+    ≡ƒôè src/pages/analytics/ControlHubPage.tsx
+    ≡ƒôè src/pages/CashOutPage.tsx
+    ≡ƒôè src/pages/CollectionsPage.tsx
+    ≡ƒôè src/pages/HostPayableDetailPage.tsx
+    ≡ƒôè src/pages/HostSettlementPage.tsx
+    ≡ƒôè src/pages/LedgerEntriesPage.tsx
+    ≡ƒôè src/pages/OtaPayoutsPage.tsx
+    ≡ƒôè src/pages/PaymentRequestsPage.tsx
+    ≡ƒôè src/pages/ReportsCashflowPage.tsx
+    ≡ƒôè src/pages/ReportsPnlPage.tsx
+    ≡ƒôè src/pages/ServicePayablesPage.tsx
+    ≡ƒôè src/pages/SettlementHistoryPage.tsx
+
+ΓöÇΓöÇ 5. MetricCard Component Usage ΓöÇΓöÇ
+  Pages importing MetricCard: 13
+    Γ£à src/pages/CollectionsPage.tsx
+    Γ£à src/pages/Dashboard.tsx
+    Γ£à src/pages/DataHealthPage.tsx
+    Γ£à src/pages/DisputesPage.tsx
+    Γ£à src/pages/HostDepositsPage.tsx
+    Γ£à src/pages/NoShowReportPage.tsx
+    Γ£à src/pages/OtaPayoutsPage.tsx
+    Γ£à src/pages/OutgoingPaymentsPage.tsx
+    Γ£à src/pages/PaymentRequestsPage.tsx
+    Γ£à src/pages/ReportsCashflowPage.tsx
+    Γ£à src/pages/ReportsPnlPage.tsx
+    Γ£à src/pages/ServiceReportsPage.tsx
+    Γ£à src/pages/StaysPage.tsx
+
+ΓöÇΓöÇ 6. text-hero-kpi Usage ΓöÇΓöÇ
+  Pages: 23
+    ≡ƒôè src/pages/AccessDeniedPage.tsx
+    ≡ƒôè src/pages/AIPricingValidationPage.tsx
+    ≡ƒôè src/pages/analytics/ControlHubPage.tsx
+    ≡ƒôè src/pages/analytics/HostCostAnalyticsPage.tsx
+    ≡ƒôè src/pages/analytics/PriceSpreadAnalyticsPage.tsx
+    ≡ƒôè src/pages/DeclarationListPage.tsx
+    ≡ƒôè src/pages/DisputeDetailPage.tsx
+    ≡ƒôè src/pages/DocumentationPage.tsx
+    ≡ƒôè src/pages/HostPayablesAgingPage.tsx
+    ≡ƒôè src/pages/MappingsPage.tsx
+    ≡ƒôè src/pages/ota-operations/KpiPage.tsx
+    ≡ƒôè src/pages/ota-operations/MyTasksPage.tsx
+    ≡ƒôè src/pages/ota-operations/ProjectDetailPage.tsx
+    ≡ƒôè src/pages/ota-operations/ProjectsPage.tsx
+    ≡ƒôè src/pages/ota-operations/TaskDetailPage.tsx
+    ≡ƒôè src/pages/ota-operations/TasksPage.tsx
+    ≡ƒôè src/pages/OtaPayoutsPage.tsx
+    ≡ƒôè src/pages/ReportsPnlPage.tsx
+    ≡ƒôè src/pages/ServiceReportsPage.tsx
+    ≡ƒôè src/pages/settings/WhatsAppSettingsPage.tsx
+    ≡ƒôè src/pages/SettlementHistoryPage.tsx
+    ≡ƒôè src/pages/StaysPage.tsx
+    ≡ƒôè src/pages/SyncJobsPage.tsx
+
+ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ

@@ -1,0 +1,675 @@
+﻿ΓÜá∩╕Å  WARNING [rhythm-no-margin-6] src\pages\AccessDeniedPage.tsx:12
+  <CardContent className="pt-6">
+  ΓåÆ Spacing-6 margin/padding on page ΓÇö SOT max is gap-4 / p-4 md:p-5
+
+ΓÜá∩╕Å  WARNING [no-inline-max-w-override] src\pages\AccountingPeriodsPage.tsx:304
+  <TableCell className="text-xs text-muted-foreground max-w-[200px] truncate">
+  ΓåÆ Inline max-width override ΓÇö MainLayout provides max-w-[1440px]; remove override
+
+ΓÜá∩╕Å  WARNING [rhythm-no-space-y-6] src\pages\AIPricingInsightsPage.tsx:255
+  <div className="space-y-6">
+  ΓåÆ space-y-6 drift ΓÇö SOT is gap-4 for page/section spacing
+
+ΓÜá∩╕Å  WARNING [rhythm-no-space-y-6] src\pages\AIPricingInsightsPage.tsx:1154
+  <div className="mt-6 space-y-6">
+  ΓåÆ space-y-6 drift ΓÇö SOT is gap-4 for page/section spacing
+
+ΓÜá∩╕Å  WARNING [rhythm-no-space-y-6] src\pages\AIPricingInsightsPage.tsx:1179
+  <div className="mt-6 space-y-6">
+  ΓåÆ space-y-6 drift ΓÇö SOT is gap-4 for page/section spacing
+
+ΓÜá∩╕Å  WARNING [rhythm-no-margin-6] src\pages\AIPricingInsightsPage.tsx:393
+  <CardContent className="pt-6">
+  ΓåÆ Spacing-6 margin/padding on page ΓÇö SOT max is gap-4 / p-4 md:p-5
+
+ΓÜá∩╕Å  WARNING [rhythm-no-margin-6] src\pages\AIPricingInsightsPage.tsx:1154
+  <div className="mt-6 space-y-6">
+  ΓåÆ Spacing-6 margin/padding on page ΓÇö SOT max is gap-4 / p-4 md:p-5
+
+ΓÜá∩╕Å  WARNING [rhythm-no-margin-6] src\pages\AIPricingInsightsPage.tsx:1179
+  <div className="mt-6 space-y-6">
+  ΓåÆ Spacing-6 margin/padding on page ΓÇö SOT max is gap-4 / p-4 md:p-5
+
+ΓÜá∩╕Å  WARNING [no-p6-on-card-sections] src\pages\AIPricingInsightsPage.tsx:1155
+  <div className="p-6 rounded-lg bg-destructive/10 border border-destructive/20 text-center">
+  ΓåÆ p-6 padding ΓÇö standard is p-4 md:p-5 per SectionCard SOT
+
+ΓÜá∩╕Å  WARNING [rhythm-no-space-y-6] src\pages\AIPricingRecommendationsPage.tsx:179
+  <div className="space-y-6">
+  ΓåÆ space-y-6 drift ΓÇö SOT is gap-4 for page/section spacing
+
+ΓÜá∩╕Å  WARNING [rhythm-no-space-y-6] src\pages\AIPricingValidationPage.tsx:82
+  <div className="space-y-6">
+  ΓåÆ space-y-6 drift ΓÇö SOT is gap-4 for page/section spacing
+
+ΓÜá∩╕Å  WARNING [rhythm-no-space-y-6] src\pages\AIPricingValidationPage.tsx:397
+  <CardContent className="space-y-6">
+  ΓåÆ space-y-6 drift ΓÇö SOT is gap-4 for page/section spacing
+
+ΓÜá∩╕Å  WARNING [rhythm-no-space-y-6] src\pages\analytics\ControlHubPage.tsx:89
+  <div className="space-y-6">
+  ΓåÆ space-y-6 drift ΓÇö SOT is gap-4 for page/section spacing
+
+ΓÜá∩╕Å  WARNING [rhythm-no-space-y-6] src\pages\analytics\ControlHubPage.tsx:238
+  <div className="space-y-6">
+  ΓåÆ space-y-6 drift ΓÇö SOT is gap-4 for page/section spacing
+
+ΓÜá∩╕Å  WARNING [rhythm-no-space-y-6] src\pages\analytics\ControlHubPage.tsx:334
+  <div className="space-y-6">
+  ΓåÆ space-y-6 drift ΓÇö SOT is gap-4 for page/section spacing
+
+ΓÜá∩╕Å  WARNING [rhythm-no-space-y-6] src\pages\analytics\ControlHubPage.tsx:480
+  <div className="space-y-6">
+  ΓåÆ space-y-6 drift ΓÇö SOT is gap-4 for page/section spacing
+
+ΓÜá∩╕Å  WARNING [rhythm-no-space-y-6] src\pages\analytics\ControlHubPage.tsx:587
+  <div className="space-y-6">
+  ΓåÆ space-y-6 drift ΓÇö SOT is gap-4 for page/section spacing
+
+ΓÜá∩╕Å  WARNING [rhythm-no-space-y-6] src\pages\analytics\ControlHubPage.tsx:592
+  <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as TabValue)} className="space-y-6">
+  ΓåÆ space-y-6 drift ΓÇö SOT is gap-4 for page/section spacing
+
+ΓÜá∩╕Å  WARNING [rhythm-no-gap-6] src\pages\analytics\ControlHubPage.tsx:252
+  <div className="grid gap-6 lg:grid-cols-2">
+  ΓåÆ gap-6 drift ΓÇö SOT is gap-4 for page/section/form spacing
+
+ΓÜá∩╕Å  WARNING [typo-no-text-xl-font-bold] src\pages\analytics\ControlHubPage.tsx:535
+  <p className="text-xl font-bold">{kpi?.avgOtaAdr !== null ? formatCurrency(kpi?.avgOtaAdr ?? 0) : 'ΓÇö'}</p>
+  ΓåÆ text-xl font-bold ΓåÆ use text-kpi font-semibold (METRIC DISPLAY)
+
+ΓÜá∩╕Å  WARNING [typo-no-text-xl-font-bold] src\pages\analytics\ControlHubPage.tsx:541
+  <p className="text-xl font-bold">{kpi?.avgHostAdr !== null ? formatCurrency(kpi?.avgHostAdr ?? 0) : 'ΓÇö'}</p>
+  ΓåÆ text-xl font-bold ΓåÆ use text-kpi font-semibold (METRIC DISPLAY)
+
+ΓÜá∩╕Å  WARNING [typo-no-text-xl-font-bold] src\pages\analytics\ControlHubPage.tsx:547
+  <p className={`text-xl font-bold ${kpi?.avgSpread !== null && kpi?.avgSpread !== undefined && kpi.avgSpread < 0 ? 'text-
+  ΓåÆ text-xl font-bold ΓåÆ use text-kpi font-semibold (METRIC DISPLAY)
+
+ΓÜá∩╕Å  WARNING [kpi-no-ad-hoc-typography] src\pages\analytics\ControlHubPage.tsx:498
+  <p className="text-2xl font-bold text-success">{formatNumber(increaseCount)}</p>
+  ΓåÆ Ad-hoc KPI typography ΓÇö use MetricCard with text-kpi from semantic scale
+
+ΓÜá∩╕Å  WARNING [kpi-no-ad-hoc-typography] src\pages\analytics\ControlHubPage.tsx:516
+  <p className="text-2xl font-bold text-warning">{formatNumber(decreaseCount)}</p>
+  ΓåÆ Ad-hoc KPI typography ΓÇö use MetricCard with text-kpi from semantic scale
+
+ΓÜá∩╕Å  WARNING [kpi-no-ad-hoc-typography] src\pages\analytics\ControlHubPage.tsx:525
+  <p className="text-2xl font-bold text-destructive">{formatNumber(lossCount)}</p>
+  ΓåÆ Ad-hoc KPI typography ΓÇö use MetricCard with text-kpi from semantic scale
+
+ΓÜá∩╕Å  WARNING [kpi-no-ad-hoc-typography] src\pages\analytics\ControlHubPage.tsx:547
+  <p className={`text-xl font-bold ${kpi?.avgSpread !== null && kpi?.avgSpread !== undefined && kpi.avgSpread < 0 ? 'text-
+  ΓåÆ Ad-hoc KPI typography ΓÇö use MetricCard with text-kpi from semantic scale
+
+ΓÜá∩╕Å  WARNING [rhythm-no-space-y-6] src\pages\analytics\HostCostAnalyticsPage.tsx:323
+  <div className="space-y-6">
+  ΓåÆ space-y-6 drift ΓÇö SOT is gap-4 for page/section spacing
+
+ΓÜá∩╕Å  WARNING [rhythm-no-space-y-6] src\pages\analytics\HostCostAnalyticsPage.tsx:419
+  <TabsContent value="host-cost" className="space-y-6">
+  ΓåÆ space-y-6 drift ΓÇö SOT is gap-4 for page/section spacing
+
+ΓÜá∩╕Å  WARNING [rhythm-no-space-y-6] src\pages\analytics\HostCostAnalyticsPage.tsx:491
+  <TabsContent value="ota-sell-price" className="space-y-6">
+  ΓåÆ space-y-6 drift ΓÇö SOT is gap-4 for page/section spacing
+
+ΓÜá∩╕Å  WARNING [rhythm-no-gap-6] src\pages\analytics\HostCostAnalyticsPage.tsx:421
+  <div className="grid gap-6 grid-cols-1 lg:grid-cols-2">
+  ΓåÆ gap-6 drift ΓÇö SOT is gap-4 for page/section/form spacing
+
+ΓÜá∩╕Å  WARNING [rhythm-no-gap-6] src\pages\analytics\HostCostAnalyticsPage.tsx:524
+  <div className="grid gap-6 grid-cols-1 lg:grid-cols-2">
+  ΓåÆ gap-6 drift ΓÇö SOT is gap-4 for page/section/form spacing
+
+ΓÜá∩╕Å  WARNING [rhythm-no-space-y-6] src\pages\analytics\OverviewPage.tsx:140
+  <div className="space-y-6">
+  ΓåÆ space-y-6 drift ΓÇö SOT is gap-4 for page/section spacing
+
+ΓÜá∩╕Å  WARNING [rhythm-no-space-y-6] src\pages\analytics\PriceSpreadAnalyticsPage.tsx:543
+  <div className="space-y-6">
+  ΓåÆ space-y-6 drift ΓÇö SOT is gap-4 for page/section spacing
+
+ΓÜá∩╕Å  WARNING [kpi-no-ad-hoc-typography] src\pages\analytics\PriceSpreadAnalyticsPage.tsx:157
+  <p className="text-2xl font-bold text-success">{formatNumber(increaseCount)}</p>
+  ΓåÆ Ad-hoc KPI typography ΓÇö use MetricCard with text-kpi from semantic scale
+
+ΓÜá∩╕Å  WARNING [kpi-no-ad-hoc-typography] src\pages\analytics\PriceSpreadAnalyticsPage.tsx:195
+  <p className="text-2xl font-bold text-warning">{formatNumber(decreaseCount)}</p>
+  ΓåÆ Ad-hoc KPI typography ΓÇö use MetricCard with text-kpi from semantic scale
+
+ΓÜá∩╕Å  WARNING [kpi-no-ad-hoc-typography] src\pages\analytics\PriceSpreadAnalyticsPage.tsx:214
+  <p className="text-2xl font-bold text-destructive">{formatNumber(lossCount)}</p>
+  ΓåÆ Ad-hoc KPI typography ΓÇö use MetricCard with text-kpi from semantic scale
+
+ΓÜá∩╕Å  WARNING [rhythm-no-space-y-6] src\pages\analytics\RevenueAnalyticsPage.tsx:52
+  <div className="space-y-6">
+  ΓåÆ space-y-6 drift ΓÇö SOT is gap-4 for page/section spacing
+
+ΓÜá∩╕Å  WARNING [rhythm-no-gap-6] src\pages\analytics\RevenueAnalyticsPage.tsx:70
+  <div className="grid gap-6 lg:grid-cols-2">
+  ΓåÆ gap-6 drift ΓÇö SOT is gap-4 for page/section/form spacing
+
+ΓÜá∩╕Å  WARNING [rhythm-no-margin-6] src\pages\AuthPage.tsx:105
+  <h1 className="text-5xl font-bold leading-tight mb-6">
+  ΓåÆ Spacing-6 margin/padding on page ΓÇö SOT max is gap-4 / p-4 md:p-5
+
+ΓÜá∩╕Å  WARNING [no-inline-max-w-override] src\pages\AuthPage.tsx:140
+  <div className="w-full max-w-[400px]">
+  ΓåÆ Inline max-width override ΓÇö MainLayout provides max-w-[1440px]; remove override
+
+ΓÜá∩╕Å  WARNING [no-p6-on-card-sections] src\pages\AuthPage.tsx:139
+  <div className="flex-1 flex items-center justify-center p-6 sm:p-12 bg-background">
+  ΓåÆ p-6 padding ΓÇö standard is p-4 md:p-5 per SectionCard SOT
+
+ΓÜá∩╕Å  WARNING [typo-no-leading-tight] src\pages\AuthPage.tsx:105
+  <h1 className="text-5xl font-bold leading-tight mb-6">
+  ΓåÆ leading-tight on text ΓÇö may clip Vietnamese diacritics; prefer token line-height
+
+ΓÜá∩╕Å  WARNING [rhythm-no-gap-6] src\pages\BookingsPage.tsx:1227
+  <div className="hidden md:flex items-center justify-between gap-6 px-4 py-3 border-t border-border bg-muted/30">
+  ΓåÆ gap-6 drift ΓÇö SOT is gap-4 for page/section/form spacing
+
+ΓÜá∩╕Å  WARNING [rhythm-no-gap-6] src\pages\BookingsPage.tsx:1228
+  <div className="flex items-center gap-6">
+  ΓåÆ gap-6 drift ΓÇö SOT is gap-4 for page/section/form spacing
+
+ΓÜá∩╕Å  WARNING [no-inline-max-w-override] src\pages\BookingsPage.tsx:657
+  <span className="truncate max-w-[160px]">{name}</span>
+  ΓåÆ Inline max-width override ΓÇö MainLayout provides max-w-[1440px]; remove override
+
+ΓÜá∩╕Å  WARNING [no-inline-max-w-override] src\pages\BookingsPage.tsx:673
+  <span className="truncate max-w-[140px]">{room}</span>
+  ΓåÆ Inline max-width override ΓÇö MainLayout provides max-w-[1440px]; remove override
+
+ΓÜá∩╕Å  WARNING [no-inline-max-w-override] src\pages\BookingsPage.tsx:986
+  className="font-semibold text-sm hover:text-primary transition-colors underline-offset-2 hover:underline truncate max-w-
+  ΓåÆ Inline max-width override ΓÇö MainLayout provides max-w-[1440px]; remove override
+
+ΓÜá∩╕Å  WARNING [rhythm-no-space-y-6] src\pages\CashAccountsPage.tsx:326
+  <div className="space-y-6">
+  ΓåÆ space-y-6 drift ΓÇö SOT is gap-4 for page/section spacing
+
+ΓÜá∩╕Å  WARNING [no-inline-max-w-override] src\pages\CashAccountsPage.tsx:398
+  <TableCell className="text-sm text-muted-foreground max-w-[150px] truncate" title={account.note || ""}>
+  ΓåÆ Inline max-width override ΓÇö MainLayout provides max-w-[1440px]; remove override
+
+ΓÜá∩╕Å  WARNING [rhythm-no-margin-6] src\pages\CashOutPage.tsx:299
+  <CardContent className="pt-6">
+  ΓåÆ Spacing-6 margin/padding on page ΓÇö SOT max is gap-4 / p-4 md:p-5
+
+ΓÜá∩╕Å  WARNING [rhythm-no-margin-6] src\pages\CashOutPage.tsx:316
+  <CardContent className="pt-6">
+  ΓåÆ Spacing-6 margin/padding on page ΓÇö SOT max is gap-4 / p-4 md:p-5
+
+ΓÜá∩╕Å  WARNING [rhythm-no-margin-6] src\pages\CashOutPage.tsx:333
+  <CardContent className="pt-6">
+  ΓåÆ Spacing-6 margin/padding on page ΓÇö SOT max is gap-4 / p-4 md:p-5
+
+ΓÜá∩╕Å  WARNING [rhythm-no-margin-6] src\pages\CashOutPage.tsx:350
+  <CardContent className="pt-6">
+  ΓåÆ Spacing-6 margin/padding on page ΓÇö SOT max is gap-4 / p-4 md:p-5
+
+ΓÜá∩╕Å  WARNING [no-inline-max-w-override] src\pages\CashOutPage.tsx:510
+  <TableCell className="max-w-[200px] truncate">
+  ΓåÆ Inline max-width override ΓÇö MainLayout provides max-w-[1440px]; remove override
+
+ΓÜá∩╕Å  WARNING [no-inline-max-w-override] src\pages\CashOutPage.tsx:774
+  <span className="truncate max-w-[200px]">{file.name}</span>
+  ΓåÆ Inline max-width override ΓÇö MainLayout provides max-w-[1440px]; remove override
+
+ΓÜá∩╕Å  WARNING [typo-no-text-xl-font-bold] src\pages\CashOutPage.tsx:306
+  <p className="text-xl font-bold text-destructive">
+  ΓåÆ text-xl font-bold ΓåÆ use text-kpi font-semibold (METRIC DISPLAY)
+
+ΓÜá∩╕Å  WARNING [typo-no-text-xl-font-bold] src\pages\CashOutPage.tsx:323
+  <p className="text-xl font-bold text-primary">
+  ΓåÆ text-xl font-bold ΓåÆ use text-kpi font-semibold (METRIC DISPLAY)
+
+ΓÜá∩╕Å  WARNING [typo-no-text-xl-font-bold] src\pages\CashOutPage.tsx:340
+  <p className="text-xl font-bold text-success">
+  ΓåÆ text-xl font-bold ΓåÆ use text-kpi font-semibold (METRIC DISPLAY)
+
+ΓÜá∩╕Å  WARNING [typo-no-text-xl-font-bold] src\pages\CashOutPage.tsx:357
+  <p className="text-xl font-bold text-primary">
+  ΓåÆ text-xl font-bold ΓåÆ use text-kpi font-semibold (METRIC DISPLAY)
+
+ΓÜá∩╕Å  WARNING [kpi-no-ad-hoc-typography] src\pages\CashOutPage.tsx:306
+  <p className="text-xl font-bold text-destructive">
+  ΓåÆ Ad-hoc KPI typography ΓÇö use MetricCard with text-kpi from semantic scale
+
+ΓÜá∩╕Å  WARNING [kpi-no-ad-hoc-typography] src\pages\CashOutPage.tsx:323
+  <p className="text-xl font-bold text-primary">
+  ΓåÆ Ad-hoc KPI typography ΓÇö use MetricCard with text-kpi from semantic scale
+
+ΓÜá∩╕Å  WARNING [kpi-no-ad-hoc-typography] src\pages\CashOutPage.tsx:340
+  <p className="text-xl font-bold text-success">
+  ΓåÆ Ad-hoc KPI typography ΓÇö use MetricCard with text-kpi from semantic scale
+
+ΓÜá∩╕Å  WARNING [kpi-no-ad-hoc-typography] src\pages\CashOutPage.tsx:357
+  <p className="text-xl font-bold text-primary">
+  ΓåÆ Ad-hoc KPI typography ΓÇö use MetricCard with text-kpi from semantic scale
+
+ΓÜá∩╕Å  WARNING [rhythm-no-gap-6] src\pages\ChannelManagerPage.tsx:31
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+  ΓåÆ gap-6 drift ΓÇö SOT is gap-4 for page/section/form spacing
+
+ΓÜá∩╕Å  WARNING [no-p6-on-card-sections] src\pages\ChannexEmbedPage.tsx:181
+  <div className="flex flex-col items-center gap-4 text-center p-6 max-w-md">
+  ΓåÆ p-6 padding ΓÇö standard is p-4 md:p-5 per SectionCard SOT
+
+ΓÜá∩╕Å  WARNING [rhythm-no-space-y-6] src\pages\ChannexIntegrationPage.tsx:300
+  <div className="space-y-6">
+  ΓåÆ space-y-6 drift ΓÇö SOT is gap-4 for page/section spacing
+
+ΓÜá∩╕Å  WARNING [no-inline-max-w-override] src\pages\ChannexIntegrationPage.tsx:689
+  <TableCell className="text-xs text-destructive max-w-[200px] truncate">
+  ΓåÆ Inline max-width override ΓÇö MainLayout provides max-w-[1440px]; remove override
+
+ΓÜá∩╕Å  WARNING [rhythm-no-space-y-6] src\pages\CollectionReportsPage.tsx:309
+  <TabsContent value="chart" className="space-y-6">
+  ΓåÆ space-y-6 drift ΓÇö SOT is gap-4 for page/section spacing
+
+ΓÜá∩╕Å  WARNING [rhythm-no-space-y-6] src\pages\CollectionReportsPage.tsx:388
+  <TabsContent value="breakdown" className="space-y-6">
+  ΓåÆ space-y-6 drift ΓÇö SOT is gap-4 for page/section spacing
+
+ΓÜá∩╕Å  WARNING [no-p6-on-card-sections] src\pages\CollectionReportsPage.tsx:247
+  <div className="relative overflow-hidden rounded-xl border border-border bg-card p-6">
+  ΓåÆ p-6 padding ΓÇö standard is p-4 md:p-5 per SectionCard SOT
+
+ΓÜá∩╕Å  WARNING [no-p6-on-card-sections] src\pages\CollectionReportsPage.tsx:259
+  <div className="relative overflow-hidden rounded-xl border border-border bg-card p-6">
+  ΓåÆ p-6 padding ΓÇö standard is p-4 md:p-5 per SectionCard SOT
+
+ΓÜá∩╕Å  WARNING [no-p6-on-card-sections] src\pages\CollectionReportsPage.tsx:271
+  <div className="relative overflow-hidden rounded-xl border border-border bg-card p-6">
+  ΓåÆ p-6 padding ΓÇö standard is p-4 md:p-5 per SectionCard SOT
+
+ΓÜá∩╕Å  WARNING [no-p6-on-card-sections] src\pages\CollectionReportsPage.tsx:283
+  <div className="relative overflow-hidden rounded-xl border border-border bg-card p-6">
+  ΓåÆ p-6 padding ΓÇö standard is p-4 md:p-5 per SectionCard SOT
+
+ΓÜá∩╕Å  WARNING [no-p6-on-card-sections] src\pages\CollectionReportsPage.tsx:311
+  <div className="rounded-xl border border-border bg-card p-6">
+  ΓåÆ p-6 padding ΓÇö standard is p-4 md:p-5 per SectionCard SOT
+
+ΓÜá∩╕Å  WARNING [no-p6-on-card-sections] src\pages\CollectionReportsPage.tsx:346
+  <div className="rounded-xl border border-border bg-card p-6">
+  ΓåÆ p-6 padding ΓÇö standard is p-4 md:p-5 per SectionCard SOT
+
+ΓÜá∩╕Å  WARNING [no-inline-max-w-override] src\pages\CollectionsPage.tsx:1016
+  <p className="text-xs text-muted-foreground truncate max-w-[120px]">
+  ΓåÆ Inline max-width override ΓÇö MainLayout provides max-w-[1440px]; remove override
+
+ΓÜá∩╕Å  WARNING [typo-no-text-lg-font-bold] src\pages\CollectionsPage.tsx:570
+  <p className="text-base md:text-lg font-bold truncate">{formatCurrency(totalRoom)}</p>
+  ΓåÆ text-lg font-bold ΓåÆ use text-kpi (METRIC) or text-section font-semibold (SECTION)
+
+ΓÜá∩╕Å  WARNING [typo-no-text-lg-font-bold] src\pages\CollectionsPage.tsx:578
+  <p className="text-base md:text-lg font-bold truncate">{formatCurrency(totalExtra)}</p>
+  ΓåÆ text-lg font-bold ΓåÆ use text-kpi (METRIC) or text-section font-semibold (SECTION)
+
+ΓÜá∩╕Å  WARNING [typo-no-text-lg-font-bold] src\pages\CollectionsPage.tsx:586
+  <p className="text-base md:text-lg font-bold truncate">{formatCurrency(totalService)}</p>
+  ΓåÆ text-lg font-bold ΓåÆ use text-kpi (METRIC) or text-section font-semibold (SECTION)
+
+ΓÜá∩╕Å  WARNING [typo-no-text-lg-font-bold] src\pages\CollectionsPage.tsx:594
+  <p className="text-base md:text-lg font-bold text-success truncate">{formatCurrency(totalOtaPayout)}</p>
+  ΓåÆ text-lg font-bold ΓåÆ use text-kpi (METRIC) or text-section font-semibold (SECTION)
+
+ΓÜá∩╕Å  WARNING [typo-no-text-lg-font-bold] src\pages\CollectionsPage.tsx:602
+  <p className="text-base md:text-lg font-bold text-warning truncate">{formatCurrency(totalRefunds)}</p>
+  ΓåÆ text-lg font-bold ΓåÆ use text-kpi (METRIC) or text-section font-semibold (SECTION)
+
+ΓÜá∩╕Å  WARNING [typo-no-text-xl-font-bold] src\pages\CollectionsPage.tsx:554
+  <p className="text-lg md:text-xl font-bold text-success truncate">{formatCurrency(todayNet)}</p>
+  ΓåÆ text-xl font-bold ΓåÆ use text-kpi font-semibold (METRIC DISPLAY)
+
+ΓÜá∩╕Å  WARNING [typo-no-text-xl-font-bold] src\pages\CollectionsPage.tsx:562
+  <p className="text-lg md:text-xl font-bold truncate">{formatCurrency(monthNet)}</p>
+  ΓåÆ text-xl font-bold ΓåÆ use text-kpi font-semibold (METRIC DISPLAY)
+
+ΓÜá∩╕Å  WARNING [kpi-no-ad-hoc-typography] src\pages\CollectionsPage.tsx:554
+  <p className="text-lg md:text-xl font-bold text-success truncate">{formatCurrency(todayNet)}</p>
+  ΓåÆ Ad-hoc KPI typography ΓÇö use MetricCard with text-kpi from semantic scale
+
+ΓÜá∩╕Å  WARNING [kpi-no-ad-hoc-typography] src\pages\CollectionsPage.tsx:594
+  <p className="text-base md:text-lg font-bold text-success truncate">{formatCurrency(totalOtaPayout)}</p>
+  ΓåÆ Ad-hoc KPI typography ΓÇö use MetricCard with text-kpi from semantic scale
+
+ΓÜá∩╕Å  WARNING [kpi-no-ad-hoc-typography] src\pages\CollectionsPage.tsx:602
+  <p className="text-base md:text-lg font-bold text-warning truncate">{formatCurrency(totalRefunds)}</p>
+  ΓåÆ Ad-hoc KPI typography ΓÇö use MetricCard with text-kpi from semantic scale
+
+ΓÜá∩╕Å  WARNING [rhythm-no-gap-6] src\pages\Dashboard.tsx:1913
+  <div className="grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-6">
+  ΓåÆ gap-6 drift ΓÇö SOT is gap-4 for page/section/form spacing
+
+ΓÜá∩╕Å  WARNING [no-inline-max-w-override] src\pages\Dashboard.tsx:1392
+  <TooltipContent side="bottom" className="max-w-[250px]">
+  ΓåÆ Inline max-width override ΓÇö MainLayout provides max-w-[1440px]; remove override
+
+ΓÜá∩╕Å  WARNING [no-inline-max-w-override] src\pages\Dashboard.tsx:1417
+  <TooltipContent side="bottom" className="max-w-[250px]">
+  ΓåÆ Inline max-width override ΓÇö MainLayout provides max-w-[1440px]; remove override
+
+ΓÜá∩╕Å  WARNING [no-inline-max-w-override] src\pages\Dashboard.tsx:1442
+  <TooltipContent side="bottom" className="max-w-[250px]">
+  ΓåÆ Inline max-width override ΓÇö MainLayout provides max-w-[1440px]; remove override
+
+ΓÜá∩╕Å  WARNING [no-inline-max-w-override] src\pages\Dashboard.tsx:1467
+  <TooltipContent side="bottom" className="max-w-[250px]">
+  ΓåÆ Inline max-width override ΓÇö MainLayout provides max-w-[1440px]; remove override
+
+ΓÜá∩╕Å  WARNING [no-inline-max-w-override] src\pages\Dashboard.tsx:1549
+  <TooltipContent side="bottom" className="max-w-[280px]">
+  ΓåÆ Inline max-width override ΓÇö MainLayout provides max-w-[1440px]; remove override
+
+ΓÜá∩╕Å  WARNING [no-inline-max-w-override] src\pages\Dashboard.tsx:1575
+  <TooltipContent side="bottom" className="max-w-[280px]">
+  ΓåÆ Inline max-width override ΓÇö MainLayout provides max-w-[1440px]; remove override
+
+ΓÜá∩╕Å  WARNING [no-inline-max-w-override] src\pages\Dashboard.tsx:1607
+  <TooltipContent side="bottom" className="max-w-[280px]">
+  ΓåÆ Inline max-width override ΓÇö MainLayout provides max-w-[1440px]; remove override
+
+ΓÜá∩╕Å  WARNING [no-inline-max-w-override] src\pages\Dashboard.tsx:1812
+  <TooltipContent className="max-w-[280px]">
+  ΓåÆ Inline max-width override ΓÇö MainLayout provides max-w-[1440px]; remove override
+
+ΓÜá∩╕Å  WARNING [no-inline-max-w-override] src\pages\Dashboard.tsx:1925
+  <TooltipContent className="max-w-[300px]">
+  ΓåÆ Inline max-width override ΓÇö MainLayout provides max-w-[1440px]; remove override
+
+ΓÜá∩╕Å  WARNING [no-inline-max-w-override] src\pages\Dashboard.tsx:2011
+  <TooltipContent className="max-w-[320px]">
+  ΓåÆ Inline max-width override ΓÇö MainLayout provides max-w-[1440px]; remove override
+
+ΓÜá∩╕Å  WARNING [rhythm-no-gap-6] src\pages\DocumentationPage.tsx:1795
+  <div className="grid gap-6">
+  ΓåÆ gap-6 drift ΓÇö SOT is gap-4 for page/section/form spacing
+
+ΓÜá∩╕Å  WARNING [rhythm-no-margin-6] src\pages\DocumentationPage.tsx:1794
+  <h2 className="text-2xl font-bold mb-6">Workflow Diagrams</h2>
+  ΓåÆ Spacing-6 margin/padding on page ΓÇö SOT max is gap-4 / p-4 md:p-5
+
+ΓÜá∩╕Å  WARNING [typo-no-text-3xl-bold] src\pages\DocumentationPage.tsx:1633
+  <h1 className="text-3xl font-bold">{activeDocSection.title}</h1>
+  ΓåÆ text-3xl font-bold ΓåÆ use text-heroKpi font-semibold (HERO METRIC)
+
+ΓÜá∩╕Å  WARNING [rhythm-no-gap-6] src\pages\HostPayableDetailPage.tsx:193
+  <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
+  ΓåÆ gap-6 drift ΓÇö SOT is gap-4 for page/section/form spacing
+
+ΓÜá∩╕Å  WARNING [typo-no-text-xl-font-bold] src\pages\HostPayableDetailPage.tsx:203
+  <p className="text-xl font-bold text-primary">{formatCurrency(totalAmount)}</p>
+  ΓåÆ text-xl font-bold ΓåÆ use text-kpi font-semibold (METRIC DISPLAY)
+
+ΓÜá∩╕Å  WARNING [kpi-no-ad-hoc-typography] src\pages\HostPayableDetailPage.tsx:203
+  <p className="text-xl font-bold text-primary">{formatCurrency(totalAmount)}</p>
+  ΓåÆ Ad-hoc KPI typography ΓÇö use MetricCard with text-kpi from semantic scale
+
+ΓÜá∩╕Å  WARNING [kpi-no-ad-hoc-typography] src\pages\HostPayablesAgingPage.tsx:561
+  <div className="text-2xl font-bold text-destructive">{formatCurrency(kpis.totalRemaining)}</div>
+  ΓåÆ Ad-hoc KPI typography ΓÇö use MetricCard with text-kpi from semantic scale
+
+ΓÜá∩╕Å  WARNING [kpi-no-ad-hoc-typography] src\pages\HostPayablesAgingPage.tsx:575
+  <div className="text-2xl font-bold text-success">{formatCurrency(kpis.totalPaid)}</div>
+  ΓåÆ Ad-hoc KPI typography ΓÇö use MetricCard with text-kpi from semantic scale
+
+ΓÜá∩╕Å  WARNING [kpi-no-ad-hoc-typography] src\pages\HostPayablesAgingPage.tsx:589
+  <div className={`text-2xl font-bold ${kpis.overdueCount > 0 ? 'text-destructive' : 'text-muted-foreground'}`}>
+  ΓåÆ Ad-hoc KPI typography ΓÇö use MetricCard with text-kpi from semantic scale
+
+ΓÜá∩╕Å  WARNING [kpi-no-ad-hoc-typography] src\pages\HostPayablesAgingPage.tsx:607
+  <div className="text-2xl font-bold text-warning">{filteredItems.length}</div>
+  ΓåÆ Ad-hoc KPI typography ΓÇö use MetricCard with text-kpi from semantic scale
+
+ΓÜá∩╕Å  WARNING [rhythm-no-space-y-6] src\pages\MappingRulesPage.tsx:345
+  <div className="space-y-6">
+  ΓåÆ space-y-6 drift ΓÇö SOT is gap-4 for page/section spacing
+
+ΓÜá∩╕Å  WARNING [kpi-no-ad-hoc-typography] src\pages\ota-operations\KpiPage.tsx:251
+  <div className="text-2xl font-bold text-success">
+  ΓåÆ Ad-hoc KPI typography ΓÇö use MetricCard with text-kpi from semantic scale
+
+ΓÜá∩╕Å  WARNING [kpi-no-ad-hoc-typography] src\pages\ota-operations\KpiPage.tsx:297
+  <div className="text-2xl font-bold text-info">
+  ΓåÆ Ad-hoc KPI typography ΓÇö use MetricCard with text-kpi from semantic scale
+
+ΓÜá∩╕Å  WARNING [rhythm-no-space-y-6] src\pages\ota-operations\MyTasksPage.tsx:272
+  <div className="space-y-6">
+  ΓåÆ space-y-6 drift ΓÇö SOT is gap-4 for page/section spacing
+
+ΓÜá∩╕Å  WARNING [typo-no-text-3xl-bold] src\pages\ota-operations\MyTasksPage.tsx:212
+  <div className="text-3xl font-bold text-warning">{buckets.quickTasksToday.length}</div>
+  ΓåÆ text-3xl font-bold ΓåÆ use text-heroKpi font-semibold (HERO METRIC)
+
+ΓÜá∩╕Å  WARNING [typo-no-text-3xl-bold] src\pages\ota-operations\MyTasksPage.tsx:221
+  <div className="text-3xl font-bold text-destructive">{buckets.urgent.length}</div>
+  ΓåÆ text-3xl font-bold ΓåÆ use text-heroKpi font-semibold (HERO METRIC)
+
+ΓÜá∩╕Å  WARNING [typo-no-text-3xl-bold] src\pages\ota-operations\MyTasksPage.tsx:230
+  <div className="text-3xl font-bold text-primary">{buckets.review.length}</div>
+  ΓåÆ text-3xl font-bold ΓåÆ use text-heroKpi font-semibold (HERO METRIC)
+
+ΓÜá∩╕Å  WARNING [typo-no-text-3xl-bold] src\pages\ota-operations\MyTasksPage.tsx:239
+  <div className="text-3xl font-bold text-warning">{buckets.blocked.length}</div>
+  ΓåÆ text-3xl font-bold ΓåÆ use text-heroKpi font-semibold (HERO METRIC)
+
+ΓÜá∩╕Å  WARNING [typo-no-text-3xl-bold] src\pages\ota-operations\MyTasksPage.tsx:248
+  <div className="text-3xl font-bold text-muted-foreground">{buckets.later.length}</div>
+  ΓåÆ text-3xl font-bold ΓåÆ use text-heroKpi font-semibold (HERO METRIC)
+
+ΓÜá∩╕Å  WARNING [rhythm-no-space-y-6] src\pages\ota-operations\ProjectDetailPage.tsx:242
+  <div className="space-y-6">
+  ΓåÆ space-y-6 drift ΓÇö SOT is gap-4 for page/section spacing
+
+ΓÜá∩╕Å  WARNING [no-inline-max-w-override] src\pages\ota-operations\ProjectDetailPage.tsx:254
+  <span className="truncate max-w-[300px]">{project.name}</span>
+  ΓåÆ Inline max-width override ΓÇö MainLayout provides max-w-[1440px]; remove override
+
+ΓÜá∩╕Å  WARNING [kpi-no-ad-hoc-typography] src\pages\ota-operations\ProjectsPage.tsx:153
+  <div className="text-2xl font-bold text-destructive">{stats.red}</div>
+  ΓåÆ Ad-hoc KPI typography ΓÇö use MetricCard with text-kpi from semantic scale
+
+ΓÜá∩╕Å  WARNING [kpi-no-ad-hoc-typography] src\pages\ota-operations\ProjectsPage.tsx:163
+  <div className="text-2xl font-bold text-warning">{stats.yellow}</div>
+  ΓåÆ Ad-hoc KPI typography ΓÇö use MetricCard with text-kpi from semantic scale
+
+ΓÜá∩╕Å  WARNING [kpi-no-ad-hoc-typography] src\pages\ota-operations\ProjectsPage.tsx:173
+  <div className="text-2xl font-bold text-info">{stats.inProgress}</div>
+  ΓåÆ Ad-hoc KPI typography ΓÇö use MetricCard with text-kpi from semantic scale
+
+ΓÜá∩╕Å  WARNING [kpi-no-ad-hoc-typography] src\pages\ota-operations\ProjectsPage.tsx:183
+  <div className="text-2xl font-bold text-success">{stats.completed}</div>
+  ΓåÆ Ad-hoc KPI typography ΓÇö use MetricCard with text-kpi from semantic scale
+
+ΓÜá∩╕Å  WARNING [rhythm-no-space-y-6] src\pages\ota-operations\TaskDetailPage.tsx:357
+  <div className="lg:col-span-2 space-y-6">
+  ΓåÆ space-y-6 drift ΓÇö SOT is gap-4 for page/section spacing
+
+ΓÜá∩╕Å  WARNING [rhythm-no-space-y-6] src\pages\ota-operations\TaskDetailPage.tsx:422
+  <div className="space-y-6">
+  ΓåÆ space-y-6 drift ΓÇö SOT is gap-4 for page/section spacing
+
+ΓÜá∩╕Å  WARNING [rhythm-no-gap-6] src\pages\ota-operations\TaskDetailPage.tsx:355
+  <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+  ΓåÆ gap-6 drift ΓÇö SOT is gap-4 for page/section/form spacing
+
+ΓÜá∩╕Å  WARNING [rhythm-no-margin-6] src\pages\ota-operations\TaskDetailPage.tsx:518
+  <CardContent className="pt-6">
+  ΓåÆ Spacing-6 margin/padding on page ΓÇö SOT max is gap-4 / p-4 md:p-5
+
+ΓÜá∩╕Å  WARNING [no-p6-on-card-sections] src\pages\ota-operations\TaskDetailPage.tsx:197
+  <div className="p-6">
+  ΓåÆ p-6 padding ΓÇö standard is p-4 md:p-5 per SectionCard SOT
+
+ΓÜá∩╕Å  WARNING [no-p6-on-card-sections] src\pages\ota-operations\TasksPage.tsx:506
+  <CardContent className="p-6">
+  ΓåÆ p-6 padding ΓÇö standard is p-4 md:p-5 per SectionCard SOT
+
+ΓÜá∩╕Å  WARNING [kpi-no-ad-hoc-typography] src\pages\ota-operations\TasksPage.tsx:265
+  <div className={`text-2xl font-bold ${stats.overdue > 0 ? 'text-destructive' : 'text-muted-foreground'}`}>
+  ΓåÆ Ad-hoc KPI typography ΓÇö use MetricCard with text-kpi from semantic scale
+
+ΓÜá∩╕Å  WARNING [kpi-no-ad-hoc-typography] src\pages\ota-operations\TasksPage.tsx:297
+  <div className={`text-2xl font-bold ${stats.blocked > 0 ? 'text-warning' : 'text-muted-foreground'}`}>
+  ΓåÆ Ad-hoc KPI typography ΓÇö use MetricCard with text-kpi from semantic scale
+
+ΓÜá∩╕Å  WARNING [kpi-no-ad-hoc-typography] src\pages\ota-operations\TasksPage.tsx:339
+  <div className="text-2xl font-bold text-info">{stats.inProgress}</div>
+  ΓåÆ Ad-hoc KPI typography ΓÇö use MetricCard with text-kpi from semantic scale
+
+ΓÜá∩╕Å  WARNING [kpi-no-ad-hoc-typography] src\pages\ota-operations\TasksPage.tsx:349
+  <div className="text-2xl font-bold text-warning">{stats.review}</div>
+  ΓåÆ Ad-hoc KPI typography ΓÇö use MetricCard with text-kpi from semantic scale
+
+ΓÜá∩╕Å  WARNING [kpi-no-ad-hoc-typography] src\pages\ota-operations\TasksPage.tsx:359
+  <div className="text-2xl font-bold text-success">{stats.done}</div>
+  ΓåÆ Ad-hoc KPI typography ΓÇö use MetricCard with text-kpi from semantic scale
+
+ΓÜá∩╕Å  WARNING [no-inline-max-w-override] src\pages\OtaMessagesPage.tsx:635
+  <SelectTrigger className="h-7 text-xs px-2 w-auto min-w-[100px] max-w-[160px]">
+  ΓåÆ Inline max-width override ΓÇö MainLayout provides max-w-[1440px]; remove override
+
+ΓÜá∩╕Å  WARNING [no-inline-max-w-override] src\pages\OtaMessagesPage.tsx:650
+  <SelectTrigger className="h-7 text-xs px-2 w-auto min-w-[100px] max-w-[150px]">
+  ΓåÆ Inline max-width override ΓÇö MainLayout provides max-w-[1440px]; remove override
+
+ΓÜá∩╕Å  WARNING [no-inline-max-w-override] src\pages\OtaMessagesPage.tsx:678
+  <SelectTrigger className="h-7 text-xs px-2 w-auto min-w-[80px] max-w-[140px]">
+  ΓåÆ Inline max-width override ΓÇö MainLayout provides max-w-[1440px]; remove override
+
+ΓÜá∩╕Å  WARNING [typo-no-text-lg-font-bold] src\pages\OtaPayoutsPage.tsx:200
+  <span className="text-base md:text-lg font-bold text-primary">
+  ΓåÆ text-lg font-bold ΓåÆ use text-kpi (METRIC) or text-section font-semibold (SECTION)
+
+ΓÜá∩╕Å  WARNING [kpi-no-ad-hoc-typography] src\pages\OtaPayoutsPage.tsx:179
+  <p className="text-xl md:text-2xl font-bold text-destructive">{stats.disputed.length}</p>
+  ΓåÆ Ad-hoc KPI typography ΓÇö use MetricCard with text-kpi from semantic scale
+
+ΓÜá∩╕Å  WARNING [kpi-no-ad-hoc-typography] src\pages\OtaPayoutsPage.tsx:190
+  <p className="text-xl md:text-2xl font-bold text-success">{stats.received.length}</p>
+  ΓåÆ Ad-hoc KPI typography ΓÇö use MetricCard with text-kpi from semantic scale
+
+ΓÜá∩╕Å  WARNING [kpi-no-ad-hoc-typography] src\pages\OtaPayoutsPage.tsx:200
+  <span className="text-base md:text-lg font-bold text-primary">
+  ΓåÆ Ad-hoc KPI typography ΓÇö use MetricCard with text-kpi from semantic scale
+
+ΓÜá∩╕Å  WARNING [rhythm-no-space-y-6] src\pages\OutgoingPaymentsPage.tsx:313
+  <div className="space-y-6">
+  ΓåÆ space-y-6 drift ΓÇö SOT is gap-4 for page/section spacing
+
+ΓÜá∩╕Å  WARNING [rhythm-no-space-y-6] src\pages\OutgoingPaymentsPage.tsx:522
+  <div className="space-y-6 py-4">
+  ΓåÆ space-y-6 drift ΓÇö SOT is gap-4 for page/section spacing
+
+ΓÜá∩╕Å  WARNING [rhythm-no-space-y-6] src\pages\PartnersPage.tsx:541
+  <form onSubmit={handleSubmit} className="space-y-6">
+  ΓåÆ space-y-6 drift ΓÇö SOT is gap-4 for page/section spacing
+
+ΓÜá∩╕Å  WARNING [typo-no-text-lg-font-bold] src\pages\ServicePayablesPage.tsx:969
+  <span className={`font-bold text-lg ${netAmount >= 0 ? 'text-destructive' : 'text-success'}`}>
+  ΓåÆ text-lg font-bold ΓåÆ use text-kpi (METRIC) or text-section font-semibold (SECTION)
+
+ΓÜá∩╕Å  WARNING [kpi-no-ad-hoc-typography] src\pages\ServiceReportsPage.tsx:129
+  <p className="text-2xl font-bold text-success">{stats?.paidCount || 0}</p>
+  ΓåÆ Ad-hoc KPI typography ΓÇö use MetricCard with text-kpi from semantic scale
+
+ΓÜá∩╕Å  WARNING [kpi-no-ad-hoc-typography] src\pages\ServiceReportsPage.tsx:133
+  <p className="text-2xl font-bold text-warning">{stats?.unpaidCount || 0}</p>
+  ΓåÆ Ad-hoc KPI typography ΓÇö use MetricCard with text-kpi from semantic scale
+
+ΓÜá∩╕Å  WARNING [rhythm-no-space-y-6] src\pages\settings\WhatsAppSettingsPage.tsx:206
+  <div className="space-y-6">
+  ΓåÆ space-y-6 drift ΓÇö SOT is gap-4 for page/section spacing
+
+ΓÜá∩╕Å  WARNING [rhythm-no-gap-6] src\pages\settings\WhatsAppSettingsPage.tsx:283
+  <div className="flex flex-col sm:flex-row items-center gap-6">
+  ΓåÆ gap-6 drift ΓÇö SOT is gap-4 for page/section/form spacing
+
+ΓÜá∩╕Å  WARNING [no-inline-max-w-override] src\pages\settings\WhatsAppSettingsPage.tsx:60
+  <code className="text-xs bg-muted p-2 rounded break-all max-w-[280px] select-all">
+  ΓåÆ Inline max-width override ΓÇö MainLayout provides max-w-[1440px]; remove override
+
+ΓÜá∩╕Å  WARNING [no-inline-max-w-override] src\pages\settings\WhatsAppSettingsPage.tsx:78
+  <p className="text-xs text-muted-foreground text-center max-w-[250px]">
+  ΓåÆ Inline max-width override ΓÇö MainLayout provides max-w-[1440px]; remove override
+
+ΓÜá∩╕Å  WARNING [rhythm-no-margin-6] src\pages\SettingsPage.tsx:781
+  <div className="mt-6 p-4 rounded-lg bg-primary/5 border border-primary/20">
+  ΓåÆ Spacing-6 margin/padding on page ΓÇö SOT max is gap-4 / p-4 md:p-5
+
+ΓÜá∩╕Å  WARNING [rhythm-no-margin-6] src\pages\SettlementHistoryPage.tsx:133
+  <CardContent className="pt-6">
+  ΓåÆ Spacing-6 margin/padding on page ΓÇö SOT max is gap-4 / p-4 md:p-5
+
+ΓÜá∩╕Å  WARNING [rhythm-no-margin-6] src\pages\SettlementHistoryPage.tsx:147
+  <CardContent className="pt-6">
+  ΓåÆ Spacing-6 margin/padding on page ΓÇö SOT max is gap-4 / p-4 md:p-5
+
+ΓÜá∩╕Å  WARNING [rhythm-no-margin-6] src\pages\SettlementHistoryPage.tsx:161
+  <CardContent className="pt-6">
+  ΓåÆ Spacing-6 margin/padding on page ΓÇö SOT max is gap-4 / p-4 md:p-5
+
+ΓÜá∩╕Å  WARNING [rhythm-no-margin-6] src\pages\SettlementHistoryPage.tsx:177
+  <CardContent className="pt-6">
+  ΓåÆ Spacing-6 margin/padding on page ΓÇö SOT max is gap-4 / p-4 md:p-5
+
+ΓÜá∩╕Å  WARNING [typo-no-text-lg-font-bold] src\pages\SettlementHistoryPage.tsx:168
+  <p className="text-lg font-bold text-info">
+  ΓåÆ text-lg font-bold ΓåÆ use text-kpi (METRIC) or text-section font-semibold (SECTION)
+
+ΓÜá∩╕Å  WARNING [typo-no-text-lg-font-bold] src\pages\SettlementHistoryPage.tsx:184
+  <p className="text-lg font-bold text-primary">
+  ΓåÆ text-lg font-bold ΓåÆ use text-kpi (METRIC) or text-section font-semibold (SECTION)
+
+ΓÜá∩╕Å  WARNING [kpi-no-ad-hoc-typography] src\pages\SettlementHistoryPage.tsx:168
+  <p className="text-lg font-bold text-info">
+  ΓåÆ Ad-hoc KPI typography ΓÇö use MetricCard with text-kpi from semantic scale
+
+ΓÜá∩╕Å  WARNING [kpi-no-ad-hoc-typography] src\pages\SettlementHistoryPage.tsx:184
+  <p className="text-lg font-bold text-primary">
+  ΓåÆ Ad-hoc KPI typography ΓÇö use MetricCard with text-kpi from semantic scale
+
+ΓÜá∩╕Å  WARNING [typo-no-text-3xl-bold] src\pages\StaysPage.tsx:1282
+  <p className="text-3xl font-bold tracking-tight text-warning">{upcomingGuests.length}</p>
+  ΓåÆ text-3xl font-bold ΓåÆ use text-heroKpi font-semibold (HERO METRIC)
+
+ΓÜá∩╕Å  WARNING [typo-no-text-3xl-bold] src\pages\StaysPage.tsx:1306
+  <p className="text-3xl font-bold tracking-tight">{readyToCheckIn.length}</p>
+  ΓåÆ text-3xl font-bold ΓåÆ use text-heroKpi font-semibold (HERO METRIC)
+
+ΓÜá∩╕Å  WARNING [typo-no-text-3xl-bold] src\pages\StaysPage.tsx:1330
+  <p className="text-3xl font-bold tracking-tight text-success">{checkedInToday.length}</p>
+  ΓåÆ text-3xl font-bold ΓåÆ use text-heroKpi font-semibold (HERO METRIC)
+
+ΓÜá∩╕Å  WARNING [typo-no-text-3xl-bold] src\pages\StaysPage.tsx:1354
+  <p className="text-3xl font-bold tracking-tight text-success">{inHouse.length}</p>
+  ΓåÆ text-3xl font-bold ΓåÆ use text-heroKpi font-semibold (HERO METRIC)
+
+ΓÜá∩╕Å  WARNING [typo-no-text-3xl-bold] src\pages\StaysPage.tsx:1378
+  <p className="text-3xl font-bold tracking-tight text-warning">{checkedOutToday.length}</p>
+  ΓåÆ text-3xl font-bold ΓåÆ use text-heroKpi font-semibold (HERO METRIC)
+
+ΓÜá∩╕Å  WARNING [rhythm-no-space-y-6] src\pages\SyncJobsPage.tsx:124
+  <div className="space-y-6">
+  ΓåÆ space-y-6 drift ΓÇö SOT is gap-4 for page/section spacing
+
+ΓÜá∩╕Å  WARNING [rhythm-no-margin-6] src\pages\SyncJobsPage.tsx:60
+  <CardContent className="pt-6">
+  ΓåÆ Spacing-6 margin/padding on page ΓÇö SOT max is gap-4 / p-4 md:p-5
+
+ΓÜá∩╕Å  WARNING [rhythm-no-margin-6] src\pages\SyncJobsPage.tsx:177
+  <Card key={i}><CardContent className="pt-6"><Skeleton className="h-16 w-full" /></CardContent></Card>
+  ΓåÆ Spacing-6 margin/padding on page ΓÇö SOT max is gap-4 / p-4 md:p-5
+
+ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+UI Drift Guard: 0 errors, 167 warnings, 0 info
+Pages without Header/PageHeader: 0/69
+ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+
+ΓÜá∩╕Å  PASS with 167 warnings ΓÇö resolve before next sprint.
+

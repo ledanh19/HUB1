@@ -1,0 +1,1 @@
+ALTER TABLE public.ota_payouts ADD COLUMN IF NOT EXISTS received_at timestamptz DEFAULT NULL;

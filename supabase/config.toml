@@ -1,0 +1,160 @@
+project_id = "htfpjqkhtjbalaodymwb"
+
+# ============================================
+# PUBLIC FUNCTIONS - No authentication required
+# ============================================
+
+[functions.vapid-public-key]
+verify_jwt = false
+
+# ============================================
+# EDGE FUNCTIONS JWT CONFIGURATION
+# Updated: 2024-12-31 (Phase 1 Security Hardening)
+# ============================================
+
+# ============================================
+# EXTERNAL WEBHOOKS - verify_jwt = false
+# These receive callbacks from Channex/third-party
+# Authentication via HMAC signature verification
+# ============================================
+
+[functions.channex-webhook]
+verify_jwt = false
+
+[functions.channex-ari-webhook]
+verify_jwt = false
+
+[functions.channex-messages-webhook]
+verify_jwt = false
+
+# ============================================
+# INTERNAL/FRONTEND FUNCTIONS - verify_jwt = true
+# These are called from authenticated frontend
+# Requires valid Supabase JWT token
+# ============================================
+
+[functions.sync-channex-bookings]
+verify_jwt = false
+
+[functions.channex-properties-sync]
+verify_jwt = true
+
+[functions.channex-roomtypes-sync]
+verify_jwt = true
+
+[functions.channex-messages-sync]
+verify_jwt = false
+
+[functions.channex-send-message]
+verify_jwt = true
+
+[functions.channex-user-sync]
+verify_jwt = true
+
+[functions.channex-groups-sync]
+verify_jwt = true
+
+[functions.channex-register-webhooks]
+verify_jwt = true
+
+[functions.guest-matching]
+verify_jwt = true
+
+[functions.inventory-grid]
+verify_jwt = true
+
+[functions.inventory-cell-explain]
+verify_jwt = true
+
+[functions.inventory-dry-run]
+verify_jwt = true
+
+[functions.inventory-batch-update]
+verify_jwt = true
+
+[functions.inventory-batch-status]
+verify_jwt = true
+
+[functions.inventory-snapshot]
+verify_jwt = true
+
+[functions.channex-inventory-sync]
+verify_jwt = true
+
+[functions.channex-inventory-push]
+verify_jwt = true
+
+[functions.channex-full-sync]
+verify_jwt = true
+
+[functions.inventory-apply-rules]
+verify_jwt = true
+
+[functions.channex-rateplans-sync]
+verify_jwt = true
+
+[functions.channex-test-mapping]
+verify_jwt = true
+
+[functions.ai-pricing-outcome-evaluation]
+verify_jwt = true
+
+[functions.channex-one-time-token]
+verify_jwt = true
+
+[functions.push-subscribe]
+verify_jwt = true
+
+[functions.send-push]
+verify_jwt = false
+
+[functions.test-push]
+verify_jwt = true
+
+[functions.seed-vn-administrative]
+verify_jwt = false
+
+# ============================================
+# WHATSAPP FUNCTIONS
+# ============================================
+
+[functions.whatsapp-webhook]
+verify_jwt = false
+
+[functions.whatsapp-send-message]
+verify_jwt = true
+
+[functions.whatsapp-test-send]
+verify_jwt = true
+
+# ============================================
+# EMAIL FUNCTIONS
+# ============================================
+
+[functions.email-gmail-connect]
+verify_jwt = false
+
+[functions.email-gmail-callback]
+verify_jwt = false
+
+[functions.email-accounts]
+verify_jwt = false
+
+[functions.email-accounts-disconnect]
+verify_jwt = false
+
+[functions.email-threads]
+verify_jwt = false
+
+[functions.email-reply]
+verify_jwt = false
+
+[functions.email-sync-trigger]
+verify_jwt = false
+
+# ============================================
+# WEBHOOK EVENT PROCESSOR
+# ============================================
+
+[functions.process-webhook-events]
+verify_jwt = false

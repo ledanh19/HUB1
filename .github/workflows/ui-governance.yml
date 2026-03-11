@@ -1,0 +1,39 @@
+name: UI Governance
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: ['*']
+
+concurrency:
+  group: ui-governance-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  governance:
+    name: Drift Guard + Typecheck + Build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node LTS
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: UI Drift Guard (hard gate)
+        run: npm run ui:guard
+
+      - name: TypeScript check
+        run: npx tsc --noEmit
+
+      - name: Production build
+        run: npm run build

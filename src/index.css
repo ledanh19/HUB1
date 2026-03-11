@@ -1,0 +1,2238 @@
+@import "@fontsource/be-vietnam-pro/400.css";
+@import "@fontsource/be-vietnam-pro/500.css";
+@import "@fontsource/be-vietnam-pro/600.css";
+@import "@fontsource/be-vietnam-pro/700.css";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 
+  ROOMRISE CONTROL HUB - QUIET LUXURY UI SYSTEM
+  =============================================
+  Enterprise Finance & Operations - World Class (Top 1%)
+
+  DESIGN PHILOSOPHY:
+  - Tĩnh – chắc – tin cậy – kiểm soát
+  - Dữ liệu là spotlight, không phải UI
+  - Nhìn 8-10h/ngày không mỏi mắt
+  - Smooth, professional animations
+
+  COLOR STRATEGY:
+  - 90% UI: Neutral (off-white, white, subtle gray)
+  - 10% UI: Status colors (dùng có ý nghĩa)
+  - Refined shadows & depth
+*/
+
+@layer base {
+  /* ═══════════════════════════════════════════════════════════
+     PREMIUM ANIMATION KEYFRAMES
+     ═══════════════════════════════════════════════════════════ */
+
+  @keyframes premium-fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes premium-fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes premium-scale-in {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes premium-slide-in-right {
+    from {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes premium-slide-in-left {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes premium-glow-pulse {
+
+    0%,
+    100% {
+      box-shadow: 0 0 0 0 hsl(var(--primary) / 0.2);
+    }
+
+    50% {
+      box-shadow: 0 0 0 8px hsl(var(--primary) / 0);
+    }
+  }
+
+  @keyframes premium-shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  /* Route transition loading bar — refined indeterminate animation */
+  @keyframes route-bar-indeterminate {
+    0% {
+      transform: translateX(-100%);
+      width: 35%;
+    }
+
+    50% {
+      transform: translateX(50%);
+      width: 55%;
+    }
+
+    100% {
+      transform: translateX(200%);
+      width: 35%;
+    }
+  }
+
+  .animate-route-bar {
+    animation: route-bar-indeterminate 1.4s ease-in-out infinite;
+  }
+
+  @keyframes premium-bounce-subtle {
+
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-3px);
+    }
+  }
+
+  @keyframes premium-float {
+
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+
+    50% {
+      transform: translateY(-4px);
+    }
+  }
+
+  @keyframes premium-spin-slow {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes premium-success-check {
+    0% {
+      stroke-dashoffset: 100;
+    }
+
+    100% {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes premium-counter {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  :root {
+    /* ═══════════════════════════════════════════════════
+       FONT SYSTEM SOT (Single Source of Truth)
+       Primary: Be Vietnam Pro (Vietnamese-optimized)
+       ═══════════════════════════════════════════════════ */
+    --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    /* ═══════════════════════════════════════════════════
+       ROOMRISE CONTROL HUB - MASTER COLOR PALETTE
+       Enterprise Finance & Operations - Quiet Luxury
+
+       Philosophy:
+       - Dùng 8–10 tiếng/ngày không mệt
+       - Tin cậy – kiểm soát – premium
+       - Không trendy, không AI hoá
+       ═══════════════════════════════════════════════════ */
+
+    /* ═══════════════════════════════════════════════════
+       BACKGROUND SYSTEM - Gray body + white cards
+       Body: #F3F4F6 (gray-100) | Card: #FFFFFF
+       ═══════════════════════════════════════════════════ */
+    --background: 0 0% 100%;
+    /* #F3F4F6 - Global body gray */
+    --foreground: 0 0% 0%;
+    /* #0F172A - Text Primary */
+
+    /* Cards & Surfaces */
+    --card: 0 0% 100%;
+    /* #FFFFFF */
+    --card-foreground: 265 4% 12.9%;
+    /* #0F172A */
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 265 4% 12.9%;
+
+    /* ═══════════════════════════════════════════════════
+       PRIMARY - Roomrise Navy Blue (Trust & Control)
+       #0B3C5D | Hover: #0E4A73 | Active: #082E46
+       ═══════════════════════════════════════════════════ */
+    --primary: 201 96.3415% 32.1569%;
+    /* #0B3C5D */
+    --primary-foreground: 248 0.3% 98.4%;
+    /* #FFFFFF */
+    --primary-hover: 204 78% 25%;
+    /* #0E4A73 */
+    --primary-active: 204 82% 15%;
+    /* #082E46 */
+
+    /* Secondary: Light gray surfaces #F1F4F8 */
+    --secondary: 210 40% 98.0392%;
+    /* #F1F4F8 */
+    --secondary-foreground: 266 4% 20.8%;
+    /* Navy text */
+
+    /* Muted: For secondary text */
+    --muted: 248 0.7% 96.8%;
+    /* #F1F4F8 */
+    --muted-foreground: 215 16.318% 46.8627%;
+    /* #64748B */
+
+    /* Accent: Same as primary for consistency */
+    --accent: 248 0.7% 96.8%;
+    --accent-foreground: 266 4% 20.8%;
+
+    /* Destructive: Deep red #991B1B */
+    --destructive: 27 24.5% 57.7%;
+    /* #991B1B */
+    --destructive-foreground: 0 0% 100%;
+    --destructive-hover: 0 74% 31%;
+    /* #7F1D1D */
+
+    /* ═══════════════════════════════════════════════════
+       BORDER & DIVIDER - Nhìn thấy nhưng không nhận ra
+       Subtle: #E2E8F0 | Default: #CBD5E1
+       ═══════════════════════════════════════════════════ */
+    --border: 256 1.3% 92.9%;
+    /* #E2E8F0 */
+    --border-default: 214 25% 84%;
+    /* #CBD5E1 */
+    --input: 256 1.3% 92.9%;
+    --ring: 257 4% 70.4%;
+
+    /* Border radius: 8-10px as per brief */
+    --radius: 0.375rem;
+    /* 8px */
+
+    /* ═══════════════════════════════════════════════════
+       STATUS COLORS - Semantic, không trang trí
+       ═══════════════════════════════════════════════════ */
+
+    /* Neutral */
+    --status-neutral: 215 19% 35%;
+    /* #475569 */
+    --status-neutral-bg: 216 30% 96%;
+    /* #F1F5F9 */
+
+    /* Info/Confirmed - True Blue */
+    --status-info: 217 91% 60%;
+    /* #2563EB - blue-600 */
+    --status-info-bg: 214 100% 97%;
+    /* #EFF6FF - blue-50 */
+
+    /* Warning/Pending - Amber #B45309 */
+    --status-warning: 32 91% 37%;
+    /* #B45309 */
+    --status-warning-bg: 48 96% 97%;
+    /* #FFFBEB */
+
+    /* Danger/Dispute - Red #991B1B */
+    --status-danger: 0 73% 35%;
+    /* #991B1B */
+    --status-danger-bg: 0 86% 97%;
+    /* #FEF2F2 */
+
+    /* Success/Paid - Green #15803D */
+    --status-success: 142 72% 29%;
+    /* #15803D */
+    --status-success-bg: 149 80% 96%;
+    /* #ECFDF3 */
+
+    /* ═══════════════════════════════════════════════════
+       SEMANTIC COLORS
+       ═══════════════════════════════════════════════════ */
+
+    --success: 142 72% 29%;
+    /* #15803D */
+    --success-foreground: 0 0% 100%;
+    --success-lime: 142 76% 36%;
+
+    --warning: 32 91% 37%;
+    /* #B45309 */
+    --warning-foreground: 0 0% 100%;
+    --info: 215 19% 35%;
+    /* #475569 */
+    --info-foreground: 0 0% 100%;
+    --danger: 0 73% 35%;
+    /* #991B1B */
+    --danger-foreground: 0 0% 100%;
+
+    /* Financial semantic colors */
+    --finance-payable: 0 73% 35%;
+    --finance-paid: 142 72% 29%;
+    --finance-deposit-held: 32 91% 37%;
+    --finance-prepaid-pending: 25 95% 53%;
+    --finance-applied: 204 79% 20%;
+    --finance-zero: 215 14% 40%;
+    /* #6B7280 */
+    --finance-host-collected: 32 95% 44%;
+
+    /* Aging bucket colors */
+    --aging-0-7: 204 79% 20%;
+    --aging-8-14: 199 89% 48%;
+    --aging-15-30: 32 91% 37%;
+    --aging-over-30: 0 73% 35%;
+
+    /* OTA Brand colors */
+    --ota-booking: 207 90% 54%;
+    --ota-agoda: 14 100% 57%;
+    --ota-expedia: 45 93% 47%;
+    --ota-airbnb: 356 100% 66%;
+    --ota-traveloka: 199 89% 48%;
+
+    /* Status hierarchy */
+    --status-pending: 32 91% 37%;
+    /* Amber */
+    --status-confirmed: 215 19% 35%;
+    /* Blue-gray */
+    --status-checked-in: 142 72% 29%;
+    /* Green */
+    --status-checked-out: 215 14% 40%;
+    /* Gray */
+    --status-paid: 142 72% 29%;
+    /* Green */
+    --status-cancelled: 0 73% 35%;
+    /* Red */
+    --status-no-show: 0 73% 35%;
+    /* Red */
+
+    /* ═══════════════════════════════════════════════════
+       NAVIGATION - LIGHT MODE
+       ═══════════════════════════════════════════════════ */
+    --nav-background: 0 0% 100%;
+    --nav-foreground: 222 47% 11%;
+    --nav-border: 214 32% 91%;
+    --nav-hover: 216 30% 96%;
+    --nav-active: 204 79% 20%;
+    --nav-active-bg: 204 79% 95%;
+
+    /* Sidebar - Navy gradient for brand identity */
+    --sidebar-background: 216 62% 15%;
+    /* #0F2D5C navy */
+    --sidebar-foreground: 265 4% 12.9%;
+    /* white 90% */
+    --sidebar-primary: 266 4% 20.8%;
+    --sidebar-primary-foreground: 248 0.3% 98.4%;
+    --sidebar-accent: 248 0.7% 96.8%;
+    /* rgba(255,255,255,0.12) equivalent */
+    --sidebar-accent-foreground: 266 4% 20.8%;
+    --sidebar-border: 256 1.3% 92.9%;
+    /* subtle border */
+    --sidebar-ring: 257 4% 70.4%;
+
+    /* Chart colors */
+    --chart-1: 41 22.2% 64.6%;
+    --chart-2: 185 11.8% 60%;
+    --chart-3: 227 7% 39.8%;
+    --chart-4: 84 18.9% 82.8%;
+    --chart-5: 70 18.8% 76.9%;
+    --chart-bar-1: 204 50% 35%;
+    --chart-bar-2: 204 30% 25%;
+    --chart-bar-3: 215 14% 50%;
+
+    /* ═══════════════════════════════════════════════════
+       TEXT SYSTEM - Đọc lâu không mệt
+       Primary: #0F172A | Secondary: #334155 
+       Muted: #64748B | Disabled: #94A3B8
+       ═══════════════════════════════════════════════════ */
+    --text-primary: 222 47% 11%;
+    /* #0F172A */
+    --text-secondary: 215 25% 27%;
+    /* #334155 */
+    --text-muted: 215 16% 47%;
+    /* #64748B */
+    --text-disabled: 215 16% 65%;
+    /* #94A3B8 */
+
+    /* ═══════════════════════════════════════════════════
+       KPI SYSTEM - Signature Roomrise
+       Value: #020617 | Label: #475569
+       ═══════════════════════════════════════════════════ */
+    --kpi-value: 222 84% 5%;
+    /* #020617 */
+    --kpi-label: 215 19% 35%;
+    /* #475569 */
+
+    /* ═══════════════════════════════════════════════════
+       SHADOW & OVERLAY - Tạo chiều sâu tinh tế
+       ═══════════════════════════════════════════════════ */
+    --shadow-color: 222 47% 11%;
+    /* Based on foreground */
+    --overlay: 222 47% 11%;
+    /* #0F172A at 45% */
+    --sidebar: 248 0.3% 98.4%;
+    --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+    --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+    --shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
+    --shadow: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
+    --shadow-md: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 2px 4px -1px hsl(0 0% 0% / 0.1);
+    --shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 4px 6px -1px hsl(0 0% 0% / 0.1);
+    --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 8px 10px -1px hsl(0 0% 0% / 0.1);
+    --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
+    --tracking-normal: 0em;
+    --spacing: 0.25rem;
+  }
+
+  /* ═══════════════════════════════════════════════════
+     DARK MODE - Clean dark theme
+     Based on brief: #020617 background
+     ═══════════════════════════════════════════════════ */
+  .dark {
+    --background: 0 0% 15%;
+    /* #0F172A */
+    --foreground: 248 0.3% 98.4%;
+    /* #E5E7EB */
+
+    --card: 266 4% 20.8%;
+    /* #1E293B */
+    --card-foreground: 248 0.3% 98.4%;
+
+    --popover: 266 4% 20.8%;
+    --popover-foreground: 248 0.3% 98.4%;
+
+    --primary: 256 1.3% 92.9%;
+    /* Lighter for dark mode */
+    --primary-foreground: 266 4% 20.8%;
+
+    --secondary: 260 4.1% 27.9%;
+    --secondary-foreground: 248 0.3% 98.4%;
+
+    --muted: 260 4.1% 27.9%;
+    --muted-foreground: 257 4% 70.4%;
+
+    --accent: 260 4.1% 27.9%;
+    --accent-foreground: 248 0.3% 98.4%;
+
+    --destructive: 22 19.1% 70.4%;
+    --destructive-foreground: 248 0.3% 98.4%;
+
+    --border: 0 0% 100% / 10%;
+    /* #1E293B */
+    --input: 0 0% 100% / 15%;
+    --ring: 264 2.7% 55.1%;
+
+    --nav-background: 222 84% 5%;
+    --nav-foreground: 220 13% 90%;
+    --nav-border: 222 47% 15%;
+    --nav-hover: 222 47% 12%;
+    --nav-active: 204 79% 45%;
+    --nav-active-bg: 204 79% 15%;
+
+    --sidebar-background: 222 84% 3%;
+    --sidebar-foreground: 248 0.3% 98.4%;
+    --sidebar-primary: 264 24.3% 48.8%;
+    --sidebar-primary-foreground: 248 0.3% 98.4%;
+    --sidebar-accent: 260 4.1% 27.9%;
+    --sidebar-accent-foreground: 248 0.3% 98.4%;
+    --sidebar-border: 0 0% 100% / 10%;
+    --sidebar-ring: 264 2.7% 55.1%;
+
+    --status-neutral: 215 14% 55%;
+    --status-neutral-bg: 222 47% 12%;
+
+    --status-info: 217 91% 65%;
+    --status-info-bg: 217 91% 15%;
+
+    --status-warning: 32 91% 50%;
+    --status-warning-bg: 32 91% 12%;
+
+    --status-danger: 0 73% 50%;
+    --status-danger-bg: 0 73% 12%;
+
+    --status-success: 142 72% 40%;
+    --status-success-bg: 142 72% 10%;
+
+    --success: 142 72% 40%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 32 91% 50%;
+    --info: 215 14% 55%;
+    --danger: 0 73% 50%;
+
+    --chart-1: 264 24.3% 48.8%;
+    --chart-2: 162 17% 69.6%;
+    --chart-3: 70 18.8% 76.9%;
+    --chart-4: 304 26.5% 62.7%;
+    --chart-5: 16 24.6% 64.5%;
+    --chart-bar-1: 204 50% 40%;
+    --chart-bar-2: 204 30% 30%;
+    --chart-bar-3: 215 14% 45%;
+
+    --text-primary: 220 13% 91%;
+    --text-secondary: 215 16% 65%;
+    --text-muted: 215 16% 55%;
+    --text-disabled: 215 16% 40%;
+
+    --kpi-value: 220 13% 95%;
+    --kpi-label: 215 16% 65%;
+    --sidebar: 266 4% 20.8%;
+    --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+    --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+    --shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
+    --shadow: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
+    --shadow-md: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 2px 4px -1px hsl(0 0% 0% / 0.1);
+    --shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 4px 6px -1px hsl(0 0% 0% / 0.1);
+    --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 8px 10px -1px hsl(0 0% 0% / 0.1);
+    --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  /* ═══════════════════════════════════════════════════
+     FIX: Radix Dialog + Nested Popover/Select/Calendar
+     Dialog's RemoveScroll sets pointer-events: none on
+     body, blocking portaled content. These overrides
+     ensure all Radix portals remain interactive.
+     ═══════════════════════════════════════════════════ */
+  [data-radix-popper-content-wrapper] {
+    pointer-events: auto !important;
+  }
+
+  [data-radix-select-viewport] {
+    pointer-events: auto !important;
+  }
+
+  /* Radix portal containers (used by Select, Popover, etc) */
+  [data-radix-portal] {
+    pointer-events: auto !important;
+  }
+
+  html {
+    /* Ensure full viewport coverage including safe areas */
+    min-height: 100%;
+    background: hsl(var(--background));
+    overflow-x: hidden;
+    /* NOTE: No scrollbar-gutter needed — root div is h-screen overflow-hidden,
+       so the body-level scrollbar never appears. */
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-sans);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    /* Fix black bars on mobile */
+    min-height: 100vh;
+    min-height: 100dvh;
+    /* Dynamic viewport height for mobile */
+    overflow-x: hidden;
+  }
+
+  /* Ensure form elements inherit the font system */
+  input,
+  textarea,
+  button,
+  select {
+    font-family: inherit;
+  }
+
+  /* PWA safe areas - use background-color extend pattern for iOS */
+  html {
+    /* Fill safe areas with background color */
+    background-color: hsl(var(--background));
+  }
+
+  /* Use safe-area classes on specific elements, not global padding */
+
+  h1 {
+    @apply text-xl font-semibold tracking-tight text-foreground;
+    line-height: 1.3;
+  }
+
+  h2 {
+    @apply text-lg font-semibold tracking-tight text-foreground;
+    line-height: 1.35;
+  }
+
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: inherit;
+    @apply font-medium tracking-tight;
+    line-height: 1.4;
+  }
+}
+
+@layer utilities {
+
+  /* Page title: 20-22px */
+  .text-page-title {
+    @apply text-xl font-semibold text-foreground tracking-tight;
+  }
+
+  /* Page description */
+  .text-page-description {
+    @apply text-[13px] text-muted-foreground;
+  }
+
+  /* ═══════════════════════════════════════════════════
+     TABLE SYSTEM - TRÁI TIM CỦA UI
+     Density: Gọn, dễ scan, không dày không loãng
+
+     SINGLE SOURCE OF TRUTH for all tables:
+     - Raw <table> HTML (17+ pages)
+     - TableCell component (shadcn)
+     - DataTable component
+     All produce identical visual output.
+     ═══════════════════════════════════════════════════ */
+
+  /* Global cell alignment — all cells center vertically */
+  th,
+  td {
+    white-space: nowrap;
+    vertical-align: middle;
+  }
+
+  /* Force ALL inline children to center-align with each other.
+     vertical-align: middle alone is NOT enough because badges (inline-flex),
+     text (inline), and icons (inline-block) have different intrinsic heights
+     and align by BASELINE, causing 1-3px visual misalignment.
+
+     Solution: make every direct child an inline-flex box that self-centers
+     its content, then vertical-align: middle aligns those boxes to each other. */
+  tbody td>* {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+  }
+
+  /* Global body cell defaults — matches TableCell component */
+  tbody td {
+    padding: 0.625rem 0.75rem;
+    /* py-2.5 px-3 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  /* Global header cell defaults — matches TableHead component */
+  thead th {
+    padding: 0.75rem 0.75rem;
+    /* py-3 px-3 */
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.025em;
+    color: hsl(var(--muted-foreground) / 0.9);
+  }
+
+  /* Legacy utility classes (still usable for overrides) */
+  .table-header {
+    @apply px-3 py-3 text-left text-[11px] font-semibold text-muted-foreground/90 tracking-wide;
+  }
+
+  .table-header-right {
+    @apply px-3 py-3 text-right text-[11px] font-semibold text-muted-foreground/90 tracking-wide;
+  }
+
+  /* Table row - 2 tier structure support */
+  .table-row-quiet {
+    @apply border-b border-border/50 transition-colors;
+  }
+
+  .table-row-quiet:hover {
+    @apply bg-muted/30;
+  }
+
+  /* Row with left border indicator */
+  .table-row-attention {
+    @apply border-l-2 border-l-status-warning;
+  }
+
+  .table-row-danger {
+    @apply border-l-2 border-l-status-danger;
+  }
+
+  /* ═══════════════════════════════════════════════════
+     STATUS INDICATOR - NGÔN NGỮ CHÍNH
+     Không phải màu - mà là structure
+     ═══════════════════════════════════════════════════ */
+
+  /* Status dot - tiny indicator */
+  .status-dot {
+    @apply h-1.5 w-1.5 rounded-full;
+  }
+
+  .status-dot-neutral {
+    @apply bg-muted-foreground/40;
+  }
+
+  .status-dot-info {
+    background-color: hsl(var(--status-info));
+  }
+
+  .status-dot-warning {
+    background-color: hsl(var(--status-warning));
+  }
+
+  .status-dot-danger {
+    background-color: hsl(var(--status-danger));
+  }
+
+  .status-dot-success {
+    background-color: hsl(var(--status-success));
+  }
+
+  /* ═══════════════════════════════════════════════════
+     KPI CARD - TOP 1 DESIGN (Calm Revenue Workspace)
+     Fade-in 80-120ms, no count-up, no bounce
+     ═══════════════════════════════════════════════════ */
+
+  .kpi-card {
+    @apply bg-card border border-border/60 rounded-lg p-4;
+    animation: kpiFadeIn 100ms ease-out forwards;
+  }
+
+  .kpi-card:hover {
+    @apply bg-muted/20;
+    box-shadow: 0 2px 8px -2px hsl(var(--foreground) / 0.06);
+  }
+
+  @keyframes kpiFadeIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  .kpi-value {
+    @apply text-xl font-semibold text-foreground tabular-nums;
+  }
+
+  .kpi-value-unavailable {
+    @apply text-lg font-medium text-muted-foreground;
+  }
+
+  .kpi-label {
+    @apply text-xs font-medium text-muted-foreground;
+  }
+
+  .kpi-sublabel {
+    @apply text-xs text-muted-foreground/70 mt-1;
+  }
+
+  .kpi-change-positive {
+    @apply text-xs text-status-success;
+  }
+
+  .kpi-change-negative {
+    @apply text-xs text-status-danger;
+  }
+
+  /* ═══════════════════════════════════════════════════
+     SIGNAL CALENDAR - TOP 1 DESIGN
+     Semantic > Color, Hover-first interaction
+     ═══════════════════════════════════════════════════ */
+
+  .calendar-cell {
+    @apply relative p-2 rounded-lg border transition-all text-left;
+    transition: box-shadow 80ms ease-out, border-color 80ms ease-out;
+  }
+
+  .calendar-cell:not(:disabled):hover {
+    box-shadow: 0 2px 8px -2px hsl(var(--foreground) / 0.08);
+  }
+
+  /* State: Notable (green subtle border) */
+  .calendar-cell-notable {
+    @apply border-green-300/60 bg-green-50/30;
+  }
+
+  /* State: Normal (gray) */
+  .calendar-cell-normal {
+    @apply border-border/50 bg-card;
+  }
+
+  /* State: Reference only (dashed, icon) */
+  .calendar-cell-reference {
+    @apply border-dashed border-amber-300/60 bg-amber-50/20;
+  }
+
+  /* State: Invalid (gray, disabled) */
+  .calendar-cell-invalid {
+    @apply opacity-40 cursor-not-allowed bg-muted/50 border-muted;
+  }
+
+  /* Signal badges - semantic, not colorful */
+  .signal-badge {
+    @apply text-[9px] px-1.5 py-0.5 rounded font-medium;
+  }
+
+  .signal-badge-high {
+    @apply bg-green-100 text-green-700 border border-green-200;
+  }
+
+  .signal-badge-normal {
+    @apply bg-slate-100 text-slate-600 border border-slate-200;
+  }
+
+  .signal-badge-low {
+    @apply bg-amber-100 text-amber-700 border border-amber-200;
+  }
+
+  /* ═══════════════════════════════════════════════════
+     INSIGHT PANEL - CALM REVEAL
+     fade + scale 0.98→1 (160ms)
+     ═══════════════════════════════════════════════════ */
+
+  .insight-panel-content {
+    animation: insightPanelIn 160ms ease-out forwards;
+  }
+
+  @keyframes insightPanelIn {
+    from {
+      opacity: 0;
+      transform: scale(0.98);
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* ═══════════════════════════════════════════════════
+     CHART LINE ANIMATION
+     Line draw L→R 240-300ms, ease-out
+     ═══════════════════════════════════════════════════ */
+
+  .chart-line-animate {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: chartLineDraw 280ms ease-out forwards;
+  }
+
+  @keyframes chartLineDraw {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  /* ═══════════════════════════════════════════════════════════════
+     WORLD-CLASS ANIMATION SYSTEM
+     ═══════════════════════════════════════════════════════════════
+
+     PHILOSOPHY:
+     - Animation là hệ thống nhận thức, không phải hiệu ứng
+     - Invisible but essential
+     - Purpose before beauty
+     - Predictable, never surprising
+     - Fast response > visual flair
+
+     TIMING TOKENS:
+     - Micro (hover/focus): 80-100ms
+     - Fast (state change): 120ms
+     - Normal (feedback): 150ms
+     - Medium (panels): 180ms
+     - Slow (drawers): 240ms
+     - MAX: 300ms (không vượt)
+
+     EASING: cubic-bezier(0.2, 0.8, 0.2, 1) - dừng êm, không bounce
+     ═══════════════════════════════════════════════════════════════ */
+
+  /* === MOTION TOKENS (CSS Variables) === */
+  :root {
+    --motion-micro: 80ms;
+    --motion-fast: 120ms;
+    --motion-normal: 150ms;
+    --motion-medium: 180ms;
+    --motion-slow: 240ms;
+    --motion-easing: cubic-bezier(0.2, 0.8, 0.2, 1);
+    --motion-easing-out: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* === PREFERS-REDUCED-MOTION (Accessibility) === */
+  @media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* ═══════════════════════════════════════════════════
+     5.5. MICRO-INTERACTIONS
+     Hover row, card, focus input, checkbox
+     Rất nhanh (80-120ms), rất nhẹ, nhất quán 100%
+     ═══════════════════════════════════════════════════ */
+
+  /* Hover - Ultra fast response */
+  .hover-lift {
+    transition: transform var(--motion-fast) var(--motion-easing),
+      box-shadow var(--motion-fast) var(--motion-easing);
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px -2px hsl(var(--foreground) / 0.08);
+  }
+
+  .hover-scale {
+    transition: transform var(--motion-micro) var(--motion-easing);
+  }
+
+  .hover-scale:hover {
+    transform: scale(1.02);
+  }
+
+  .hover-subtle {
+    transition: background-color var(--motion-micro) var(--motion-easing);
+  }
+
+  .hover-subtle:hover {
+    background-color: hsl(var(--muted) / 0.5);
+  }
+
+  /* Focus - Input states */
+  .focus-ring {
+    transition: box-shadow var(--motion-fast) var(--motion-easing),
+      border-color var(--motion-fast) var(--motion-easing);
+  }
+
+  .focus-ring:focus {
+    box-shadow: 0 0 0 2px hsl(var(--primary) / 0.15);
+    border-color: hsl(var(--primary) / 0.5);
+  }
+
+  /* ═══════════════════════════════════════════════════
+     5.1. FEEDBACK ANIMATION - XÁC NHẬN HÀNH ĐỘNG
+     Save, Submit, Approve, Change status
+     150-200ms, rõ ràng, không reload
+     ═══════════════════════════════════════════════════ */
+
+  /* Button press - instant feedback */
+  .active-press {
+    transition: transform var(--motion-micro) var(--motion-easing);
+  }
+
+  .active-press:active {
+    transform: scale(0.97);
+  }
+
+  /* Success state */
+  .feedback-success {
+    animation: successPulse var(--motion-normal) var(--motion-easing);
+  }
+
+  @keyframes successPulse {
+    0% {
+      box-shadow: 0 0 0 0 hsl(var(--success) / 0.4);
+    }
+
+    100% {
+      box-shadow: 0 0 0 4px hsl(var(--success) / 0);
+    }
+  }
+
+  /* ═══════════════════════════════════════════════════
+     6. FAIL & ERROR ANIMATION
+     Không mượt - dứt khoát, thời gian ngắn (<120ms)
+     ═══════════════════════════════════════════════════ */
+
+  .error-shake {
+    animation: errorShake 100ms ease-in-out;
+  }
+
+  @keyframes errorShake {
+
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+
+    25% {
+      transform: translateX(-4px);
+    }
+
+    75% {
+      transform: translateX(4px);
+    }
+  }
+
+  .error-flash {
+    animation: errorFlash 120ms ease-out;
+  }
+
+  @keyframes errorFlash {
+    0% {
+      background-color: hsl(var(--destructive) / 0.15);
+    }
+
+    100% {
+      background-color: transparent;
+    }
+  }
+
+  /* ═══════════════════════════════════════════════════
+     5.2. LOADING & PROCESSING
+     Skeleton layout, không spinner trống
+     ═══════════════════════════════════════════════════ */
+
+  .skeleton-shine {
+    background: linear-gradient(90deg,
+        hsl(var(--muted)) 25%,
+        hsl(var(--muted-foreground) / 0.08) 50%,
+        hsl(var(--muted)) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1500ms linear infinite;
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: 200% 0;
+    }
+
+    100% {
+      background-position: -200% 0;
+    }
+  }
+
+  /* Slow spin for refresh indicators */
+  .animate-spin-slow {
+    animation: spinSlow 2s linear infinite;
+  }
+
+  @keyframes spinSlow {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* Progress bar */
+  .progress-animate {
+    animation: progressGrow 800ms var(--motion-easing) forwards;
+  }
+
+  @keyframes progressGrow {
+    from {
+      width: 0;
+    }
+  }
+
+  /* ═══════════════════════════════════════════════════
+     5.3. TRANSITION ANIMATION - CHUYỂN NGỮ CẢNH
+     Mở detail, chuyển tab, mở panel/drawer
+     180-240ms, slide nhẹ, giữ bối cảnh
+     ═══════════════════════════════════════════════════ */
+
+  /* Panel/Drawer enter */
+  .panel-enter {
+    animation: panelIn var(--motion-slow) var(--motion-easing);
+  }
+
+  @keyframes panelIn {
+    from {
+      opacity: 0;
+      transform: translateX(16px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  /* Modal/Dialog */
+  .modal-enter {
+    animation: modalIn var(--motion-medium) var(--motion-easing);
+  }
+
+  @keyframes modalIn {
+    from {
+      opacity: 0;
+      transform: scale(0.96);
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .modal-overlay {
+    animation: overlayIn var(--motion-normal) var(--motion-easing);
+  }
+
+  @keyframes overlayIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Tab change */
+  .tab-content-enter {
+    animation: tabIn var(--motion-normal) var(--motion-easing);
+  }
+
+  @keyframes tabIn {
+    from {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* ═══════════════════════════════════════════════════
+     5.4. HIERARCHY ANIMATION - NHẤN MẠNH ƯU TIÊN
+     KPI quan trọng, Alert nghiêm trọng
+     Scale nhẹ (1.02-1.03), không nhấp nháy
+     ═══════════════════════════════════════════════════ */
+
+  .emphasis-scale {
+    animation: emphasisScale 300ms var(--motion-easing);
+  }
+
+  @keyframes emphasisScale {
+
+    0%,
+    100% {
+      transform: scale(1);
+    }
+
+    50% {
+      transform: scale(1.02);
+    }
+  }
+
+  .highlight-change {
+    animation: highlightBg 1200ms ease-out;
+  }
+
+  @keyframes highlightBg {
+    0% {
+      background-color: hsl(var(--primary) / 0.12);
+    }
+
+    100% {
+      background-color: transparent;
+    }
+  }
+
+  /* ═══════════════════════════════════════════════════
+     7. DATA-AWARE MOTION
+     Table lớn, realtime - chỉ animate header/summary
+     ═══════════════════════════════════════════════════ */
+
+  /* Table row - chỉ hover, không animate scroll */
+  .table-row-interactive {
+    transition: background-color var(--motion-micro) var(--motion-easing);
+  }
+
+  .table-row-interactive:hover {
+    background-color: hsl(var(--muted) / 0.4);
+  }
+
+  /* Number/KPI update */
+  .number-update {
+    animation: numberIn var(--motion-medium) var(--motion-easing);
+  }
+
+  @keyframes numberIn {
+    from {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* ═══════════════════════════════════════════════════
+     CARD & INTERACTIVE ELEMENTS
+     ═══════════════════════════════════════════════════ */
+
+  .card-interactive {
+    transition: transform var(--motion-fast) var(--motion-easing),
+      box-shadow var(--motion-fast) var(--motion-easing),
+      border-color var(--motion-fast) var(--motion-easing);
+  }
+
+  .card-interactive:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px -4px hsl(var(--foreground) / 0.08);
+  }
+
+  .card-interactive:active {
+    transform: translateY(0) scale(0.99);
+  }
+
+  /* ═══════════════════════════════════════════════════
+     BUTTON SYSTEM
+     ═══════════════════════════════════════════════════ */
+
+  .btn-primary {
+    transition: background-color var(--motion-fast) var(--motion-easing),
+      transform var(--motion-micro) var(--motion-easing),
+      box-shadow var(--motion-fast) var(--motion-easing);
+  }
+
+  .btn-primary:hover {
+    box-shadow: 0 2px 8px -2px hsl(var(--primary) / 0.3);
+  }
+
+  .btn-primary:active {
+    transform: scale(0.97);
+  }
+
+  /* ═══════════════════════════════════════════════════
+     NOTIFICATION/TOAST
+     ═══════════════════════════════════════════════════ */
+
+  .notification-enter {
+    animation: notificationIn var(--motion-slow) var(--motion-easing);
+  }
+
+  @keyframes notificationIn {
+    from {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .notification-exit {
+    animation: notificationOut 200ms var(--motion-easing-out);
+  }
+
+  @keyframes notificationOut {
+    from {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    to {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+  }
+
+  /* ═══════════════════════════════════════════════════
+     STAGGER ANIMATIONS (controlled, max 8 items)
+     ═══════════════════════════════════════════════════ */
+
+  .stagger-item {
+    opacity: 0;
+    animation: staggerIn var(--motion-medium) var(--motion-easing) forwards;
+  }
+
+  .stagger-item:nth-child(1) {
+    animation-delay: 0ms;
+  }
+
+  .stagger-item:nth-child(2) {
+    animation-delay: 30ms;
+  }
+
+  .stagger-item:nth-child(3) {
+    animation-delay: 60ms;
+  }
+
+  .stagger-item:nth-child(4) {
+    animation-delay: 90ms;
+  }
+
+  .stagger-item:nth-child(5) {
+    animation-delay: 120ms;
+  }
+
+  .stagger-item:nth-child(6) {
+    animation-delay: 150ms;
+  }
+
+  .stagger-item:nth-child(7) {
+    animation-delay: 180ms;
+  }
+
+  .stagger-item:nth-child(8) {
+    animation-delay: 210ms;
+  }
+
+  @keyframes staggerIn {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* ═══════════════════════════════════════════════════
+     BOOKING DETAIL — JS-TRIGGERED ENTRANCE v3
+     .bd-animated added by useEffect after first paint
+     ═══════════════════════════════════════════════════ */
+
+  .bd-header {
+    animation: bdFadeIn 300ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  /* Cards: hidden → slide up */
+  .bd-card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 500ms cubic-bezier(0.16, 1, 0.3, 1), transform 500ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .bd-animated .bd-card {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Sidebar: hidden → slide from right */
+  .bd-sidebar {
+    opacity: 0;
+    transform: translateX(30px);
+    transition: opacity 500ms cubic-bezier(0.16, 1, 0.3, 1), transform 500ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: 150ms;
+  }
+
+  .bd-animated .bd-sidebar {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .bd-sidebar>* {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 400ms cubic-bezier(0.16, 1, 0.3, 1), transform 400ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .bd-animated .bd-sidebar>* {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .bd-sidebar>*:nth-child(1) {
+    transition-delay: 200ms;
+  }
+
+  .bd-sidebar>*:nth-child(2) {
+    transition-delay: 320ms;
+  }
+
+  .bd-sidebar>*:nth-child(3) {
+    transition-delay: 440ms;
+  }
+
+  .bd-sidebar>*:nth-child(4) {
+    transition-delay: 560ms;
+  }
+
+  .bd-sidebar>*:nth-child(5) {
+    transition-delay: 680ms;
+  }
+
+  /* Payment cards: scale-in */
+  .bd-payment-card {
+    opacity: 0;
+    transform: scale(0.93);
+    transition: opacity 400ms cubic-bezier(0.16, 1, 0.3, 1), transform 400ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .bd-animated .bd-payment-card {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .bd-payment-card:nth-child(1) {
+    transition-delay: 100ms;
+  }
+
+  .bd-payment-card:nth-child(2) {
+    transition-delay: 200ms;
+  }
+
+  .bd-payment-card:nth-child(3) {
+    transition-delay: 300ms;
+  }
+
+  .bd-summary {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 400ms cubic-bezier(0.16, 1, 0.3, 1), transform 400ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: 400ms;
+  }
+
+  .bd-animated .bd-summary {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .bd-tab-content {
+    animation: bdFadeIn 250ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .bd-metric {
+    display: inline-block;
+    animation: bdMetricIn 300ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .bd-empty-icon {
+    animation: premium-float 3s ease-in-out infinite;
+  }
+
+  .bd-card-hover {
+    transition: box-shadow 200ms ease-out, border-color 200ms ease-out, transform 200ms ease-out;
+  }
+
+  .bd-card-hover:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px -5px hsl(var(--primary)/0.18), 0 4px 10px -3px hsl(var(--foreground)/0.08) !important;
+    border-color: hsl(var(--primary)/0.3) !important;
+  }
+
+  .bd-alert {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 400ms cubic-bezier(0.16, 1, 0.3, 1), transform 400ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .bd-animated .bd-alert {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .bd-service-item {
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 350ms cubic-bezier(0.16, 1, 0.3, 1), transform 350ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .bd-animated .bd-service-item {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .bd-service-item:nth-child(1) {
+    transition-delay: 80ms;
+  }
+
+  .bd-service-item:nth-child(2) {
+    transition-delay: 140ms;
+  }
+
+  .bd-service-item:nth-child(3) {
+    transition-delay: 200ms;
+  }
+
+  .bd-service-item:nth-child(4) {
+    transition-delay: 260ms;
+  }
+
+  .bd-service-item:nth-child(5) {
+    transition-delay: 320ms;
+  }
+
+  /* --- Keyframes --- */
+  @keyframes bdFadeIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes bdCardIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes bdSlideRight {
+    from {
+      opacity: 0;
+      transform: translateX(24px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes bdScaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.97);
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes bdMetricIn {
+    from {
+      opacity: 0;
+      transform: translateY(-6px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes bdAlertIn {
+    from {
+      opacity: 0;
+      transform: translateX(-12px);
+    }
+
+    60% {
+      opacity: 1;
+      transform: translateX(3px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  /* ═══════════════════════════════════════════════════
+     LEGACY SUPPORT & UTILITIES
+     ═══════════════════════════════════════════════════ */
+
+  .transition-smooth {
+    transition: all var(--motion-normal) var(--motion-easing);
+  }
+
+  .transition-fast {
+    transition: all var(--motion-fast) var(--motion-easing);
+  }
+
+  .transition-micro {
+    transition: all var(--motion-micro) var(--motion-easing);
+  }
+
+  .animate-fade-in {
+    animation: fadeIn var(--motion-normal) var(--motion-easing) forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Number formatting */
+  .number-animate {
+    @apply inline-block tabular-nums;
+    animation: numberIn var(--motion-medium) var(--motion-easing);
+  }
+
+  /* Data highlight */
+  .data-highlight {
+    @apply font-semibold tabular-nums;
+  }
+
+  /* Table row hover */
+  .table-row-hover {
+    @apply transition-all;
+    transition-duration: var(--motion-micro);
+    transition-timing-function: var(--motion-easing);
+  }
+
+  .table-row-hover:hover {
+    @apply bg-muted/40;
+  }
+
+  /* Table row attention indicators */
+  .table-row-quiet {
+    @apply border-b border-border/50;
+    transition: background-color var(--motion-micro) var(--motion-easing);
+  }
+
+  .table-row-quiet:hover {
+    @apply bg-muted/40;
+  }
+
+  .table-row-attention {
+    @apply border-l-2 border-l-warning;
+  }
+
+  .table-row-danger {
+    @apply border-l-2 border-l-destructive;
+  }
+
+  /* ═══════════════════════════════════════════════════
+     FILTER BAR
+     ═══════════════════════════════════════════════════ */
+
+  .filter-bar {
+    @apply flex items-center gap-3 py-3;
+  }
+
+  .filter-input {
+    @apply h-9 bg-background border border-border/60 rounded-md px-3 text-[13px] placeholder:text-muted-foreground/60;
+    transition: border-color var(--motion-fast) var(--motion-easing),
+      box-shadow var(--motion-fast) var(--motion-easing);
+  }
+
+  .filter-input:focus {
+    @apply ring-2 ring-primary/20 border-primary/50;
+  }
+
+  .filter-select {
+    @apply h-9 bg-background border border-border/60 rounded-md px-3 text-[13px];
+    transition: border-color var(--motion-fast) var(--motion-easing);
+  }
+
+  /* ═══════════════════════════════════════════════════
+     SURFACE & GLASS EFFECTS
+     Performance: No backdrop-blur on large/scrollable surfaces
+     ═══════════════════════════════════════════════════ */
+
+  .glass {
+    background-color: hsl(var(--card) / 0.98);
+  }
+
+  .surface-1 {
+    background-color: hsl(var(--card));
+  }
+
+  .surface-2 {
+    background-color: hsl(var(--background));
+  }
+
+  .surface-3 {
+    background-color: hsl(var(--muted));
+  }
+
+  /* ═══════════════════════════════════════════════════
+     10. SIGNATURE MOTION (Controlled, 1-2 only)
+     Chỉ dùng cho KPI chính, primary action
+     ═══════════════════════════════════════════════════ */
+
+  .signature-kpi {
+    animation: signatureEntry 280ms var(--motion-easing);
+  }
+
+  @keyframes signatureEntry {
+    0% {
+      opacity: 0;
+      transform: translateY(12px) scale(0.96);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  /* ═══════════════════════════════════════════════════
+     MOBILE RESPONSIVE UTILITIES
+     ═══════════════════════════════════════════════════ */
+
+  /* Safe area for notch/home indicator */
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  .safe-area-top {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+
+  /* Mobile-optimized touch targets */
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Mobile card spacing */
+  @media (max-width: 767px) {
+    .mobile-card {
+      @apply rounded-xl shadow-sm;
+    }
+
+    .mobile-stack {
+      @apply space-y-3;
+    }
+
+    .mobile-grid {
+      @apply grid grid-cols-2 gap-3;
+    }
+
+    /* Smaller text on mobile */
+    .mobile-text-sm {
+      @apply text-xs;
+    }
+
+    /* Full width buttons on mobile */
+    .mobile-full-btn {
+      @apply w-full;
+    }
+
+    /* Hide on mobile */
+    .mobile-hidden {
+      @apply hidden;
+    }
+
+    /* Horizontal scroll on mobile */
+    .mobile-scroll-x {
+      @apply overflow-x-auto -mx-3 px-3;
+      scroll-snap-type: x mandatory;
+    }
+
+    .mobile-scroll-x>* {
+      scroll-snap-align: start;
+    }
+  }
+
+  /* Desktop only show */
+  @media (min-width: 768px) {
+    .desktop-only {
+      @apply block;
+    }
+
+    .mobile-only {
+      @apply hidden;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .desktop-only {
+      @apply hidden;
+    }
+
+    .mobile-only {
+      @apply block;
+    }
+  }
+
+  /* Mobile table horizontal scroll */
+  .mobile-table-wrapper {
+    @apply overflow-x-auto -mx-3 md:mx-0;
+  }
+
+  .mobile-table-wrapper table {
+    @apply min-w-[600px] md:min-w-0;
+  }
+
+  /* Mobile form spacing */
+  .mobile-form-group {
+    @apply space-y-4 md:space-y-3;
+  }
+
+  /* Mobile dialog/sheet improvements */
+  @media (max-width: 767px) {
+    .mobile-sheet-content {
+      @apply max-h-[85vh] overflow-y-auto;
+    }
+  }
+
+  /* New notification item animation */
+  .notification-new-item {
+    animation: notification-highlight 2s ease-in-out infinite;
+  }
+
+  @keyframes notification-highlight {
+
+    0%,
+    100% {
+      background-color: hsl(var(--primary) / 0.08);
+    }
+
+    50% {
+      background-color: hsl(var(--primary) / 0.15);
+    }
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     PREMIUM ANIMATION UTILITIES - Professional & Refined
+     ═══════════════════════════════════════════════════════════ */
+
+  /* === ENTRANCE ANIMATIONS === */
+  .animate-premium-in {
+    animation: premium-fade-in 300ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-premium-in-up {
+    animation: premium-fade-in-up 400ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-premium-scale {
+    animation: premium-scale-in 250ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-premium-slide-right {
+    animation: premium-slide-in-right 350ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-premium-slide-left {
+    animation: premium-slide-in-left 350ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  /* === STAGGER ANIMATION DELAYS === */
+  .stagger-1 {
+    animation-delay: 50ms;
+  }
+
+  .stagger-2 {
+    animation-delay: 100ms;
+  }
+
+  .stagger-3 {
+    animation-delay: 150ms;
+  }
+
+  .stagger-4 {
+    animation-delay: 200ms;
+  }
+
+  .stagger-5 {
+    animation-delay: 250ms;
+  }
+
+  .stagger-6 {
+    animation-delay: 300ms;
+  }
+
+  /* === HOVER ENHANCEMENTS === */
+  .hover-premium {
+    @apply transition-all duration-200 ease-out;
+  }
+
+  .hover-premium:hover {
+    @apply -translate-y-0.5;
+    box-shadow: 0 8px 24px -8px hsl(var(--foreground) / 0.12);
+  }
+
+  .hover-glow:hover {
+    box-shadow: 0 0 20px -5px hsl(var(--primary) / 0.3);
+  }
+
+  /* === INTERACTIVE STATES === */
+  .interactive-lift {
+    @apply transition-all duration-150 ease-out cursor-pointer;
+  }
+
+  .interactive-lift:hover {
+    @apply -translate-y-px shadow-lg;
+  }
+
+  .interactive-lift:active {
+    @apply translate-y-0 shadow-md;
+  }
+
+  /* === PULSE & ATTENTION === */
+  .pulse-attention {
+    animation: premium-glow-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .float-subtle {
+    animation: premium-float 3s ease-in-out infinite;
+  }
+
+  .bounce-subtle {
+    animation: premium-bounce-subtle 1s ease-in-out infinite;
+  }
+
+  /* === LOADING STATES === */
+  .shimmer-premium {
+    background: linear-gradient(90deg,
+        hsl(var(--muted)) 25%,
+        hsl(var(--muted-foreground) / 0.1) 50%,
+        hsl(var(--muted)) 75%);
+    background-size: 400% 100%;
+    animation: premium-shimmer 2s ease-in-out infinite;
+  }
+
+  .spin-slow {
+    animation: premium-spin-slow 3s linear infinite;
+  }
+
+  /* === DATA VALUE ANIMATIONS === */
+  .value-update {
+    animation: premium-counter 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* === GLASSMORPHISM PREMIUM — no backdrop-blur for performance === */
+  .glass-premium {
+    @apply bg-card border border-border/40;
+    box-shadow:
+      0 4px 24px -4px hsl(var(--foreground) / 0.06),
+      inset 0 1px 0 0 hsl(var(--background) / 0.5);
+  }
+
+  /* === CARD PREMIUM VARIANTS === */
+  .card-premium {
+    @apply rounded-xl bg-card border border-border/50;
+    box-shadow:
+      0 1px 3px 0 hsl(var(--foreground) / 0.04),
+      0 1px 2px -1px hsl(var(--foreground) / 0.04);
+    transition: all 250ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .card-premium:hover {
+    @apply border-border/70;
+    box-shadow:
+      0 8px 24px -8px hsl(var(--foreground) / 0.1),
+      0 4px 8px -4px hsl(var(--foreground) / 0.04);
+    transform: translateY(-2px);
+  }
+
+  .card-interactive-premium {
+    @apply rounded-xl bg-card border border-border/50 cursor-pointer;
+    box-shadow:
+      0 1px 3px 0 hsl(var(--foreground) / 0.04),
+      0 1px 2px -1px hsl(var(--foreground) / 0.04);
+    transition: all 250ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .card-interactive-premium:hover {
+    @apply border-border/70;
+    box-shadow:
+      0 8px 24px -8px hsl(var(--foreground) / 0.1),
+      0 4px 8px -4px hsl(var(--foreground) / 0.04);
+    transform: translateY(-2px);
+  }
+
+  .card-interactive-premium:active {
+    transform: translateY(0) scale(0.995);
+    box-shadow:
+      0 2px 8px -2px hsl(var(--foreground) / 0.06);
+  }
+
+  /* === BUTTON PREMIUM ENHANCEMENTS === */
+  .btn-premium {
+    @apply relative overflow-hidden;
+    transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .btn-premium::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right,
+        transparent,
+        hsl(var(--primary-foreground) / 0.1),
+        transparent);
+    transform: translateX(-100%);
+    transition: transform 400ms ease;
+  }
+
+  .btn-premium:hover::after {
+    transform: translateX(100%);
+  }
+
+  /* === TABLE PREMIUM STYLING === */
+  .table-row-premium {
+    @apply transition-all duration-150 ease-out;
+  }
+
+  .table-row-premium:hover {
+    @apply bg-muted/60;
+    box-shadow: inset 0 0 0 1px hsl(var(--border) / 0.3);
+  }
+
+  /* === INPUT PREMIUM STYLING === */
+  .input-premium {
+    @apply transition-all duration-150 ease-out;
+    box-shadow: 0 1px 2px 0 hsl(var(--foreground) / 0.02);
+  }
+
+  .input-premium:focus {
+    @apply ring-2 ring-primary/20 border-primary/50;
+    box-shadow:
+      0 0 0 3px hsl(var(--primary) / 0.08),
+      0 1px 2px 0 hsl(var(--foreground) / 0.02);
+  }
+
+  /* === BADGE PREMIUM STYLING === */
+  .badge-premium {
+    @apply transition-all duration-150 ease-out;
+    box-shadow: 0 1px 2px 0 hsl(var(--foreground) / 0.04);
+  }
+
+  .badge-premium:hover {
+    @apply -translate-y-px;
+    box-shadow: 0 3px 6px -2px hsl(var(--foreground) / 0.08);
+  }
+
+  /* === DIVIDER PREMIUM === */
+  .divider-premium {
+    @apply border-border/50;
+    background: linear-gradient(to right,
+        transparent,
+        hsl(var(--border)),
+        transparent);
+    height: 1px;
+    border: none;
+  }
+
+  /* === SCROLLBAR PREMIUM === */
+  .scrollbar-premium::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .scrollbar-premium::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-premium::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted-foreground) / 0.2);
+    border-radius: 3px;
+  }
+
+  .scrollbar-premium::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.3);
+  }
+
+  /* Sidebar-specific thin scrollbar on dark background */
+  .scrollbar-sidebar::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .scrollbar-sidebar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-sidebar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 2px;
+  }
+
+  .scrollbar-sidebar::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.25);
+  }
+
+  /* === PAGE TRANSITION - fast, no jank === */
+  .page-enter {
+    animation: premium-fade-in-up 240ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  }
+
+  /* === SUCCESS/ERROR FEEDBACK === */
+  .feedback-success-ring {
+    animation: premium-glow-pulse 600ms cubic-bezier(0.16, 1, 0.3, 1);
+    --tw-ring-color: hsl(var(--success) / 0.3);
+  }
+
+  .feedback-error-shake {
+    animation: errorShake 300ms ease-in-out;
+  }
+
+  /* === TOOLTIP PREMIUM — no backdrop-blur for performance === */
+  .tooltip-premium {
+    @apply bg-card border border-border/40 rounded-lg px-3 py-2 text-sm;
+    box-shadow:
+      0 4px 24px -4px hsl(var(--foreground) / 0.06),
+      inset 0 1px 0 0 hsl(var(--background) / 0.5);
+    animation: premium-scale-in 150ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  /* ═══════════════════════════════════════════════════
+     EMAIL HTML BODY — Scoped styles for embedded emails
+     Constrains rich HTML (Expedia, OTA notifications,
+     Google alerts, etc.) inside chat bubbles.
+     ═══════════════════════════════════════════════════ */
+  .email-html-body {
+    /* Reset dangerous overflows */
+    max-width: 100% !important;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  .email-html-body img {
+    max-width: 100%;
+    height: auto !important;
+    display: inline-block;
+  }
+
+  .email-html-body table {
+    max-width: 100% !important;
+    width: auto !important;
+    border-collapse: collapse;
+    font-size: inherit;
+  }
+
+  .email-html-body td,
+  .email-html-body th {
+    /* Override global table styles for email content */
+    white-space: normal !important;
+    padding: 4px 6px;
+    font-size: inherit;
+    vertical-align: top;
+  }
+
+  .email-html-body a {
+    color: hsl(var(--primary));
+    text-decoration: underline;
+    word-break: break-all;
+  }
+
+  .email-html-body h1,
+  .email-html-body h2,
+  .email-html-body h3 {
+    font-size: 1em;
+    font-weight: 600;
+    margin: 0.5em 0;
+  }
+
+  .email-html-body p {
+    margin: 0.25em 0;
+  }
+
+  .email-html-body blockquote {
+    border-left: 3px solid hsl(var(--border));
+    padding-left: 0.75em;
+    margin: 0.5em 0;
+    opacity: 0.8;
+  }
+
+  /* Hide tracking pixels and invisible spacers */
+  .email-html-body img[width="1"],
+  .email-html-body img[height="1"],
+  .email-html-body img[style*="display:none"],
+  .email-html-body img[style*="display: none"] {
+    display: none !important;
+  }
+}
+
+/* Mobile flat card style — strips card decoration for mobile detail tabs */
+@layer utilities {
+  .mobile-flat .rounded-xl {
+    border-radius: 0 !important;
+    border-left: 0 !important;
+    border-right: 0 !important;
+    box-shadow: none !important;
+    border-color: hsl(var(--border) / 0.4) !important;
+  }
+  .mobile-flat .rounded-xl:hover {
+    box-shadow: none !important;
+    border-color: hsl(var(--border) / 0.4) !important;
+  }
+  /* Add visible separator gap between flat cards */
+  .mobile-flat > .space-y-4 {
+    gap: 1px !important;
+    background-color: hsl(var(--muted) / 0.3);
+  }
+  .mobile-flat > .space-y-4 > * {
+    background-color: hsl(var(--card));
+  }
+}

@@ -1,0 +1,12 @@
+-- Drop old constraint and add new one with HOST_DEPOSIT and HOST_PREPAID
+ALTER TABLE payment_requests DROP CONSTRAINT payment_requests_payment_type_check;
+
+ALTER TABLE payment_requests ADD CONSTRAINT payment_requests_payment_type_check 
+CHECK (payment_type = ANY (ARRAY[
+  'HOST_PAYMENT'::text, 
+  'SERVICE_PARTNER_PAYMENT'::text, 
+  'INTERNAL_EXPENSE'::text, 
+  'OTA_COMMISSION'::text,
+  'HOST_DEPOSIT'::text,
+  'HOST_PREPAID'::text
+]));

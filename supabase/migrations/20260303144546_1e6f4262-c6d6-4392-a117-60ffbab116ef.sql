@@ -1,0 +1,1 @@
+ALTER TABLE public.ledger_entries ALTER COLUMN account_snapshot DROP NOT NULL;

@@ -1,0 +1,1 @@
+UPDATE webhook_events SET status = 'PENDING', reject_reason = NULL WHERE id = '89179e97-9a38-4158-867a-5aff24616bde';

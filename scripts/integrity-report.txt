@@ -1,0 +1,97 @@
+﻿ΓòÉΓòÉΓòÉ PHASE 1B: Card Usage Classification ΓòÉΓòÉΓòÉ
+
+Page | Cards | KPI Tiles | Section Wrappers | Has SectionCard | Risk
+-----|-------|-----------|------------------|----------------|-----
+AccountingPeriodsPage.tsx | 1 | 0 | 1 | Γ£à | LOW
+AIPricingInsightsPage.tsx | 7 | 0 | 7 | Γ£à | MEDIUM
+AIPricingRecommendationsPage.tsx | 3 | 0 | 3 | Γ£à | LOW
+AIPricingValidationPage.tsx | 13 | 13 | 0 | Γ£à | HIGH
+ControlHubPage.tsx | 16 | 16 | 0 | Γ£à | HIGH
+HostCostAnalyticsPage.tsx | 6 | 6 | 0 | Γ£à | MEDIUM
+OverviewPage.tsx | 1 | 0 | 1 | Γ£à | LOW
+PriceSpreadAnalyticsPage.tsx | 5 | 5 | 0 | Γ£à | MEDIUM
+CashAccountsPage.tsx | 1 | 0 | 1 | Γ£à | LOW
+CashOutPage.tsx | 5 | 5 | 0 | Γ£à | MEDIUM
+CashTransfersPage.tsx | 1 | 0 | 1 | Γ£à | LOW
+ChannelManagerPage.tsx | 1 | 0 | 1 | Γ£à | LOW
+ChannexIntegrationPage.tsx | 8 | 0 | 8 | Γ£à | MEDIUM
+HostDepositsPage.tsx | 2 | 0 | 2 | Γ£à | LOW
+HostPayableDetailPage.tsx | 3 | 3 | 0 | Γ£à | LOW
+HostPayablesAgingPage.tsx | 6 | 6 | 0 | Γ£à | MEDIUM
+HostSettlementPage.tsx | 11 | 11 | 0 | Γ£à | HIGH
+InventoryPage.tsx | 2 | 0 | 2 | Γ£à | LOW
+LedgerEntriesPage.tsx | 4 | 4 | 0 | Γ£à | LOW
+MappingRulesPage.tsx | 1 | 0 | 1 | Γ£à | LOW
+MappingsPage.tsx | 4 | 4 | 0 | Γ£à | LOW
+KpiPage.tsx | 7 | 7 | 0 | Γ£à | MEDIUM
+MyTasksPage.tsx | 8 | 8 | 0 | Γ£à | MEDIUM
+ProjectDetailPage.tsx | 5 | 5 | 0 | Γ£à | MEDIUM
+ProjectsPage.tsx | 7 | 7 | 0 | Γ£à | MEDIUM
+TaskDetailPage.tsx | 4 | 4 | 0 | Γ£à | LOW
+TasksPage.tsx | 9 | 9 | 0 | Γ£à | MEDIUM
+OtaPayoutDetailPage.tsx | 9 | 0 | 9 | Γ£à | MEDIUM
+OutgoingPaymentsPage.tsx | 1 | 0 | 1 | Γ£à | LOW
+PaymentRequestsPage.tsx | 1 | 1 | 0 | Γ£à | LOW
+ReportsCashflowPage.tsx | 5 | 5 | 0 | Γ£à | MEDIUM
+ReportsPnlPage.tsx | 1 | 1 | 0 | Γ£à | LOW
+ServiceOrderDetailPage.tsx | 6 | 0 | 6 | Γ£à | MEDIUM
+ServicePayablesPage.tsx | 5 | 5 | 0 | Γ£à | MEDIUM
+ServiceReportsPage.tsx | 5 | 5 | 0 | Γ£à | MEDIUM
+WhatsAppSettingsPage.tsx | 4 | 4 | 0 | Γ£à | LOW
+SettingsPage.tsx | 9 | 0 | 9 | Γ£à | MEDIUM
+SettlementHistoryPage.tsx | 5 | 5 | 0 | Γ£à | MEDIUM
+SyncJobsPage.tsx | 4 | 4 | 0 | Γ£à | LOW
+
+Total: 39 pages with Card usage
+KPI tile pages: 24
+Section wrapper pages: 15
+
+ΓòÉΓòÉΓòÉ PHASE 2: Visual Hierarchy Audit ΓòÉΓòÉΓòÉ
+
+ΓÜá∩╕Å  OtaPayoutsPage.tsx: 7 distinct text tokens ΓÇö text-xs, text-sm, text-base, text-xl, text-kpi, text-hero-kpi, text-micro
+
+ΓòÉΓòÉΓòÉ PHASE 3: Numeric Alignment Audit ΓòÉΓòÉΓòÉ
+
+ΓÜá∩╕Å  HostPayablesAgingPage.tsx:789 ΓÇö Currency in TableCell without text-right
+ΓÜá∩╕Å  HostPayablesAgingPage.tsx:897 ΓÇö Currency in TableCell without text-right
+ΓÜá∩╕Å  HostSettlementPage.tsx:712 ΓÇö text-kpi without tabular-nums
+ΓÜá∩╕Å  HostSettlementPage.tsx:1079 ΓÇö text-kpi without tabular-nums
+ΓÜá∩╕Å  HostSettlementPage.tsx:1208 ΓÇö text-kpi without tabular-nums
+ΓÜá∩╕Å  HostSettlementPage.tsx:1492 ΓÇö text-kpi without tabular-nums
+ΓÜá∩╕Å  HostSettlementPage.tsx:1538 ΓÇö text-kpi without tabular-nums
+ΓÜá∩╕Å  MappingsPage.tsx:328 ΓÇö Currency in TableCell without text-right
+ΓÜá∩╕Å  PaymentRequestsPage.tsx:818 ΓÇö text-kpi without tabular-nums
+ΓÜá∩╕Å  ServicePayablesPage.tsx:1080 ΓÇö Currency in TableCell without text-right
+
+Total numeric issues: 10
+
+ΓòÉΓòÉΓòÉ PHASE 5: Mobile Stability Check ΓòÉΓòÉΓòÉ
+
+ΓÜá∩╕Å  AccountingPeriodsPage.tsx ΓÇö Fixed width on Table
+ΓÜá∩╕Å  CashAccountsPage.tsx ΓÇö Fixed width on Table
+ΓÜá∩╕Å  CashOutPage.tsx ΓÇö Fixed width on Table
+ΓÜá∩╕Å  CashTransfersPage.tsx ΓÇö Fixed width on Table
+ΓÜá∩╕Å  ChannexIntegrationPage.tsx ΓÇö Fixed width on Table
+ΓÜá∩╕Å  DeclarationListPage.tsx ΓÇö Fixed width on Table
+ΓÜá∩╕Å  DocumentationPage.tsx ΓÇö Fixed width on Table
+ΓÜá∩╕Å  HostDepositsPage.tsx ΓÇö Fixed width on Table
+ΓÜá∩╕Å  LedgerEntriesPage.tsx ΓÇö Fixed width on Table
+ΓÜá∩╕Å  MappingRulesPage.tsx ΓÇö Fixed width on Table
+ΓÜá∩╕Å  MappingsPage.tsx ΓÇö Fixed width on Table
+ΓÜá∩╕Å  KpiPage.tsx ΓÇö Fixed width on Table
+ΓÜá∩╕Å  ProjectsPage.tsx ΓÇö Fixed width on Table
+ΓÜá∩╕Å  TasksPage.tsx ΓÇö Fixed width on Table
+ΓÜá∩╕Å  OtaPayoutDetailPage.tsx ΓÇö Fixed width on Table
+ΓÜá∩╕Å  PaymentRequestsPage.tsx ΓÇö Fixed width on Table
+ΓÜá∩╕Å  PropertyCatalogPage.tsx ΓÇö Fixed width on Table
+ΓÜá∩╕Å  ServicePayablesPage.tsx ΓÇö Fixed width on Table
+ΓÜá∩╕Å  SettlementHistoryPage.tsx ΓÇö Fixed width on Table
+ΓÜá∩╕Å  SyncJobsPage.tsx ΓÇö Fixed width on Table
+
+ΓòÉΓòÉΓòÉ PHASE 6: Baseline Grid Check ΓòÉΓòÉΓòÉ
+
+Γ£à No baseline grid drift found ΓÇö all spacing is gap-4 compliant
+
+ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+AUDIT COMPLETE
+ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ

@@ -1,0 +1,721 @@
+openapi: 3.0.3
+info:
+  title: Inventory API - Zero-Error Spec
+  description: |
+    Enterprise-grade Inventory Management API.
+    
+    ## Core Principles
+    - API only returns resolved (final) data
+    - Frontend does not infer logic
+    - All changes are auditable by time
+    - No duplicate writes, no silent overwrites
+    - Audit at any point in time T
+    
+    ## Atomic Data Unit
+    Cell = RoomType × RatePlan × Channel × StayDate × Restriction
+    
+    ## Priority Order (Locked)
+    1. Draft (UI-only)
+    2. Manual Override
+    3. Rules (higher priority wins)
+    4. Synced OTA Snapshot
+    5. Base Default
+  version: 1.0.0
+  contact:
+    name: RoomRise API Support
+servers:
+  - url: https://htfpjqkhtjbalaodymwb.supabase.co/functions/v1
+    description: Production
+
+tags:
+  - name: Grid
+    description: Read inventory grid data
+  - name: Explain
+    description: Cell explanation and audit
+  - name: Draft
+    description: Dry-run and preview
+  - name: Write
+    description: Batch updates
+  - name: Status
+    description: Sync status tracking
+  - name: Snapshot
+    description: Audit and dispute
+
+paths:
+  /inventory-grid:
+    get:
+      tags:
+        - Grid
+      summary: Get resolved inventory grid
+      description: |
+        Returns fully resolved inventory cells with final values.
+        All cells include source_layer, applied_at, and data_version.
+        Backend resolves all priority layers - frontend only displays.
+      operationId: getInventoryGrid
+      parameters:
+        - name: property_id
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: Property UUID
+        - name: start_date
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+          description: Start date (inclusive, YYYY-MM-DD)
+        - name: end_date
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+          description: End date (inclusive, YYYY-MM-DD)
+        - name: room_type_ids
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          description: Filter by room type IDs
+        - name: rate_plan_ids
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          description: Filter by rate plan IDs
+        - name: channel_ids
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          description: Filter by channel IDs
+        - name: restrictions
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/RestrictionType'
+          description: Filter by restriction types
+        - name: resolve_mode
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [DISPLAY, AUDIT]
+            default: DISPLAY
+          description: Resolution mode
+        - name: timezone
+          in: query
+          required: false
+          schema:
+            type: string
+            default: Asia/Ho_Chi_Minh
+          description: Property timezone
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Pagination cursor
+      responses:
+        '200':
+          description: Resolved inventory grid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GridResponse'
+        '400':
+          description: Invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+        '500':
+          description: Server error
+
+  /inventory-cell-explain:
+    get:
+      tags:
+        - Explain
+      summary: Explain cell resolution
+      description: |
+        Returns detailed explanation of how a cell's final value was determined.
+        Includes rule_id, priority, override details, and precedence_reason.
+      operationId: explainCell
+      parameters:
+        - name: property_id
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: room_type_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: rate_plan_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: channel_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: date
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: restriction
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/RestrictionType'
+      responses:
+        '200':
+          description: Cell explanation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CellExplainResponse'
+        '404':
+          description: Cell not found
+
+  /inventory-dry-run:
+    post:
+      tags:
+        - Draft
+      summary: Preview changes (dry-run)
+      description: |
+        Simulates batch update without persisting.
+        Backend resolves all affected cells and returns preview.
+        Required before any bulk operation.
+      operationId: dryRun
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DryRunRequest'
+      responses:
+        '200':
+          description: Dry-run result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DryRunResponse'
+        '400':
+          description: Invalid request
+
+  /inventory-batch-update:
+    post:
+      tags:
+        - Write
+      summary: Apply batch update
+      description: |
+        Applies inventory changes atomically.
+        Requires batch_id, idempotency_key, and scope_hash.
+        
+        Rules:
+        - Idempotent: resending same key = no duplicate write
+        - Scope hash mismatch = reject + require reload
+        - Each save creates immutable snapshot
+      operationId: batchUpdate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BatchUpdateRequest'
+      responses:
+        '200':
+          description: Update accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchUpdateResponse'
+        '409':
+          description: Conflict - scope_hash mismatch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictError'
+        '422':
+          description: Validation error
+
+  /inventory-batch-status/{batch_id}:
+    get:
+      tags:
+        - Status
+      summary: Get batch sync status
+      description: |
+        Returns sync status for a batch.
+        No polling required - use for progress tracking.
+      operationId: getBatchStatus
+      parameters:
+        - name: batch_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Batch status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchStatusResponse'
+        '404':
+          description: Batch not found
+
+  /inventory-snapshot:
+    get:
+      tags:
+        - Snapshot
+      summary: Get snapshot for audit
+      description: |
+        Returns immutable snapshot at specific version.
+        Used for audit and OTA dispute resolution.
+        Read-only, cannot be modified.
+      operationId: getSnapshot
+      parameters:
+        - name: property_id
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: version
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Snapshot version (latest if omitted)
+        - name: as_of
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+          description: Point-in-time query (ISO 8601)
+      responses:
+        '200':
+          description: Snapshot data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SnapshotResponse'
+
+components:
+  schemas:
+    RestrictionType:
+      type: string
+      enum:
+        - RATE
+        - AVL
+        - SS
+        - CTA
+        - CTD
+        - MSA
+        - MST
+        - MXS
+        - MAL
+        - AVO
+      description: |
+        - RATE: Rate/Price
+        - AVL: Availability
+        - SS: Stop Sell
+        - CTA: Closed to Arrival
+        - CTD: Closed to Departure
+        - MSA: Min Stay Arrival
+        - MST: Min Stay Through
+        - MXS: Max Stay
+        - MAL: Min Advance
+        - AVO: Availability Override
+
+    SourceLayer:
+      type: string
+      enum:
+        - BASE
+        - SYNC
+        - RULE
+        - OVERRIDE
+      description: |
+        - BASE: Default value
+        - SYNC: From OTA sync
+        - RULE: From availability rule
+        - OVERRIDE: Manual override
+
+    CellState:
+      type: string
+      enum:
+        - PENDING
+        - SYNCED
+        - FAILED
+        - STALE
+      description: Sync state of the cell
+
+    GridCell:
+      type: object
+      required:
+        - room_type_id
+        - rate_plan_id
+        - channel_id
+        - date
+        - restriction
+        - final_value
+        - state
+        - source_layer
+      properties:
+        room_type_id:
+          type: string
+        rate_plan_id:
+          type: string
+        channel_id:
+          type: string
+        date:
+          type: string
+          format: date
+        restriction:
+          $ref: '#/components/schemas/RestrictionType'
+        final_value:
+          oneOf:
+            - type: number
+            - type: boolean
+            - type: integer
+          description: Resolved final value
+        state:
+          $ref: '#/components/schemas/CellState'
+        source_layer:
+          $ref: '#/components/schemas/SourceLayer'
+        applied_at:
+          type: string
+          format: date-time
+        applied_by:
+          type: string
+          format: uuid
+
+    GridMeta:
+      type: object
+      properties:
+        timezone:
+          type: string
+        last_synced_at:
+          type: string
+          format: date-time
+        data_version:
+          type: string
+          description: Format inv_snapshot_YYYYMMDD_HHMM
+        scope_hash:
+          type: string
+          description: Hash of current scope for conflict detection
+
+    Pagination:
+      type: object
+      properties:
+        partial:
+          type: boolean
+        next_cursor:
+          type: string
+        total_count:
+          type: integer
+
+    GridResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/GridMeta'
+        grid:
+          type: array
+          items:
+            $ref: '#/components/schemas/GridCell'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+
+    CellExplainResponse:
+      type: object
+      properties:
+        final_value:
+          oneOf:
+            - type: number
+            - type: boolean
+            - type: integer
+        source_layer:
+          $ref: '#/components/schemas/SourceLayer'
+        rule_id:
+          type: string
+          format: uuid
+        rule_priority:
+          type: integer
+        override_id:
+          type: string
+          format: uuid
+        applied_at:
+          type: string
+          format: date-time
+        applied_by:
+          type: string
+          format: uuid
+        precedence_reason:
+          type: string
+          description: Why this value won
+        resolution_chain:
+          type: array
+          items:
+            type: object
+            properties:
+              layer:
+                $ref: '#/components/schemas/SourceLayer'
+              value:
+                oneOf:
+                  - type: number
+                  - type: boolean
+                  - type: integer
+              skipped_reason:
+                type: string
+
+    CellChange:
+      type: object
+      required:
+        - room_type_id
+        - rate_plan_id
+        - channel_id
+        - date
+        - restriction
+        - value
+      properties:
+        room_type_id:
+          type: string
+        rate_plan_id:
+          type: string
+        channel_id:
+          type: string
+        date:
+          type: string
+          format: date
+        restriction:
+          $ref: '#/components/schemas/RestrictionType'
+        value:
+          oneOf:
+            - type: number
+            - type: boolean
+            - type: integer
+
+    DryRunRequest:
+      type: object
+      required:
+        - property_id
+        - changes
+      properties:
+        property_id:
+          type: string
+          format: uuid
+        changes:
+          type: array
+          items:
+            $ref: '#/components/schemas/CellChange'
+
+    DryRunResponse:
+      type: object
+      properties:
+        affected_cells:
+          type: integer
+        preview:
+          type: array
+          items:
+            type: object
+            properties:
+              cell:
+                $ref: '#/components/schemas/GridCell'
+              before_value:
+                oneOf:
+                  - type: number
+                  - type: boolean
+                  - type: integer
+              after_value:
+                oneOf:
+                  - type: number
+                  - type: boolean
+                  - type: integer
+        warnings:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+              message:
+                type: string
+              affected_count:
+                type: integer
+        blast_radius:
+          type: object
+          properties:
+            room_types:
+              type: integer
+            channels:
+              type: integer
+            dates:
+              type: integer
+            total_cells:
+              type: integer
+
+    BatchUpdateRequest:
+      type: object
+      required:
+        - batch_id
+        - idempotency_key
+        - scope_hash
+        - changes
+      properties:
+        batch_id:
+          type: string
+          format: uuid
+        idempotency_key:
+          type: string
+          format: uuid
+        scope_hash:
+          type: string
+          description: Must match current scope
+        changes:
+          type: array
+          items:
+            $ref: '#/components/schemas/CellChange'
+        reason:
+          type: string
+          description: Audit reason for change
+
+    BatchUpdateResponse:
+      type: object
+      properties:
+        batch_id:
+          type: string
+          format: uuid
+        status:
+          type: string
+          enum: [ACCEPTED, QUEUED, PROCESSING]
+        snapshot_id:
+          type: string
+        affected_cells:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+
+    BatchStatusResponse:
+      type: object
+      properties:
+        batch_id:
+          type: string
+          format: uuid
+        status:
+          type: string
+          enum: [PENDING, PROCESSING, SUCCESS, PARTIAL_FAILED, FAILED]
+        total_cells:
+          type: integer
+        synced_cells:
+          type: integer
+        failed_cells:
+          type: integer
+        failures:
+          type: array
+          items:
+            type: object
+            properties:
+              cell_key:
+                type: string
+              error:
+                type: string
+              channel:
+                type: string
+        estimated_remaining_seconds:
+          type: integer
+        completed_at:
+          type: string
+          format: date-time
+
+    SnapshotResponse:
+      type: object
+      properties:
+        version:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        created_by:
+          type: string
+          format: uuid
+        property_id:
+          type: string
+          format: uuid
+        cell_count:
+          type: integer
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/GridCell'
+        is_immutable:
+          type: boolean
+          default: true
+
+    ConflictError:
+      type: object
+      properties:
+        error:
+          type: string
+        code:
+          type: string
+          enum: [SCOPE_HASH_MISMATCH, CONCURRENT_EDIT]
+        current_scope_hash:
+          type: string
+        conflicting_cells:
+          type: array
+          items:
+            type: object
+            properties:
+              cell_key:
+                type: string
+              edited_by:
+                type: string
+              edited_at:
+                type: string
+                format: date-time
+        action_required:
+          type: string
+          default: RELOAD_AND_RETRY
+
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        code:
+          type: string
+        details:
+          type: object
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+security:
+  - bearerAuth: []

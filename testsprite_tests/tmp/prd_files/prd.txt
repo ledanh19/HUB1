@@ -1,0 +1,37 @@
+# Product Requirements Document (PRD)
+**Project**: Property Management Backend API
+**Date**: 2026-02-21
+
+## 1. Product Overview
+Backend API for property and booking operations providing authentication, user management, housekeeping and deposit workflows, and an integration endpoint for Channex webhooks.
+
+## 2. Core Goals
+- Provide secure authentication and user profile endpoints for clients and services.
+- Support property operations (housekeeping assignments, service charges, pre-checkout) and booking deposit lifecycle.
+- Expose reliable endpoints for external integrations (Channex) to receive and process webhook events.
+- Return clear success and error responses for API consumers to enable robust client-side flows.
+- Enable notification delivery and current-user retrieval for UI and automation.
+
+## 3. Features & User Flows
+
+### Feature 1: Authentication and User Management
+**Description**: Endpoints for user login, retrieving the current logged-in user, and basic notification/profile access.
+**User Flows**:
+1. Call `POST /api/login` with valid email and password -> Receive 200 response with auth token -> Call `GET /api/current-user` with Authorization token -> Receive 200 response with user details.
+2. Call `POST /api/login` with invalid credentials -> Receive 401 Unauthorized -> See error message indicating invalid credentials.
+3. Call `GET /api/current-user` with expired or malformed token -> Receive 401 Unauthorized -> See token expired or invalid token error.
+
+### Feature 2: Property and Booking Management
+**Description**: APIs to access housekeeping assignments and create booking deposits (also supports charges, pre-checkout and booking activities in the codebase).
+**User Flows**:
+1. Call `GET /api/housekeeping` with Authorization token -> Receive 200 response with list of housekeeping assignments -> See assignment details including property and assignee.
+2. Call `GET /api/housekeeping` without Authorization token -> Receive 401 Unauthorized -> See authentication required error.
+3. Call `POST /api/deposits` with Authorization token and valid booking id and amount -> Receive 201 Created with deposit id in response -> See deposit creation confirmed in response.
+4. Call `POST /api/deposits` with Authorization token and invalid or missing booking id -> Receive 400 Bad Request or 404 Not Found -> See error describing invalid booking reference.
+
+### Feature 3: External Integrations (Channex)
+**Description**: Webhook endpoint to receive booking and inventory events from Channex and process them into the system.
+**User Flows**:
+1. Receive `POST /api/channex/webhook` with valid payload from Channex -> Validate payload and signature (if applicable) -> Respond 200 OK -> Persist or update booking/inventory state.
+2. Receive `POST /api/channex/webhook` with malformed JSON or missing required fields -> Respond 400 Bad Request -> Log error and return validation error details.
+3. Receive `POST /api/channex/webhook` with invalid signature or untrusted source -> Respond 401 Unauthorized -> Reject request and log security event.

@@ -381,13 +381,13 @@ export function NotificationBell() {
           });
         }
       });
-  }, [lastReadAt, queryClient]);
+  }, [lastReadAt, queryClient, userId]);
 
   useRealtimeSubscription('booking_changes', handleBookingChangeEvent, { eventTypes: ['INSERT'] });
 
   const handleMessageEvent = useCallback(() => {
     queryClient.invalidateQueries({ queryKey: ["notification-messages", userId] });
-  }, [queryClient]);
+  }, [queryClient, userId]);
   useRealtimeSubscription('messages', handleMessageEvent, { eventTypes: ['INSERT', 'UPDATE'] });
 
   // ── NEW: Email notifications from unified notifications table ──

@@ -440,7 +440,7 @@ export default function DeclarationListPage() {
         if (item.documents.length === 0) continue;
 
         // Create folder for each guest
-        const folderName = `${item.guest_name}_${item.check_in_date}`.replace(/[\/\\:*?"<>|]/g, "_");
+        const folderName = `${item.guest_name}_${item.check_in_date}`.replace(/[/\\:*?"<>|]/g, "_");
         const folder = zip.folder(folderName);
 
         for (const doc of item.documents) {

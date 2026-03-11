@@ -209,7 +209,7 @@ export function InventoryGrid({
     const baseClass = "text-sm";
     
     switch (restriction) {
-      case 'AVL':
+      case 'AVL': {
         const avl = cell.availability ?? 0;
         const avlSsWarning = avl === 0 && !(cell.stop_sell);
         return (
@@ -223,13 +223,15 @@ export function InventoryGrid({
             {avl}
           </span>
         );
-      case 'AVO':
+      }
+      case 'AVO': {
         const avo = cell.availability_offset;
         return (
           <span className={cn(baseClass, avo !== null && avo !== 0 && (avo > 0 ? "text-success" : "text-destructive"))}>
             {avo ?? 0}
           </span>
         );
+      }
       case 'CTA':
         return (
           <Checkbox 
@@ -246,13 +248,14 @@ export function InventoryGrid({
             className={cn(isDraft && "ring-2 ring-warning")}
           />
         );
-      case 'MAL':
+      case 'MAL': {
         const mal = cell.max_availability;
         return (
           <span className={cn(baseClass, "text-muted-foreground")}>
             {mal ?? 'N/A'}
           </span>
         );
+      }
       case 'MXS':
         return (
           <span className={baseClass}>
@@ -277,7 +280,7 @@ export function InventoryGrid({
             {formatRate(cell.rate)}
           </span>
         );
-      case 'SS':
+      case 'SS': {
         const ssAvlWarning = (cell.stop_sell ?? false) && (cell.availability ?? 0) > 0;
         return (
           <div className="flex items-center gap-1">
@@ -296,6 +299,7 @@ export function InventoryGrid({
             )}
           </div>
         );
+      }
       default:
         return null;
     }

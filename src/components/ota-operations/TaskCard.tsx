@@ -138,7 +138,7 @@ function getPurposeHint(description: string | null): string {
   if (!description) return '';
   
   const cleaned = description
-    .replace(/[#*_`~\[\]]/g, '')
+    .replace(/[#*_`~[\]]/g, '')
     .replace(/\n+/g, ' ')
     .trim();
   

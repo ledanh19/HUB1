@@ -233,7 +233,7 @@ export function DashboardV2Mobile(props: DashboardMobileProps) {
             totalRevenueForecast, totalExpenseForecast,
             hostIncurred, hostProjected, serviceOut, netExp,
         };
-    }, [forecastData, otaPayoutData, expectedIn, hostDebtData]);
+    }, [forecastData, expectedIn, hostDebtData]);
 
     // Guest Origin analytics — respects period filter
     const mobileDateRange = useMemo(() => {
